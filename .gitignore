@@ -1,2 +1,5 @@
-.DS_Store
-desktop.ini
+/node_modules
+/dist
+/.tmp
+/.sass-cache
+/bower_components
