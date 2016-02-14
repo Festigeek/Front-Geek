@@ -2,16 +2,12 @@
 
 /**
  * @ngdoc function
- * @name fgfrontEndApp.controller:AboutCtrl
+ * @name frontGeekApp.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the fgfrontEndApp
+ * Controller of the frontGeekApp
  */
-angular.module('fgfrontEndApp')
+angular.module('frontGeekApp')
   .controller('AboutCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    
   });

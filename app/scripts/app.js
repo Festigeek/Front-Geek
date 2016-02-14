@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name fgfrontEndApp
+ * @name frontGeekApp
  * @description
- * # fgfrontEndApp
+ * # frontGeekApp
  *
  * Main module of the application.
  */
 angular
-  .module('fgfrontEndApp', [
+  .module('frontGeekApp', [
     'ngAnimate',
     'ngAria',
     'ngCookies',
@@ -30,6 +30,16 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
+      })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'login'
+      })
+      .when('/register', {
+        templateUrl: 'views/register.html',
+        controller: 'RegisterCtrl',
+        controllerAs: 'register'
       })
       .otherwise({
         redirectTo: '/'

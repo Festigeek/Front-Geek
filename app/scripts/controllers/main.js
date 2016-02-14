@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name fgfrontEndApp.controller:MainCtrl
+ * @name frontGeekApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the fgfrontEndApp
+ * Controller of the frontGeekApp
  */
-angular.module('fgfrontEndApp')
+angular.module('frontGeekApp')
   .controller('MainCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
