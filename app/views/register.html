@@ -1,1 +1,29 @@
-<p>This is the register view.</p>
+<div class="col-md-6 col-md-offset-3">
+    <h2>Créer un compte</h2>
+    <form name="form" ng-submit="register()" role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+            <label for="email">E-Mail</label>
+            <input type="email" name="email" id="email" class="form-control" ng-model="register.user.email" required />
+            <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">E-mail requis</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.birthdate.$dirty && form.birthdate.$error.required }">
+            <label for="birthdate">Date de naissance</label>
+            <input type="text" name="birthdate" id="birthdate" class="form-control" ng-model="register.user.birthdate" required />
+            <span ng-show="form.birthdate.$dirty && form.birthdate.$error.required" class="help-block">Date de naissance requise</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+            <label for="password">Mot de passe</label>
+            <input type="password" name="password" id="password" class="form-control" ng-model="register.user.password" required />
+            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Mot de passe requis</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.confirm_password.$dirty && form.confirm_password.$error.required }">
+            <label for="confirm_password">Confirmation mot de passe</label>
+            <input type="confirm_password" name="confirm_password" id="confirm_password" class="form-control" ng-model="register.user.confirm_password" required />
+            <span ng-show="form.confirm_password.$dirty && form.confirm_password.$error.required" class="help-block">Mot de passe requis</span>
+        </div>
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || register.dataLoading" class="btn btn-primary">Créer un compte</button>
+            <a href="#/login" class="btn btn-link">Annuler</a>
+        </div>
+    </form>
+</div>
