@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name frontGeekApp.controller:MainCtrl
+ * @name frontGeekApp.controller:InscriptionCtrl
  * @description
- * # MainCtrl
+ * # InscriptionCtrl
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('MainCtrl', function () {
-    
+  .controller('InscriptionCtrl', function () {
+
   });

@@ -33,13 +33,14 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
-      'bower_components/ng-dialog/js/ngDialog.js',
-      'bower_components/angular-jwt/dist/angular-jwt.js',
       'bower_components/angular-loading-bar/build/loading-bar.js',
+      'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'bower_components/angular-jwt/dist/angular-jwt.js',
+      'bower_components/angular-storage/dist/angular-storage.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
-      "test/mock/**/*.js",
+      //"test/mock/**/*.js",
       "test/spec/**/*.js"
     ],
 

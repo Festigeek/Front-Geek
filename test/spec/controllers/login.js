@@ -3,7 +3,7 @@
 describe('Controller: LoginCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('frontgeekApp'));
+  beforeEach(module('frontGeekApp'));
 
   var LoginCtrl,
     scope;
@@ -17,7 +17,4 @@ describe('Controller: LoginCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(LoginCtrl.awesomeThings.length).toBe(3);
-  });
 });

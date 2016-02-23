@@ -18,8 +18,9 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ngDialog',
-    'angular-jwt',
+    'ui.bootstrap',
+    'angular-storage',
+    'angular-jwt'
   ])
   .constant('urls', {
     BASE: 'http://localhost:9000/',
@@ -30,7 +31,8 @@ angular
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
-        controllerAs: 'main'
+        controllerAs: 'main',
+        skipAuthorization: true
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -47,30 +49,39 @@ angular
         controller: 'RegisterCtrl',
         controllerAs: 'register'
       })
+      .when('/account', {
+        templateUrl: 'views/account.html',
+        controller: 'AccountCtrl',
+        controllerAs: 'account',
+        requiresLogin: true
+      })
+      .when('/inscription', {
+        templateUrl: 'views/inscription.html',
+        controller: 'InscriptionCtrl',
+        controllerAs: 'inscription'
+      })
       .otherwise({
         redirectTo: '/'
       });
 
-    // Please note we're annotating the function so that the $injector works when the file is minified
-    jwtInterceptorProvider.tokenGetter = function() {
-      return localStorage.getItem('JWT');
-      var refreshToken = localStorage.getItem('refresh_token');
-      if (jwtHelper.isTokenExpired(jwt)) {
-        // This is a promise of a JWT id_token
-        return $http({
-          url: '/delegation',
-          // This will not send the JWT for this call
-          skipAuthorization: true,
-          method: 'POST',
-          refresh_token : refreshToken
-        })
-        .then(function(response) {
-          localStorage.setItem('JWT', response.data.jwt);
-          return jwt;
-        });
-      }
-      else return jwt;
-    }
+    jwtInterceptorProvider.tokenGetter = function(aiStorage) {
+      return aiStorage.get('token');
+    };
 
     $httpProvider.interceptors.push('jwtInterceptor');
+  })
+  .run(function($rootScope, $location, aiStorage, jwtHelper){
+    // Function to active button on navBar
+    $rootScope.isActive = function (viewLocation) { 
+        return viewLocation === $location.path();
+    };
+
+    $rootScope.$on('$routeChangeStart', function(e, to) {
+      if (to.$$route.requiresLogin) {
+        if (!aiStorage.get('token') || jwtHelper.isTokenExpired(aiStorage.get('token'))) {
+          e.preventDefault();
+          $location.path('login');
+        }
+      }
+    });
   });

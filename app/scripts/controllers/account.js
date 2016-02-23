@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name frontGeekApp.controller:MainCtrl
+ * @name frontGeekApp.controller:AccountCtrl
  * @description
- * # MainCtrl
+ * # AccountCtrl
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('MainCtrl', function () {
+  .controller('AccountCtrl', function () {
     
   });

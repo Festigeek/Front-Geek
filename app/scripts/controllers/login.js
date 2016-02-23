@@ -2,12 +2,23 @@
 
 /**
  * @ngdoc function
- * @name frontgeekApp.controller:LoginCtrl
+ * @name frontGeekApp.controller:LoginCtrl
  * @description
  * # LoginCtrl
- * Controller of the frontgeekApp
+ * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('LoginCtrl', function () {
+  .controller('LoginCtrl', function ($scope) {
     
+    $scope.signin = function () {
+      var formData = {
+        email: $scope.email,
+        password: $scope.password
+      };
+
+      Auth.signin(formData, successAuth, function () {
+        $rootScope.error = 'Invalid credentials.';
+      })
+   };
+
   });
