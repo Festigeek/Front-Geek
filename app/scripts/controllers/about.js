@@ -9,5 +9,5 @@
  */
 angular.module('frontGeekApp')
   .controller('AboutCtrl', function () {
-    
+
   });

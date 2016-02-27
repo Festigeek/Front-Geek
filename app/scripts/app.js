@@ -71,16 +71,11 @@ angular
     $httpProvider.interceptors.push('jwtInterceptor');
   })
   .run(function($rootScope, $location, aiStorage, jwtHelper){
-    // Function to active button on navBar
-    $rootScope.isActive = function (viewLocation) { 
-        return viewLocation === $location.path();
-    };
-
     $rootScope.$on('$routeChangeStart', function(e, to) {
       if (to.$$route.requiresLogin) {
         if (!aiStorage.get('token') || jwtHelper.isTokenExpired(aiStorage.get('token'))) {
-          e.preventDefault();
-          $location.path('login');
+          // e.preventDefault();
+          // $location.path('login');
         }
       }
     });

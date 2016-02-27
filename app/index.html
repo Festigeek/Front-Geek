@@ -43,9 +43,9 @@
               <li ng-class="{ active: isActive('/about')}"><a ng-href="#/about">About</a></li>
               <li ng-class="{ active: isActive('/inscription')}"><a ng-href="#/inscription">Inscription</a></li>
               <li ng-class="{ active: isActive('/account')}"><a ng-href="#/account">Account</a></li>
-              <li ng-class="{ active: isActive('/login')}" data-ng-hide="token"><a ng-href="#/login">Login</a></li>
-              <li ng-class="{ active: isActive('/register')}" data-ng-hide="token"><a ng-href="#/register">Register</a></li>
-              <li data-ng-show="token"><a ng-click="logout()">Logout</a></li>
+              <li ng-class="{ active: isActive('/login')}" data-ng-hide="haveToken"><a ng-href="#/login">Login</a></li>
+              <li ng-class="{ active: isActive('/register')}" data-ng-hide="haveToken"><a ng-href="#/register">Register</a></li>
+              <li data-ng-show="haveToken"><a ng-click="logout()">Logout</a></li>
             </ul>
           </div>
         </div>

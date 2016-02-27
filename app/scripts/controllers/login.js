@@ -8,17 +8,20 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('LoginCtrl', function ($scope) {
-    
-    $scope.signin = function () {
-      var formData = {
-        email: $scope.email,
-        password: $scope.password
-      };
+  .controller('LoginCtrl', function ($scope, urls, $http, aiStorage, $location) {
+    $scope.user = {};
 
-      Auth.signin(formData, successAuth, function () {
-        $rootScope.error = 'Invalid credentials.';
-      })
-   };
+    $scope.signin = function() {
+      $http({
+        url: urls.BASE_API + '/users/login',
+        method: 'POST',
+        data: $scope.user
+      }).then(function(response) {
+        aiStorage.set('token', response.data.token);
+        $location.path('/');
+      }, function(error) {
+        console.log(error.data);
+      });
+    };
 
   });
