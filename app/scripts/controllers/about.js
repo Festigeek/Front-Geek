@@ -8,6 +8,6 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('AboutCtrl', function (aiStorage) {
-    console.log(aiStorage.get('token'));
+  .controller('AboutCtrl', function () {
+    
   });

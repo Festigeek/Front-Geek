@@ -31,8 +31,7 @@ angular
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
-        controllerAs: 'main',
-        skipAuthorization: true
+        controllerAs: 'main'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -86,7 +85,7 @@ angular
       aiStorage.remove('token');
       $location.path('/');
     };
-    
+
     $rootScope.$on('$routeChangeStart', function(e, to) {
       if (to.$$route.requiresLogin) {
         if (!aiStorage.get('token') || jwtHelper.isTokenExpired(aiStorage.get('token'))) {

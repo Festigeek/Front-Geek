@@ -42,9 +42,11 @@
               <li ng-class="{ active: isActive('/')}"><a href="#/">Home</a></li>
               <li ng-class="{ active: isActive('/about')}"><a ng-href="#/about">About</a></li>
               <li ng-class="{ active: isActive('/inscription')}"><a ng-href="#/inscription">Inscription</a></li>
-              <li ng-class="{ active: isActive('/account')}"><a ng-href="#/account">Account</a></li>
-              <li ng-class="{ active: isActive('/login')}" data-ng-hide="haveToken()"><a ng-href="#/login">Login</a></li>
-              <li ng-class="{ active: isActive('/register')}" data-ng-hide="haveToken()"><a ng-href="#/register">Register</a></li>
+              
+              <li data-ng-hide="haveToken()" ng-class="{ active: isActive('/login')}"><a ng-href="#/login">Login</a></li>
+              <li data-ng-hide="haveToken()" ng-class="{ active: isActive('/register')}"><a ng-href="#/register">Register</a></li>
+
+              <li data-ng-show="haveToken()" ng-class="{ active: isActive('/account')}"><a ng-href="#/account">Account</a></li>
               <li data-ng-show="haveToken()"><a ng-click="logout()" ng-href="/">Logout</a></li>
             </ul>
           </div>
@@ -102,6 +104,7 @@
         <script src="scripts/controllers/register.js"></script>
         <script src="scripts/controllers/account.js"></script>
         <script src="scripts/controllers/inscription.js"></script>
+        <script src="scripts/directives/confirmpassword.js"></script>
         <!-- endbuild -->
 </body>
 </html>
