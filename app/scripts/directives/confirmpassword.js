@@ -12,7 +12,17 @@ angular.module('frontGeekApp')
       require: 'ngModel',
       link: function (scope, elm, attrs, ctrl) {
         ctrl.$validators.noMatch = function(modelValue, viewValue) {
-          return viewValue === scope.registerForm.password.$viewValue;
+          var test = false;
+
+          if(scope.newPassForm !== undefined) {
+            test = viewValue === scope.newPassForm.newPassword.$viewValue;
+          }
+
+          if(scope.registerForm !== undefined) {
+            test = viewValue === scope.registerForm.password.$viewValue;
+          }
+
+          return test;
         };
       }
     };

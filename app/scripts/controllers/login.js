@@ -8,7 +8,8 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('LoginCtrl', function ($scope, urls, $http, aiStorage, $location) {
+  .controller('LoginCtrl', function ($scope, urls, $http, aiStorage, $location, ngDialog) {
+    var drupalDialog;
     $scope.user = {};
 
     $scope.signin = function() {
@@ -17,11 +18,20 @@ angular.module('frontGeekApp')
         method: 'POST',
         data: $scope.user
       }).then(function(response) {
-        aiStorage.set('token', response.data.token);
-        $location.path('/');
+        console.log(response);
+        if(response.data.drupal_account === true) {
+          drupalDialog = ngDialog.open({ 
+            template: 'templateNewForm',
+            scope: $scope
+          });
+        }
+        else {
+          drupalDialog.close();
+          aiStorage.set('token', response.data.token);
+          $location.path('/');
+        }
       }, function(error) {
         console.log(error.data);
       });
     };
-
   });

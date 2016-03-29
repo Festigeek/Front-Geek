@@ -18,6 +18,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'ngDialog',
     'ui.bootstrap',
     'angular-storage',
     'angular-jwt'

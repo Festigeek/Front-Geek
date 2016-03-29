@@ -16,7 +16,6 @@ angular.module('frontGeekApp')
       $scope.isDatepickerOpen = true;
     };
 
-    // 2. POST
     // 3. Errors / Succes handling
 
     // Register

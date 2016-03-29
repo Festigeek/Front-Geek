@@ -37,6 +37,7 @@ module.exports = function(config) {
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-jwt/dist/angular-jwt.js',
       'bower_components/angular-storage/dist/angular-storage.js',
+      'bower_components/ng-dialog/js/ngDialog.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
