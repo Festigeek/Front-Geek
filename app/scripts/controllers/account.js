@@ -8,17 +8,16 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('AccountCtrl', function (urls, $scope, $http) {
-    
-    $scope.test = [];
+  .controller('AccountCtrl', function ($scope, $http, urls, aiStorage, jwtHelper, User) {
 
-    $http({
-      url: urls.BASE_API + '/users',
-      method: 'GET'
-    }).then(function(response) {
-      $scope.test = response.data;
-    }, function(error) {
-      console.log(error.data);
+    $scope.subPage = 1;
+
+    User.get({ id: jwtHelper.decodeToken(aiStorage.get('token')).sub }, function(res) {
+      $scope.user = res.user;
+    });
+
+    $http.get(urls.BASE_API + '/users/qrcode').then(function(res){
+      $scope.user.qrCode = res.data;
     });
 
   });

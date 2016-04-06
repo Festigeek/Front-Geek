@@ -2,7 +2,7 @@
 <div>
     <h2>Bienvenue !</h2>
     <div class="alert alert-info" role="alert">Vous vous connectez pour la première fois sur le nouveau site de FestiGeek. Pour des raisons de sécurité, merci de confirmer votre mot de passe (vous pouvez également en profiter pour le modifier).</div>
-    <form name="newPassForm" ng-submit="signin() && confirm()" role="form">
+    <form name="newPassForm" ng-submit="signin()" role="form">
         <div class="form-group" ng-class="{ 'has-error': newPassForm.password.$dirty && (newPassForm.password.$invalid || newPassForm.password.$error.required) }">
             <label for="champ_password">Mot de passe</label>
             <input type="password" name="newPassword" id="champ_password" class="form-control" ng-model="user.newPassword" ng-minlength="8" required />

@@ -24,7 +24,7 @@ angular
     'angular-jwt'
   ])
   .constant('urls', {
-    BASE: 'http://localhost:9000/',
+    BASE: 'http://localhost:9000',
     BASE_API: 'http://localhost/v1'
   })
   .config(function ($routeProvider, $httpProvider, jwtInterceptorProvider) {
@@ -70,7 +70,9 @@ angular
 
     $httpProvider.interceptors.push('jwtInterceptor');
   })
-  .run(function($rootScope, $location, aiStorage, jwtHelper){
+  .run(function($rootScope, $location, urls, aiStorage, jwtHelper){
+    $rootScope.ROUTES = urls;
+
     // Function to check if a token is stored
     $rootScope.haveToken = function() {
       return aiStorage.get('token') !== null;

@@ -18,7 +18,6 @@ angular.module('frontGeekApp')
         method: 'POST',
         data: $scope.user
       }).then(function(response) {
-        console.log(response);
         if(response.data.drupal_account === true) {
           drupalDialog = ngDialog.open({ 
             template: 'templateNewForm',
@@ -26,7 +25,7 @@ angular.module('frontGeekApp')
           });
         }
         else {
-          drupalDialog.close();
+          ngDialog.closeAll();
           aiStorage.set('token', response.data.token);
           $location.path('/');
         }
