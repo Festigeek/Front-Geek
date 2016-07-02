@@ -1,0 +1,8 @@
+<div class="ngdialog-message">
+    <h3>Erreur</h3>
+    <p>Le serveur a répondu: {{ngDialogData.data.error}}</p>
+    <p class="ngdialog-infos">HTTP {{ngDialogData.status}} ({{ngDialogData.statusText}})</p>
+</div>
+<div class="ngdialog-buttons">
+    <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm('Ok')">Ok</button>
+</div>

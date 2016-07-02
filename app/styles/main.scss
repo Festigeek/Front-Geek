@@ -6,6 +6,9 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 //account page style
 @import "account.scss";
 
+//ngDialog styles
+@import "ngDialog.scss";
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;

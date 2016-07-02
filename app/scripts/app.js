@@ -69,9 +69,18 @@ angular
     };
 
     $httpProvider.interceptors.push('jwtInterceptor');
+    $httpProvider.interceptors.push('fgErrorCatcher');
   })
   .run(function($rootScope, $location, urls, aiStorage, jwtHelper){
+    /*
+    // Variables 
+    */
+
     $rootScope.ROUTES = urls;
+
+    /*
+    // Functions 
+    */
 
     // Function to check if a token is stored
     $rootScope.haveToken = function() {
@@ -88,6 +97,10 @@ angular
       aiStorage.remove('token');
       $location.path('/');
     };
+
+    /*
+    // Events 
+    */
 
     $rootScope.$on('$routeChangeStart', function(e, to) {
       if (to.$$route.requiresLogin) {
