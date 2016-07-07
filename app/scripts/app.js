@@ -15,99 +15,103 @@ angular
     'ngCookies',
     'ngMessages',
     'ngResource',
-    'ngRoute',
     'ngSanitize',
     'ngTouch',
     'ngDialog',
     'ui.bootstrap',
-    'angular-storage',
-    'angular-jwt'
+    'ui.router',
+    'satellizer',
+    'toastr'
   ])
   .constant('urls', {
     BASE: 'http://localhost:9000',
     BASE_API: 'http://localhost/v1'
   })
-  .config(function ($routeProvider, $httpProvider, jwtInterceptorProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
+  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $authProvider, urls, $injector) {
+    $authProvider.loginUrl = urls.BASE_API + '/users/login';
+    $authProvider.signupUrl = urls.BASE_API + '/users';
+  
+    function skipIfLoggedIn($q, $auth) {
+      var deferred = $q.defer();
+      if ($auth.isAuthenticated()) {
+        deferred.reject();
+      } else {
+        deferred.resolve();
+      }
+      return deferred.promise;
+    }
+  
+    function loginRequired($q, $location, $auth) {
+      var deferred = $q.defer();
+      
+      if ($auth.isAuthenticated()) {
+        deferred.resolve();
+      } 
+      else {
+        $location.path('/login');
+      }
+      
+      return deferred.promise;
+    }
+  
+    $stateProvider
+      .state('main', {
+        url: '/',
         controller: 'MainCtrl',
-        controllerAs: 'main'
+        templateUrl: 'views/main.html'
       })
-      .when('/about', {
+      .state('about', {
+        url: '/about',
         templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+        controller: 'AboutCtrl'
       })
-      .when('/login', {
+      .state('login', {
+        url: '/login',
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
-        controllerAs: 'login'
+        resolve: {
+          skipIfLoggedIn: skipIfLoggedIn
+        }
       })
-      .when('/register', {
-        templateUrl: 'views/register.html',
-        controller: 'RegisterCtrl',
-        controllerAs: 'register'
+      .state('signup', {
+        url: '/signup',
+        templateUrl: 'views/signup.html',
+        controller: 'SignupCtrl',
+        resolve: {
+          skipIfLoggedIn: skipIfLoggedIn
+        }
       })
-      .when('/account', {
-        templateUrl: 'views/account.html',
-        controller: 'AccountCtrl',
-        controllerAs: 'account',
-        requiresLogin: true
+      .state('logout', {
+        url: '/logout',
+        template: null,
+        controller: 'LogoutCtrl'
       })
-      .when('/inscription', {
-        templateUrl: 'views/inscription.html',
-        controller: 'InscriptionCtrl',
-        controllerAs: 'inscription'
-      })
-      .otherwise({
-        redirectTo: '/'
+      .state('profile', {
+        url: '/profile',
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl',
+        resolve: {
+          loginRequired: loginRequired
+        }
       });
 
-    jwtInterceptorProvider.tokenGetter = function(aiStorage) {
-      return aiStorage.get('token');
-    };
-
-    $httpProvider.interceptors.push('jwtInterceptor');
+    $urlRouterProvider.otherwise('/');
     $httpProvider.interceptors.push('fgErrorCatcher');
   })
-  .run(function($rootScope, $location, urls, aiStorage, jwtHelper){
+  .run(function($rootScope, $location, urls, $auth){
     /*
     // Variables 
     */
 
-    $rootScope.ROUTES = urls;
-
     /*
     // Functions 
     */
-
-    // Function to check if a token is stored
-    $rootScope.haveToken = function() {
-      return aiStorage.get('token') !== null;
+    $rootScope.isAuthenticated = function() {
+      return $auth.isAuthenticated();
     };
 
     // Function to active button on navBar
     $rootScope.isActive = function (viewLocation) { 
       return viewLocation === $location.path();
     };
-
-    // Function to logout
-    $rootScope.logout = function () { 
-      aiStorage.remove('token');
-      $location.path('/');
-    };
-
-    /*
-    // Events 
-    */
-
-    $rootScope.$on('$routeChangeStart', function(e, to) {
-      if (to.$$route.requiresLogin) {
-        if (!aiStorage.get('token') || jwtHelper.isTokenExpired(aiStorage.get('token'))) {
-          e.preventDefault();
-          $location.path('login');
-        }
-      }
-    });
   });

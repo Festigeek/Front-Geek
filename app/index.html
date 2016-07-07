@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
     <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.css" />
     <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.css" />
+    <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -43,13 +44,12 @@
             <ul class="nav navbar-nav">
               <li ng-class="{ active: isActive('/')}"><a href="#/">Home</a></li>
               <li ng-class="{ active: isActive('/about')}"><a ng-href="#/about">About</a></li>
-              <li ng-class="{ active: isActive('/inscription')}"><a ng-href="#/inscription">Inscription</a></li>
               
-              <li data-ng-hide="haveToken()" ng-class="{ active: isActive('/login')}"><a ng-href="#/login">Login</a></li>
-              <li data-ng-hide="haveToken()" ng-class="{ active: isActive('/register')}"><a ng-href="#/register">Register</a></li>
+              <li ng-if="!isAuthenticated()" ng-class="{ active: isActive('/login')}"><a ng-href="#/login">Login</a></li>
+              <li ng-if="!isAuthenticated()" ng-class="{ active: isActive('/signup')}"><a ng-href="#/signup">Signup</a></li>
 
-              <li data-ng-show="haveToken()" ng-class="{ active: isActive('/account')}"><a ng-href="#/account">Account</a></li>
-              <li data-ng-show="haveToken()"><a ng-click="logout()" ng-href="/">Logout</a></li>
+              <li ng-if="isAuthenticated()" ng-class="{ active: isActive('/profile')}"><a ng-href="#/profile">Profile</a></li>
+              <li ng-if="isAuthenticated()"><a ng-href="#/logout" ng-href="/">Logout</a></li>
             </ul>
           </div>
         </div>
@@ -57,7 +57,7 @@
     </div>
 
     <div class="container">
-    <div ng-view=""></div>
+      <div ui-view></div>
     </div>
 
     <div class="footer">
@@ -88,14 +88,14 @@
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
-    <script src="bower_components/angular-storage/dist/angular-storage.js"></script>
     <script src="bower_components/ng-dialog/js/ngDialog.js"></script>
+    <script src="bower_components/satellizer/satellizer.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -104,12 +104,13 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/register.js"></script>
-        <script src="scripts/controllers/account.js"></script>
-        <script src="scripts/controllers/inscription.js"></script>
+        <script src="scripts/controllers/signup.js"></script>
+        <script src="scripts/controllers/profile.js"></script>
         <script src="scripts/directives/confirmpassword.js"></script>
         <script src="scripts/services/user.js"></script>
         <script src="scripts/services/fgerrorcatcher.js"></script>
+        <script src="scripts/controllers/test.js"></script>
+        <script src="scripts/controllers/logout.js"></script>
         <!-- endbuild -->
 </body>
 </html>

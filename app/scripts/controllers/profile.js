@@ -8,11 +8,11 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('AccountCtrl', function ($scope, $http, urls, aiStorage, jwtHelper, User) {
+  .controller('ProfileCtrl', function ($scope, $http, $auth, urls, User) {
 
     $scope.subPage = 1;
 
-    User.get({ id: jwtHelper.decodeToken(aiStorage.get('token')).sub }, function(res) {
+    User.get({ id: $auth.getPayload().sub }, function(res) {
       $scope.user = res.user;
     });
 

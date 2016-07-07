@@ -8,7 +8,7 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('RegisterCtrl', function (urls, $scope, $http, aiStorage, $location) {
+  .controller('SignupCtrl', function (urls, $scope, $http, $location) {
     // Control datepicker
     $scope.isDatepickerOpen = false;
 
@@ -25,7 +25,7 @@ angular.module('frontGeekApp')
         method: 'POST',
         data: $scope.register.user
       }).then(function(response) {
-        aiStorage.set('token', response.data.token);
+        $auth.setToken(response.data.token);
         $location.path('/');
       }, function(error) {
         console.log(error.data);

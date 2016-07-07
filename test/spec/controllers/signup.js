@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: InscriptionCtrl', function () {
+describe('Controller: SignupCtrl', function () {
 
   // load the controller's module
   beforeEach(module('frontGeekApp'));
 
-  var InscriptionCtrl,
+  var RegisterCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    InscriptionCtrl = $controller('InscriptionCtrl', {
+    RegisterCtrl = $controller('SignupCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
