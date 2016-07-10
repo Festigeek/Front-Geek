@@ -19,6 +19,7 @@ angular
     'ngTouch',
     'ngDialog',
     'ui.bootstrap',
+    'picardy.fontawesome',
     'ui.router',
     'satellizer',
     'toastr'
@@ -27,7 +28,7 @@ angular
     BASE: 'http://localhost:9000',
     BASE_API: 'http://localhost/v1'
   })
-  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $authProvider, urls, $injector) {
+  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $authProvider, urls) {
     $authProvider.loginUrl = urls.BASE_API + '/users/login';
     $authProvider.signupUrl = urls.BASE_API + '/users';
   
@@ -96,7 +97,7 @@ angular
       });
 
     $urlRouterProvider.otherwise('/');
-    $httpProvider.interceptors.push('fgErrorCatcher');
+    $httpProvider.interceptors.push('errorCatcher');
   })
   .run(function($rootScope, $location, urls, $auth){
     /*

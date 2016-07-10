@@ -1,13 +1,16 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+$fa-font-path:   "./ressources/font-awesome/fonts/";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "font-awesome/scss/font-awesome.scss";
 // endbower
-
-//account page style
-@import "account.scss";
 
 //ngDialog styles
 @import "ngDialog.scss";
+
+//views styles
+@import "account.scss";
+@import "signup.scss";
 
 .browsehappy {
   margin: 0.2em 0;

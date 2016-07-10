@@ -1,84 +1,58 @@
 <div class="row">
   <div class="center-form panel">
     <div class="panel-body">
-      <h2 class="text-center">Sign up</h2>
+      <h2 class="text-center">Créer un compte</h2>
       <form method="post" ng-submit="signup()" name="signupForm">
-        <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.displayName.$invalid && signupForm.displayName.$dirty }">
-          <input class="form-control input-lg" type="text" name="displayName" ng-model="user.displayName" placeholder="Name" required autofocus>
+        <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.username.$invalid && signupForm.username.$dirty }">
+          <input class="form-control input-lg" type="text" name="username" ng-model="user.username" placeholder="Nom d'utilisateur" required autofocus>
           <span class="ion-person form-control-feedback"></span>
-          <div class="help-block text-danger" ng-if="signupForm.displayName.$dirty" ng-messages="signupForm.displayName.$error">
-            <div ng-message="required">You must enter your name.</div>
+          <div class="help-block text-danger" ng-if="signupForm.username.$dirty" ng-messages="signupForm.username.$error">
+            <div ng-message="required">Vous devez indiquer un pseudo.</div>
           </div>
         </div>
         <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.email.$invalid && signupForm.email.$dirty }">
-          <input class="form-control input-lg" type="email" id="email" name="email" ng-model="user.email" placeholder="Email" required>
+          <input class="form-control input-lg" type="email" id="email" name="email" ng-model="user.email" placeholder="E-mail" required>
           <span class="ion-at form-control-feedback"></span>
           <div class="help-block text-danger" ng-if="signupForm.email.$dirty" ng-messages="signupForm.email.$error">
-            <div ng-message="required">Your email address is required.</div>
-            <div ng-message="pattern">Your email address is invalid.</div>
+            <div ng-message="required">Une adresse mail valide est requise.</div>
+            <div ng-message="pattern">Votre adresse mail est invalide.</div>
+          </div>
+        </div>
+        <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.birthdate.$invalid && signupForm.birthdate.$dirty }">
+          <div class="input-group">
+            <input class="form-control input-lg" type="text" id="birthdate" name="birthdate" uib-datepicker-popup="{{dateFormat}}" ng-model="user.birthdate" placeholder="Date de naissance" is-open="isDatepickerOpen" ng-required="true" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default input-lg" ng-click="openDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
           </div>
         </div>
         <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.password.$invalid && signupForm.password.$dirty }">
-          <input password-strength class="form-control input-lg" type="password" name="password" ng-model="user.password" placeholder="Password" required>
+          <input password-strength class="form-control input-lg" type="password" name="password" ng-model="user.password" placeholder="Mot de passe" required>
           <span class="ion-key form-control-feedback"></span>
           <div class="help-block text-danger" ng-if="signupForm.password.$dirty" ng-messages="signupForm.password.$error">
-            <div ng-message="required">Password is required.</div>
+            <div ng-message="required">Mot de passe requis.</div>
           </div>
         </div>
         <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.confirmPassword.$invalid && signupForm.confirmPassword.$dirty }">
-          <input password-match="user.password" class="form-control input-lg" type="password" name="confirmPassword" ng-model="confirmPassword" placeholder="Confirm Password">
+          <input password-match="user.password" class="form-control input-lg" type="password" name="confirmPassword" ng-model="confirmPassword" placeholder="Confirmer le mot de passe">
           <span class="ion-key form-control-feedback"></span>
           <div class="help-block text-danger" ng-if="signupForm.confirmPassword.$dirty" ng-messages="signupForm.confirmPassword.$error">
-            <div ng-message="compareTo">Password must match.</div>
+            <div ng-message="compareTo">Les mot de passe doivent être identiques.</div>
           </div>
         </div>
-        <p class="text-center text-muted"><small>By clicking on Sign up, you agree to <a href="#">terms & conditions</a> and <a href="#">privacy policy</a></small></p>
-        <button type="submit" ng-disabled="signupForm.$invalid" class="btn btn-lg btn-block btn-primary">Sign up</button>
+
+        <hr />
+
+        <p class="text-center text-muted"><small>En cliquant sur Inscription, vous acceptez nos <a href="#">Conditions</a> et indiquez que vous avez lu notre <a href="#">Politique d'utilisation des données</a></small></p>
+        <button type="submit" ng-disabled="signupForm.$invalid" class="btn btn-lg btn-block btn-primary">Créer un compte</button>
         <br/>
-        <p class="text-center text-muted">Already have an account? <a href="/#/login">Log in now</a></p>
+        <p class="text-center text-muted">Vous avez déjà un compte ? <a href="/#/login">Connectez-vous</a> !</p>
       </form>
     </div>
   </div>
 </div>
 
-<hr />
+<br />
+<br />
 
-<div class="col-md-6 col-md-offset-3">
-    <h2>Créer un compte</h2>
-    <form name="registerForm" ng-submit="signup()" role="form">
-        <div class="form-group" ng-class="{ 'has-error': registerForm.pseudo.$dirty && registerForm.pseudo.$error.required }">
-            <label for="champ_pseudo">Pseudo</label>
-            <input type="text" name="pseudo" id="champ_pseudo" class="form-control" ng-model="register.user.pseudo" required />
-            <span ng-show="registerForm.pseudo.$dirty && registerForm.pseudo.$error.required" class="help-block">Pseudo requis.</span>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error': registerForm.email.$dirty && registerForm.email.$invalid}">
-            <label for="champ_email">E-Mail</label>
-            <input type="email" name="email" id="champ_email" class="form-control" ng-model="register.user.email" required />
-            <span ng-show="registerForm.email.$dirty && registerForm.email.$error.required" class="help-block">Email requis.</span>
-            <span ng-show="registerForm.email.$dirty && registerForm.email.$invalid && !registerForm.email.$error.required" class="help-block">Format incorrect.</span>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error': registerForm.birthdate.$dirty && registerForm.birthdate.$error.required }">
-          <label for="champ_birthdate">Date de naissance</label>
-          <div class="input-group">
-            <input type="text" name="birthdate" id="champ_birthdate" class="form-control" uib-datepicker-popup="dd.MM.yyyy" ng-model="register.user.birthdate" is-open="isDatepickerOpen" ng-required="true" />
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default" ng-click="openDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
-          </div>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error': registerForm.password.$dirty && (registerForm.password.$invalid || registerForm.password.$error.required) }">
-            <label for="champ_password">Mot de passe</label>
-            <input type="password" name="password" id="champ_password" class="form-control" ng-model="register.user.password" ng-minlength="8" required />
-            <span ng-show="registerForm.password.$dirty && (registerForm.password.$invalid || registerForm.password.$error.required)" class="help-block">Mot de passe requis (min. 8 caractères).</span>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error': registerForm.confirm_password.$dirty && registerForm.confirm_password.$error.noMatch }">
-            <label for="champ_confirm_password">Confirmation mot de passe</label>
-            <input type="password" name="confirm_password" id="champ_confirm_password" class="form-control" ng-model="register.user.confirm_password" confirm-password required />
-            <span ng-show="registerForm.confirm_password.$dirty && registerForm.confirm_password.$error.noMatch" class="help-block">Les mots de passe ne correspondent pas.</span>
-        </div>
-        <div class="registerForm-actions">
-            <button type="submit" ng-disabled="registerForm.$invalid || register.dataLoading" class="btn btn-primary">Créer un compte</button>
-            <a href="#/login" class="btn btn-link">Annuler</a>
-        </div>
-    </form>
-</div>
+<pre>{{ user }}</pre>

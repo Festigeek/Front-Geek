@@ -8,7 +8,7 @@
  * Factory in the frontGeekApp.
  */
 angular.module('frontGeekApp')
-  .factory('fgErrorCatcher', function ($q, $injector) {
+  .factory('errorCatcher', function ($q, $injector) {
 
     return {
       responseError: function (response) {
@@ -17,7 +17,7 @@ angular.module('frontGeekApp')
         if(response.status >= 400) {
           var ngDialog = $injector.get('ngDialog');
           ngDialog.openConfirm({
-            template: 'views/templates/fgErrorCatcher.html',
+            template: 'views/templates/errorCatcher.html',
             className: 'ngdialog-theme-default ngdialog-theme-httpError',
             data: response
           });

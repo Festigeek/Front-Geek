@@ -27,29 +27,7 @@ angular.module('frontGeekApp')
           }
         })
         .catch(function(error) {
-          toastr.error(error.data.message, error.status);
+          toastr.error(error.data.error, error.statusText);
         });
     };
-    
-//    $scope.signin = function() {
-//      $http({
-//        url: urls.BASE_API + '/users/login',
-//        method: 'POST',
-//        data: $scope.user
-//      }).then(function(response) {
-//        if(response.data.drupal_account === true) {
-//          drupalDialog = ngDialog.open({ 
-//            template: 'templateNewForm',
-//            scope: $scope
-//          });
-//        }
-//        else {
-//          ngDialog.closeAll();
-//          aiStorage.set('token', response.data.token);
-//          $location.path('/');
-//        }
-//      }, function(error) {
-//        console.log(error.data);
-//      });
-//    };
   });

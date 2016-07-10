@@ -16,8 +16,4 @@ angular.module('frontGeekApp')
       $scope.user = res.user;
     });
 
-    $http.get(urls.BASE_API + '/users/qrcode').then(function(res){
-      $scope.user.qrCode = res.data;
-    });
-
   });

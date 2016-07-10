@@ -96,20 +96,21 @@
     <script src="bower_components/satellizer/satellizer.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <script src="bower_components/angular-fontawesome/dist/angular-fontawesome.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/directives/passwordMatch.js"></script>
+        <script src="scripts/directives/passwordStrength.js"></script>
+        <script src="scripts/services/user.js"></script>
+        <script src="scripts/services/errorcatcher.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/signup.js"></script>
         <script src="scripts/controllers/profile.js"></script>
-        <script src="scripts/directives/confirmpassword.js"></script>
-        <script src="scripts/services/user.js"></script>
-        <script src="scripts/services/fgerrorcatcher.js"></script>
-        <script src="scripts/controllers/test.js"></script>
         <script src="scripts/controllers/logout.js"></script>
         <!-- endbuild -->
 </body>
