@@ -61,6 +61,10 @@ angular
     }
 
     $stateProvider
+      .state('missing', {
+        url: '/missing',
+        templateUrl: '404.html'
+      })
       .state('main', {
         url: '/',
         controller: 'MainCtrl',
@@ -96,7 +100,7 @@ angular
         }
       });
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/missing');
     $httpProvider.interceptors.push('errorCatcher');
   })
   .run(function($rootScope, $location, urls, $auth){
@@ -119,6 +123,10 @@ angular
     /*
      // Events
      */
+    $rootScope.$on('$routeChangeError', function() {
+      $location.path('/missing');
+    });
+
     // TODO: Transformer ce qui suit en directive
     // Click outside of the Mobile Menu
     $(document).click(function (e) {

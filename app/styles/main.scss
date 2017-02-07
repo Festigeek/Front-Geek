@@ -1954,6 +1954,10 @@ label.required::after {
 }
 
 /* Fix on Angular 1.6 */
+body.ng-scope {
+  cursor: auto;
+}
+
 .container {
   padding-left: 15px;
   padding-right: 15px;
@@ -1961,4 +1965,21 @@ label.required::after {
 
 #navigationbar {
   min-height: 55px;
+}
+
+#missing {
+  text-align: center;
+  padding: 20px;
+  max-width: 380px;
+  margin: 45px auto 0;
+  box-shadow: 0 1px 10px #a7a7a7, inset 0 1px 0 #fff;
+  background: #fcfcfc;
+}
+
+#missing ul {
+  display: inline-block;
+}
+
+#missing h1 span {
+  color: #bbb;
 }
