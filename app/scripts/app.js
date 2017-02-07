@@ -128,14 +128,14 @@ angular
       }
     });
 
-    $('#navigationbar a').click(function () {
+    $('#navigationbar a').click(function (e) {
       var container = $('#navigationbar');
-      if (container.hasClass('in')) {
+      if (container.hasClass('in') && !e.target.hasClass('dropdown-toggle')) {
         $('#mobile_button').click();
       }
     });
 
-    $('.dropdown-menu a').click(function () {
+    $('.dropdown-menu a').click(function ( ) {
       var submenu = $('.dropdown-menu');
       if(submenu.hasClass('open')) {
         submenu.removeClass('open');

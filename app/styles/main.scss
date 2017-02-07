@@ -1938,6 +1938,21 @@ nav.affix a img {
   margin-bottom: 150px;
 }
 
+.red {
+  color: red;
+}
+
+label.required::after {
+  content: " *";
+  color: red;
+}
+
+.with-errors li {
+  color: red;
+  font-size: 15px;
+  font-style: italic;
+}
+
 /* Fix on Angular 1.6 */
 .container {
   padding-left: 15px;

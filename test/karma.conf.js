@@ -35,7 +35,7 @@ module.exports = function(config) {
       'bower_components/angular-loading-bar/build/loading-bar.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/ng-dialog/js/ngDialog.js',
-      'bower_components/satellizer/satellizer.js',
+      'bower_components/satellizer/dist/satellizer.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/angular-toastr/dist/angular-toastr.tpls.js',
       'bower_components/angular-fontawesome/dist/angular-fontawesome.js',

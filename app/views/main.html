@@ -480,7 +480,7 @@
     </div>
 
     <div class="container">
-      <form id="contact-form" method="post" action="contact.php">
+      <form  data-toggle="validator" id="contact-form" method="post" action="contact.php">
 
         <div class="messages"></div>
 
@@ -488,18 +488,18 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label for="form_name">Nom *</label>
+                <label for="form_name" class="required">Nom</label>
                 <input id="form_name" type="text" name="lastname" class="form-control"
-                       placeholder="Votre nom *" required="required"
+                       placeholder="Votre nom" required="required"
                        data-error="Nom obligatoire.">
                 <div class="help-block with-errors"></div>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="form_lastname">Prénom *</label>
+                <label for="form_lastname" class="required">Prénom</label>
                 <input id="form_lastname" type="text" name="firstname" class="form-control"
-                       placeholder="Votre prénom *" required="required"
+                       placeholder="Votre prénom" required="required"
                        data-error="Prénom obligatoire.">
                 <div class="help-block with-errors"></div>
               </div>
@@ -508,9 +508,9 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label for="form_email">Email *</label>
-                <input id="form_email" type="email" name="email" class="form-control"
-                       placeholder="Votre adresse mail *" required="required"
+                <label for="form_email" class="required">Email</label>
+                <input id="form_email" type="text" pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" name="email" class="form-control"
+                       placeholder="Votre adresse mail" required="required"
                        data-error="Adresse mail obligatoire.">
                 <div class="help-block with-errors"></div>
               </div>
@@ -527,9 +527,9 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label for="form_message">Message *</label>
+                <label for="form_message" class="required">Message</label>
                 <textarea id="form_message" name="message" class="form-control"
-                          placeholder="Votre message... *" rows="4" required="required"
+                          placeholder="Votre message..." rows="4" required="required"
                           data-error="Message obligatoire."></textarea>
                 <div class="help-block with-errors"></div>
               </div>
@@ -541,12 +541,8 @@
               </div>
             </div>
             <div class="col-md-12">
+              <p class="text-muted"><strong class="red">*</strong> Champs requis.</p>
               <input type="submit" class="btn btn-success btn-send" value="Envoyer">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <p class="text-muted"><strong>*</strong> Champs requis.</p>
             </div>
           </div>
         </div>
