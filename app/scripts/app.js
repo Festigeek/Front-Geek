@@ -1,4 +1,5 @@
 'use strict';
+/* global $ */
 
 /**
  * @ngdoc overview
@@ -22,16 +23,20 @@ angular
     'picardy.fontawesome',
     'ui.router',
     'satellizer',
-    'toastr'
+    'toastr',
+    'vcRecaptcha',
+    'duScroll'
   ])
   .constant('urls', {
     BASE: 'http://localhost:9000',
     BASE_API: 'http://localhost/v1'
   })
+  .value('duScrollEasing', function (t) { return t<0.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t;})
+  .value('duScrollDuration', 1500)
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $authProvider, urls) {
     $authProvider.loginUrl = urls.BASE_API + '/users/login';
     $authProvider.signupUrl = urls.BASE_API + '/users';
-  
+
     function skipIfLoggedIn($q, $auth) {
       var deferred = $q.defer();
       if ($auth.isAuthenticated()) {
@@ -41,30 +46,25 @@ angular
       }
       return deferred.promise;
     }
-  
+
     function loginRequired($q, $location, $auth) {
       var deferred = $q.defer();
-      
+
       if ($auth.isAuthenticated()) {
         deferred.resolve();
-      } 
+      }
       else {
         $location.path('/login');
       }
-      
+
       return deferred.promise;
     }
-  
+
     $stateProvider
       .state('main', {
         url: '/',
         controller: 'MainCtrl',
         templateUrl: 'views/main.html'
-      })
-      .state('about', {
-        url: '/about',
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
       })
       .state('login', {
         url: '/login',
@@ -101,18 +101,44 @@ angular
   })
   .run(function($rootScope, $location, urls, $auth){
     /*
-    // Variables 
+    // Variables
     */
 
     /*
-    // Functions 
+    // Functions
     */
     $rootScope.isAuthenticated = function() {
       return $auth.isAuthenticated();
     };
 
     // Function to active button on navBar
-    $rootScope.isActive = function (viewLocation) { 
+    $rootScope.isActive = function (viewLocation) {
       return viewLocation === $location.path();
     };
+
+    /*
+     // Events
+     */
+    // TODO: Transformer ce qui suit en directive
+    // Click outside of the Mobile Menu
+    $(document).click(function (e) {
+      var container = $('#navigationbar');
+      if (!container.is(e.target) && container.has(e.target).length === 0 && container.hasClass('in')) {
+        $('#mobile_button').click();
+      }
+    });
+
+    $('#navigationbar a').click(function () {
+      var container = $('#navigationbar');
+      if (container.hasClass('in')) {
+        $('#mobile_button').click();
+      }
+    });
+
+    $('.dropdown-menu a').click(function () {
+      var submenu = $('.dropdown-menu');
+      if(submenu.hasClass('open')) {
+        submenu.removeClass('open');
+      }
+    });
   });

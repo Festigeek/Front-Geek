@@ -21,7 +21,7 @@ angular.module('frontGeekApp')
 
     // Register
     $scope.signup = function() {
-      $scope.user.birthdate = $scope.user.birthdate.getFullYear() + '-' + ("0" + ($scope.user.birthdate.getMonth() + 1)).slice(-2) +  '-' + $scope.user.birthdate.getDate();
+      $scope.user.birthdate = $scope.user.birthdate.getFullYear() + '-' + ('0' + ($scope.user.birthdate.getMonth() + 1)).slice(-2) +  '-' + $scope.user.birthdate.getDate();
       $http({
         url: urls.BASE_API + '/users',
         method: 'POST',
@@ -36,5 +36,5 @@ angular.module('frontGeekApp')
         console.log(error.data);
       });
     };
-    
+
   });

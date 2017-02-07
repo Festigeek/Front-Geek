@@ -2,9 +2,28 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Front-Geek</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Festigeek</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="description" content="FestiGeek"/>
+    <meta name="keywords" content="festigeek, esport, yverdon, gaming, lan"/>
+    <meta name="author" content="FREEHTML5.CO"/>
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content=""/>
+    <meta name="twitter:image" content=""/>
+    <meta name="twitter:url" content=""/>
+    <meta name="twitter:card" content=""/>
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -12,70 +31,125 @@
     <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.css" />
     <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.css" />
     <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="frontGeekApp">
-    <!--[if lte IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+  <!--
+    <ul class="nav navbar-nav">
+      <li ng-class="{ active: isActive('/')}"><a href="#!/">Home</a></li>
+      <li ng-class="{ active: isActive('/about')}"><a ng-href="#!/about">About</a></li>
 
-    <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
+      <li ng-if="!isAuthenticated()" ng-class="{ active: isActive('/login')}"><a ng-href="#!/login">Login</a></li>
+      <li ng-if="!isAuthenticated()" ng-class="{ active: isActive('/signup')}"><a ng-href="#!/signup">Signup</a></li>
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+      <li ng-if="isAuthenticated()" ng-class="{ active: isActive('/profile')}"><a ng-href="#!/profile">Profile</a></li>
+      <li ng-if="isAuthenticated()"><a ng-href="#!/logout" ng-href="/">Logout</a></li>
+    </ul>
+  -->
 
-            <a class="navbar-brand" href="#/">Front-Geek</a>
-          </div>
+  <body data-spy="scroll" data-target="#navigationbar" ng-app="frontGeekApp" ng-click="closeMobileMenu">
+  <!--Add your site or application content here-->
 
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+    <div id="fh5co-wrapper">
+      <div id="fh5co-page">
 
-            <ul class="nav navbar-nav">
-              <li ng-class="{ active: isActive('/')}"><a href="#/">Home</a></li>
-              <li ng-class="{ active: isActive('/about')}"><a ng-href="#/about">About</a></li>
-              
-              <li ng-if="!isAuthenticated()" ng-class="{ active: isActive('/login')}"><a ng-href="#/login">Login</a></li>
-              <li ng-if="!isAuthenticated()" ng-class="{ active: isActive('/signup')}"><a ng-href="#/signup">Signup</a></li>
-
-              <li ng-if="isAuthenticated()" ng-class="{ active: isActive('/profile')}"><a ng-href="#/profile">Profile</a></li>
-              <li ng-if="isAuthenticated()"><a ng-href="#/logout" ng-href="/">Logout</a></li>
-            </ul>
+        <div class="header-top">
+          <div class="container">
+            <div class="row">
+              <!--[if lte IE 8]>
+              <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a
+                href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+              <![endif]-->
+              <div class="col-md-6 col-sm-6 text-left fh5co-link"></div>
+              <div class="col-md-6 col-sm-6 text-right fh5co-social">
+                <a href="https://www.facebook.com/festigeek.yverdon/" target="_blank" class="grow">
+                  <i class="icon-facebook2"></i>
+                </a>
+                <a href="https://twitter.com/FestiGeek" target="_blank" class="grow">
+                  <i class="icon-twitter2"></i>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
+
+        <nav id="mainNav" class="navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="100">
+          <div class="container">
+            <div class="navbar-header">
+              <button class="navbar-toggle collapsed" id="mobile_button" type="button" data-toggle="collapse" data-target="#navigationbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" id="logofg" href="index.html">
+                <img src="images/logo.png" alt="Logo Festigeek"/>
+              </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navigationbar">
+              <ul class="nav navbar-nav fg-menu" id="fh5co-primary-menu">
+                <li class="active" du-scrollspy="home"><a href="#home" du-smooth-scroll>Accueil</a></li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" data-target=".dropdown-menu">
+                    A propos <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li du-scrollspy="events"><a href="#about" du-smooth-scroll>L'association</a></li>
+                    <li du-scrollspy="events"><a href="#team" du-smooth-scroll>L'équipe</a></li>
+                    <li role="separator" class="fg-divider"></li>
+                  </ul>
+                </li>
+                <li du-scrollspy="events"><a href="#events" du-smooth-scroll>Events</a></li>
+                <li du-scrollspy="join"><a href="#join" du-smooth-scroll>Nous rejoindre</a></li>
+                <li du-scrollspy="sponsors"><a href="#sponsors" du-smooth-scroll>Devenir un Sponsor</a></li>
+                <li du-scrollspy="contact"><a href="#contact" du-smooth-scroll>Contact</a></li>
+              </ul>
+            </div>
+
+          </div>
+        </nav>
+
+        <div ui-view></div>
+
+        <footer>
+          <div id="footer">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                  <p class="fh5co-social-icons">
+                    <a href="https://twitter.com/FestiGeek" target="_blank"><i
+                      class="icon-twitter2"></i></a>
+                    <a href="https://www.facebook.com/festigeek.yverdon/" target="_blank"><i
+                      class="icon-facebook2"></i></a>
+                    <!--<a href="#"><i class="icon-instagram"></i></a>
+                    <a href="#"><i class="icon-dribbble2"></i></a>
+                    <a href="#"><i class="icon-youtube"></i></a>-->
+                  </p>
+                  <p>Copyright 2016 FestiGeek. All Rights Reserved.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+
       </div>
     </div>
 
-    <div class="container">
-      <div ui-view></div>
-    </div>
+    <script>
+      !function (A, n, g, u, l, a, r) {
+        A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
+            (A[l].q = A[l].q || []).push(arguments)
+          }, A[l].l = +new Date, a = n.createElement(g),
+          r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+      }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the FestiDEV team</p>
-      </div>
-    </div>
-
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-74085470-1');
-       ga('send', 'pageview');
+      ga('create', 'UA-86891769-1', 'auto');
+      ga('send', 'pageview');
     </script>
 
     <!-- build:js(.) scripts/vendor.js -->
@@ -97,21 +171,27 @@
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
     <script src="bower_components/angular-fontawesome/dist/angular-fontawesome.js"></script>
+    <script src="bower_components/jquery.easing/js/jquery.easing.js"></script>
+    <script src="bower_components/bootstrap-validator/dist/validator.js"></script>
+    <script src="bower_components/jquery.stellar/jquery.stellar.js"></script>
+    <script src="bower_components/angular-recaptcha/release/angular-recaptcha.js"></script>
+    <script src="bower_components/waypoints/lib/noframework.waypoints.js"></script>
+    <script src="bower_components/angular-scroll/angular-scroll.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/directives/passwordMatch.js"></script>
-        <script src="scripts/directives/passwordStrength.js"></script>
-        <script src="scripts/services/user.js"></script>
-        <script src="scripts/services/errorcatcher.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/signup.js"></script>
-        <script src="scripts/controllers/profile.js"></script>
-        <script src="scripts/controllers/logout.js"></script>
-        <!-- endbuild -->
-</body>
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/directives/passwordMatch.js"></script>
+    <script src="scripts/directives/passwordStrength.js"></script>
+    <script src="scripts/services/user.js"></script>
+    <script src="scripts/services/errorcatcher.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/signup.js"></script>
+    <script src="scripts/controllers/profile.js"></script>
+    <script src="scripts/controllers/logout.js"></script>
+    <!-- endbuild -->
+  </body>
 </html>

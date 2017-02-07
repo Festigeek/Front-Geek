@@ -12,7 +12,7 @@
 
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
-                    <div class="profile-usertitle-name">{{ user.pseudo }}</div>
+                    <div class="profile-usertitle-name">{{ user.username }}</div>
                     <div class="profile-usertitle-job">{{ user.email }}</div>
                 </div>
                 <!-- END SIDEBAR USER TITLE -->
@@ -57,8 +57,8 @@
             <div class="form-group" ng-show="subPage == 1">
                 <h3>Infos compte</h3>
                 <br />
-                <label>Pseudo</label>
-                <input type="text" class="form-control" ng-model="user.pseudo">
+                <label>Username</label>
+                <input type="text" class="form-control" ng-model="user.username">
                 <label>E-Mail</label>
                 <input type="text" class="form-control" ng-model="user.email">
                 <label>Date de naissance</label>
