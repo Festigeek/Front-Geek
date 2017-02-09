@@ -61,14 +61,14 @@ angular
     }
 
     $stateProvider
-      .state('missing', {
-        url: '/missing',
-        templateUrl: '404.html'
-      })
       .state('main', {
         url: '/',
         controller: 'MainCtrl',
         templateUrl: 'views/main.html'
+      })
+      .state('missing', {
+        url: '/missing',
+        templateUrl: '404.html'
       })
       .state('login', {
         url: '/login',
@@ -100,6 +100,7 @@ angular
         }
       });
 
+    $urlRouterProvider.when('', '/');
     $urlRouterProvider.otherwise('/missing');
     $httpProvider.interceptors.push('errorCatcher');
   })
