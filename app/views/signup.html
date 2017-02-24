@@ -1,6 +1,6 @@
-<div class="row">
-  <div class="center-form panel">
-    <div class="panel-body">
+<!--<div class="row">-->
+  <!--<div class="center-form panel">-->
+    <!--<div class="panel-body">-->
       <h2 class="text-center">Créer un compte</h2>
       <form method="post" ng-submit="signup()" name="signupForm">
         <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.username.$invalid && signupForm.username.$dirty }">
@@ -46,13 +46,8 @@
         <p class="text-center text-muted"><small>En cliquant sur Inscription, vous acceptez nos <a href="#">Conditions</a> et indiquez que vous avez lu notre <a href="#">Politique d'utilisation des données</a></small></p>
         <button type="submit" ng-disabled="signupForm.$invalid" class="btn btn-lg btn-block btn-primary">Créer un compte</button>
         <br/>
-        <p class="text-center text-muted">Vous avez déjà un compte ? <a href="/#/login">Connectez-vous</a> !</p>
+        <p class="text-center text-muted">Vous avez déjà un compte ? <a href="" ng-click="openLogin()">Connectez-vous</a> !</p>
       </form>
-    </div>
-  </div>
-</div>
-
-<br />
-<br />
-
-<pre>{{ user }}</pre>
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->

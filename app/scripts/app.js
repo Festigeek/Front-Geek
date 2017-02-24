@@ -104,14 +104,37 @@ angular
     $urlRouterProvider.otherwise('/missing');
     $httpProvider.interceptors.push('errorCatcher');
   })
-  .run(function($rootScope, $location, urls, $auth){
+  .run(function($rootScope, $location, urls, $auth, ngDialog){
     /*
     // Variables
     */
+    var dialog;
 
     /*
     // Functions
     */
+    $rootScope.openLogin = function() {
+      if(dialog !== undefined) {
+        dialog.close();
+      }
+
+      dialog = ngDialog.open({
+        template: 'views/login.html',
+        controller: 'LoginCtrl'
+      });
+    };
+
+    $rootScope.openSignup = function() {
+      if(dialog !== undefined) {
+        dialog.close();
+      }
+
+      dialog = ngDialog.open({
+        template: 'views/signup.html',
+        controller: 'SignupCtrl'
+      });
+    };
+
     $rootScope.isAuthenticated = function() {
       return $auth.isAuthenticated();
     };
