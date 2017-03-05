@@ -45,6 +45,7 @@ module.exports = function(config) {
       'bower_components/angular-recaptcha/release/angular-recaptcha.js',
       'bower_components/waypoints/lib/noframework.waypoints.js',
       'bower_components/angular-scroll/angular-scroll.js',
+      'bower_components/ngCart/dist/ngCart.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

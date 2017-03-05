@@ -25,7 +25,8 @@ angular
     'satellizer',
     'toastr',
     'vcRecaptcha',
-    'duScroll'
+    'duScroll',
+    'ngCart'
   ])
   .constant('urls', {
     BASE: 'http://localhost:9000',
@@ -104,7 +105,7 @@ angular
     $urlRouterProvider.otherwise('/missing');
     $httpProvider.interceptors.push('errorCatcher');
   })
-  .run(function($rootScope, $location, urls, $auth, ngDialog){
+  .run(function($rootScope, $location, urls, $auth, ngDialog, toastr){
     /*
     // Variables
     */
@@ -137,6 +138,16 @@ angular
 
     $rootScope.isAuthenticated = function() {
       return $auth.isAuthenticated();
+    };
+
+    $rootScope.logout = function() {
+      if ($auth.isAuthenticated()) {
+        $auth.logout()
+          .then(function () {
+            toastr.info('Vous vous être déconnecté avec succès');
+            $location.path('/');
+          });
+      }
     };
 
     // Function to active button on navBar

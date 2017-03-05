@@ -1,6 +1,6 @@
 $icon-font-path:    "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
-$fa-font-path:      "./ressources/font-awesome/fonts/";
-$icomoon-font-path: "./ressources/icomoon/fonts/";
+$fa-font-path:      "../bower_components/font-awesome/fonts";
+$icomoon-font-path: "./ressources/icomoon/fonts";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 @import "font-awesome/scss/font-awesome.scss";
@@ -1983,4 +1983,62 @@ body.ng-scope {
 
 #missing h1 span {
   color: #bbb;
+}
+
+/*New submenu*/
+#subNav {
+  display: block;
+  position: fixed;
+  top: 50%;
+  right: 50px;
+  width: 25px;
+  height: 100%;
+  z-index: 9999;
+}
+
+#subNav ul {
+  transform: translateY(-50%);
+}
+
+#subNav ul li {
+  display: inline-block;
+  margin-bottom: 10px;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(100, 100, 100, 0.7);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#subNav ul li a {
+  display: none;
+  position: fixed;
+  top: 50%;
+  right: -34px;
+  height: 150px;
+  float: right;
+  color: rgba(100, 100, 100, 0.7);
+  margin-top: -110px;
+  font-weight: bold;
+  writing-mode: vertical-rl;
+  text-orientation: sideways;
+}
+
+#subNav ul li.active {
+  background-color: rgba(200, 200, 200, 0.7);
+}
+
+#subNav ul li:hover {
+  background-color: rgba(200, 200, 200, 0.7);
+}
+
+#subNav ul li.active a:hover {
+  color: rgba(100, 100, 100, 0.7) !important;
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 768px) {
+  #subNav ul li.active a {
+    display: block;
+  }
 }
