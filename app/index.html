@@ -70,9 +70,22 @@
                   <fa name="user-circle-o"></fa>
                   <strong>Connexion</strong>
                 </a>
-                <a ng-if="isAuthenticated()" href="" ng-click="logout()">
-                  <strong>Se déconnecter</strong>
-                </a>
+                <span ng-if="isAuthenticated()" class="dropdown">
+                  <a href="" class="dropdown-toggle" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    {{user.username}}
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownProfile">
+                    <li><a href="#!/profile">Mon compte</a></li>
+                    <li><a href="#">Mes commandes</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li>
+                      <a href="#" ng-click="logout()">
+                        <strong>Se déconnecter</strong>
+                      </a>
+                    </li>
+                  </ul>
+                </span>
                 <a href="https://www.facebook.com/festigeek.yverdon/" target="_blank" class="grow">
                   <fa name="facebook-square"></fa>
                 </a>
@@ -108,6 +121,7 @@
         </footer>
 
       </div>
+      <div><pre>{{user}}</pre></div>
     </div>
 
     <script>
@@ -161,7 +175,6 @@
     <script src="scripts/controllers/login.js"></script>
     <script src="scripts/controllers/signup.js"></script>
     <script src="scripts/controllers/profile.js"></script>
-    <script src="scripts/controllers/logout.js"></script>
     <!-- endbuild -->
   </body>
 </html>

@@ -12,8 +12,8 @@ angular.module('frontGeekApp')
 
     $scope.subPage = 1;
 
-    User.get({ id: $auth.getPayload().sub }, function(res) {
-      $scope.user = res.user;
-    });
+    // User.get({ id: $auth.getPayload().sub }, function(res) {
+    //   $scope.user = res.user;
+    // });
 
   });

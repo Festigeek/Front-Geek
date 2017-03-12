@@ -34,7 +34,7 @@ angular
   })
   .value('duScrollEasing', function (t) { return t<0.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t;})
   .value('duScrollDuration', 1500)
-  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $authProvider, urls) {
+  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $authProvider, toastrConfig, urls) {
     $authProvider.loginUrl = urls.BASE_API + '/users/login';
     $authProvider.signupUrl = urls.BASE_API + '/users';
 
@@ -60,6 +60,10 @@ angular
 
       return deferred.promise;
     }
+
+    angular.extend(toastrConfig, {
+      timeOut: 1000
+    });
 
     $stateProvider
       .state('main', {
@@ -105,33 +109,35 @@ angular
     $urlRouterProvider.otherwise('/missing');
     $httpProvider.interceptors.push('errorCatcher');
   })
-  .run(function($rootScope, $location, urls, $auth, ngDialog, toastr){
+  .run(function($rootScope, $location, urls, $auth, ngDialog, toastr, User){
     /*
     // Variables
     */
-    var dialog;
+    $rootScope.user = {};
+    $rootScope.dialog;
 
     /*
     // Functions
     */
     $rootScope.openLogin = function() {
-      if(dialog !== undefined) {
-        dialog.close();
+      if($rootScope.dialog !== undefined) {
+        $rootScope.dialog.close();
       }
 
-      dialog = ngDialog.open({
-        template: 'views/login.html',
+      //TODO: try Bootstrap modal (https://angular-ui.github.io/bootstrap)
+      $rootScope.dialog = ngDialog.open({
+        template: 'views/partials/login.html',
         controller: 'LoginCtrl'
       });
     };
 
     $rootScope.openSignup = function() {
-      if(dialog !== undefined) {
-        dialog.close();
+      if($rootScope.dialog !== undefined) {
+        $rootScope.dialog.close();
       }
 
-      dialog = ngDialog.open({
-        template: 'views/signup.html',
+      $rootScope.dialog = ngDialog.open({
+        template: 'views/partials/signup.html',
         controller: 'SignupCtrl'
       });
     };
