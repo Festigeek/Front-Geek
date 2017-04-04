@@ -26,6 +26,8 @@ angular
     'toastr',
     'vcRecaptcha',
     'duScroll',
+    'angucomplete-alt',
+    'ui.select',
     'ngCart'
   ])
   .constant('urls', {
@@ -103,18 +105,36 @@ angular
         resolve: {
           loginRequired: loginRequired
         }
+      })
+      .state('inscriptions', {
+        url: '/inscriptions',
+        templateUrl: 'views/inscriptions.html',
+        controller: 'InscriptionCtrl'
+      })
+      .state('inscriptions.infos', {
+        url: '/infos',
+        templateUrl: 'views/partials/inscriptions_infos.html',
+      })
+      .state('inscriptions.games', {
+        url: '/games',
+        templateUrl: 'views/partials/inscriptions_games.html',
+      })
+      .state('inscriptions.payment', {
+        url: '/payment',
+        templateUrl: 'views/partials/inscriptions_payment.html',
       });
 
     $urlRouterProvider.when('', '/');
     $urlRouterProvider.otherwise('/missing');
     $httpProvider.interceptors.push('errorCatcher');
   })
-  .run(function($rootScope, $location, urls, $auth, ngDialog, toastr, User){
+  .run(function($rootScope, $location, urls, $auth, ngDialog, toastr/*, User*/){
     /*
     // Variables
     */
     $rootScope.user = {};
-    $rootScope.dialog;
+    $rootScope.dialog = undefined;
+    $rootScope.dataDebug = { user: $rootScope.user };
 
     /*
     // Functions

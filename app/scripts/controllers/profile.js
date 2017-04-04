@@ -8,7 +8,7 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('ProfileCtrl', function ($scope, $http, $auth, urls, User) {
+  .controller('ProfileCtrl', function ($scope/*, $http, $auth, urls, User*/) {
 
     $scope.subPage = 1;
 

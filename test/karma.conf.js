@@ -46,6 +46,8 @@ module.exports = function(config) {
       'bower_components/waypoints/lib/noframework.waypoints.js',
       'bower_components/angular-scroll/angular-scroll.js',
       'bower_components/ngCart/dist/ngCart.js',
+      'bower_components/angular-ui-select/dist/select.js',
+      'bower_components/angucomplete-alt/angucomplete-alt.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

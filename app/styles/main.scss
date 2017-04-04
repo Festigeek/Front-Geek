@@ -14,12 +14,8 @@ $icomoon-font-path: "./ressources/icomoon/fonts";
 @import "login.scss";
 @import "signup.scss";
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
+@import "profile.scss";
+@import "inscriptions.scss";
 
 @import "ressources/icomoon/scss/icomoon";
 @import "onepage-base";
@@ -30,6 +26,13 @@ $icomoon-font-path: "./ressources/icomoon/fonts";
 *	Edit this section
 *
 * ======================================================= */
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
 body {
   font-family: "Open Sans", Arial, sans-serif;
   line-height: 1.6;

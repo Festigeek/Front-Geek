@@ -32,6 +32,8 @@
     <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.css" />
     <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
     <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
+    <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -77,6 +79,7 @@
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="dropdownProfile">
                     <li><a href="#!/profile">Mon compte</a></li>
+                    <li><a href="#">Inscription LAN 2017</a></li>
                     <li><a href="#">Mes commandes</a></li>
                     <li role="separator" class="divider"></li>
                     <li>
@@ -113,7 +116,7 @@
                     <a href="#"><i class="icon-dribbble2"></i></a>
                     <a href="#"><i class="icon-youtube"></i></a>-->
                   </p>
-                  <p>Copyright 2016 FestiGeek. All Rights Reserved.</p>
+                  <p>Copyright 2017 FestiGeek. All Rights Reserved.</p>
                 </div>
               </div>
             </div>
@@ -121,7 +124,7 @@
         </footer>
 
       </div>
-      <div><pre>{{user}}</pre></div>
+      <div><pre>{{ dataDebug }}</pre></div>
     </div>
 
     <script>
@@ -162,6 +165,8 @@
     <script src="bower_components/waypoints/lib/noframework.waypoints.js"></script>
     <script src="bower_components/angular-scroll/angular-scroll.js"></script>
     <script src="bower_components/ngCart/dist/ngCart.js"></script>
+    <script src="bower_components/angular-ui-select/dist/select.js"></script>
+    <script src="bower_components/angucomplete-alt/angucomplete-alt.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -175,6 +180,7 @@
     <script src="scripts/controllers/login.js"></script>
     <script src="scripts/controllers/signup.js"></script>
     <script src="scripts/controllers/profile.js"></script>
+    <script src="scripts/controllers/inscription.js"></script>
     <!-- endbuild -->
   </body>
 </html>

@@ -1,0 +1,60 @@
+<h3>Infos Tournoi</h3>
+
+<div class="form-group">
+  <label class="control-label" for="info_tournoi">Tournoi</label>
+  <ui-select id="info_tournoi"
+             ng-model="formData.tournoi"
+             theme="bootstrap"
+             title="Choix du tournoi">
+    <ui-select-match placeholder="Sélectionnez ou cherchez un tournoi dans la liste...">{{$select.selected.name}}</ui-select-match>
+    <ui-select-choices repeat="game in gameProducts | filter: $select.search">
+      <div ng-bind-html="game.name | highlight: $select.search"></div>
+    </ui-select-choices>
+  </ui-select>
+</div>
+
+<div class="clearfix"></div>
+<hr class="separator">
+<h3>Infos Joueur</h3>
+
+
+<div class="form-group">
+  <label for="info_equipe">Nom de mon équipe</label>
+  <div angucomplete-alt
+       id="info_equipe"
+       placeholder="Équipe"
+       pause="100"
+       local-data="existingTeams"
+       search-fields="name"
+       title-field="name"
+       selected-object="formData.existTeam"
+       override-suggestions="true"
+       minlength="1"
+       input-class="form-control form-control-small"><!--remote-url remote-url-data-field--></div>
+</div>
+
+<div class="form-group">
+  <div class="row">
+    <div class="col-sm-4">
+      <label for="info_battleTag">BattleTag</label>
+      <input type="text" class="form-control" placeholder="BattleTag" name="battleTag" id="info_battleTag" ng-model="formData.prenom" />
+    </div>
+    <div class="col-sm-4">
+      <label for="info_Lol">Compte League of Legend</label>
+      <input type="text" class="form-control" placeholder="Compte LoL" name="lol" id="info_Lol" ng-model="formData.adresse" />
+    </div>
+    <div class="col-sm-4">
+      <label for="info_Steam">Compte Steam</label>
+      <input type="text" class="form-control" placeholder="UserName" name="steam" id="info_Steam" ng-model="formData.adresse" />
+    </div>
+  </div>
+</div>
+
+<br />
+<div class="form-group">
+  <div class="col-xs-4 col-xs-offset-4">
+    <a ui-sref="inscriptions.games" class="btn btn-block btn-info">
+      Suite <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </a>
+  </div>
+</div>
