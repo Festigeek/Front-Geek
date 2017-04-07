@@ -109,7 +109,8 @@ angular
       .state('inscriptions', {
         url: '/inscriptions',
         templateUrl: 'views/inscriptions.html',
-        controller: 'InscriptionCtrl'
+        controller: 'InscriptionCtrl',
+        redirectTo: 'inscriptions.infos'
       })
       .state('inscriptions.infos', {
         url: '/infos',
