@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="row">
+  <ngcart-cart template-url="bower_components/ngCart/template/ngCart/cart.html"></ngcart-cart>
+</div>
 
-</body>
-</html>
+<div class="row">
+  <div class="col-sm-6 text-center">
+    <ngcart-checkout service="http"
+                     settings="{ url:'/' }"
+                     template-url="bower_components/ngCart/template/ngCart/checkout.html">
+      Virement banquaire
+    </ngcart-checkout>
+  </div>
+  <div class="col-sm-6 text-center">
+    <ngcart-checkout service="paypal"
+                     settings="paypalInfos"
+                     template-url="bower_components/ngCart/template/ngCart/checkout.html">
+    </ngcart-checkout>
+  </div>
+</div>

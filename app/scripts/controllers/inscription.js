@@ -11,6 +11,7 @@ angular.module('frontGeekApp')
   .controller('InscriptionCtrl', function ($rootScope, $scope, ngCart) {
     $scope.formData = {};
     $rootScope.dataDebug.formData = $scope.formData;
+    $rootScope.dataDebug.cart = ngCart.getCart();
 
     $scope.gameProducts = [
       {id:1, name:'Animations', max:1, price: 20.00},
@@ -30,4 +31,12 @@ angular.module('frontGeekApp')
       {id:3, name:'TrololoBoyz'},
       {id:4, name:'Boloss United'}
     ];
+
+    $scope.paypalInfos = {
+      paypal: {
+        business:'tresorier@festigeek.ch',
+        item_number:'lan2017',
+        currency_code:'CHF'
+      }
+    };
   });
