@@ -26,14 +26,13 @@ angular.module('frontGeekApp')
         url: urls.BASE_API + '/users',
         method: 'POST',
         data: $scope.user
-      }).then(function(response) {
-        $auth.setToken(response.data.token);
+      }).then(function() {
         toastr.success('Un lien d\'activation vous a été envoyé par e-mail', 'Création de votre compte réussie !', {
           closeButton: true
         });
         $location.path('/');
       }, function(error) {
-        console.log(error.data);
+        console.log(error);
       });
     };
 

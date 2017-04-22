@@ -22,8 +22,7 @@ angular.module('frontGeekApp')
           }
           else {
             User.get({ id: $auth.getPayload().sub }, function(res) {
-              console.log(res);
-              $rootScope.user = res.user;
+              $rootScope.loggedUser = res.user;
             });
             toastr.success('Authentification réussie !');
             $rootScope.dialog.close();
