@@ -74,13 +74,13 @@
                 </a>
                 <span ng-if="isAuthenticated()" class="dropdown">
                   <a href="" class="dropdown-toggle" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    {{loggedUser.username}}
+                    {{ username }}
                     <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="dropdownProfile">
                     <li><a href="#!/profile">Mon compte</a></li>
-                    <li><a href="#">Inscription LAN 2017</a></li>
-                    <li><a href="#">Mes commandes</a></li>
+                    <li><a href="#!/inscriptions">Inscription LAN 2017</a></li>
+                    <!--<li><a href="#">Mes commandes</a></li>-->
                     <li role="separator" class="divider"></li>
                     <li>
                       <a href="#" ng-click="logout()">
@@ -167,6 +167,7 @@
     <script src="bower_components/ngCart/dist/ngCart.js"></script>
     <script src="bower_components/angular-ui-select/dist/select.js"></script>
     <script src="bower_components/angucomplete-alt/angucomplete-alt.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

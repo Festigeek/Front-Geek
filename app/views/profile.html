@@ -1,102 +1,127 @@
 <div class="container">
-    <div class="row profile">
+  <div class="row profile">
 
-        <div class="col-md-3">
-            <div class="profile-sidebar">
+    <div class="col-md-3">
+      <div class="profile-sidebar">
 
-                <!-- SIDEBAR USERPIC -->
-                <div class="profile-userpic">
-                    <img data-ng-src="data:image/png;base64,{{ loggedUser.qrCode }}" class="img-responsive" alt="">
-                </div>
-                <!-- END SIDEBAR USERPIC -->
-
-                <!-- SIDEBAR USER TITLE -->
-                <div class="profile-usertitle">
-                    <div class="profile-usertitle-name">{{ loggedUser.username }}</div>
-                    <div class="profile-usertitle-job">{{ loggedUser.email }}</div>
-                </div>
-                <!-- END SIDEBAR USER TITLE -->
-
-                <!-- SIDEBAR MENU -->
-                <div class="profile-usermenu">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="active">
-                            <a href="" data-toggle="pill" ng-click="subPage = 1">
-                                <i class="glyphicon glyphicon-home"></i>
-                                Aperçu
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" data-toggle="pill" ng-click="subPage = 2">
-                                <i class="glyphicon glyphicon-user"></i>
-                                Détails
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" data-toggle="pill" ng-click="subPage = 3">
-                                <i class="glyphicon glyphicon-ok"></i>
-                                Commandes
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- END MENU -->
-            </div>
+        <!-- SIDEBAR USER TITLE -->
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name">{{ user.username }}</div>
+          <div class="profile-usertitle-job">{{ user.email }}</div>
         </div>
+        <!-- END SIDEBAR USER TITLE -->
 
-        <div class="col-md-9">
-            <div class="alert alert-info">
-                <h2>News</h2>
-                <h4>Inscrit depuis le 1 Avril 2069</h4>
-                <p>
-                    Lorem ipsum
-                    dolor sit amet
-                </p>
-            </div>
-
-            <div class="form-group" ng-show="subPage == 1">
-                <h3>Infos compte</h3>
-                <br />
-                <label>Username</label>
-                <input type="text" class="form-control" ng-model="loggedUser.username">
-                <label>E-Mail</label>
-                <input type="text" class="form-control" ng-model="loggedUser.email">
-                <label>Date de naissance</label>
-                <input type="text" class="form-control" ng-model="loggedUser.birthdate">
-                <!--<label>Entrer nouveau mot de passe</label>
-                <input type="password" class="form-control" ng-model="user.password">
-                <label>Confirmer nouveau mot de passe</label>
-                <input type="password" class="form-control" ng-model="user.confirm_password">-->
-                <br />
-                <a href="#" class="btn btn-success">Changer</a>
-            </div>
-
-            <div class="form-group" ng-show="subPage == 2">
-                <h3>Coordonées</h3>
-                <br />
-                <p class="form-inline">
-                    <label>Titre</label>
-                    <br />
-                    M.&nbsp; <input type="radio" class="form-control" value="1">
-                    Mme&nbsp; <input type="radio" class="form-control" value="2">
-                </p>
-                <label>Nom</label>
-                <input type="text" class="form-control">
-                <label>Prenom</label>
-                <input type="text" class="form-control">
-                <label>Adresse</label>
-                <input type="text" class="form-control">
-                <label>Npa</label>
-                <input type="text" class="form-control">
-                <label>Ville</label>
-                <input type="text" class="form-control">
-                <br />
-                <a href="#" class="btn btn-success">Mettre à jour</a>
-            </div>
-
-            <br /><br />
+        <!-- SIDEBAR USERPIC -->
+        <div class="profile-userpic">
+          <img data-ng-src="data:image/png;base64,{{ user.QRCode }}" class="img-responsive" alt="" />
         </div>
+        <!-- END SIDEBAR USERPIC -->
+
+        <!-- SIDEBAR MENU -->
+        <div class="profile-usermenu">
+          <ul class="nav nav-pills nav-stacked">
+            <li class="active">
+              <a href="" data-toggle="pill" ng-click="subPage = 1">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                Compte FG
+              </a>
+            </li>
+            <li>
+              <a href="" data-toggle="pill" ng-click="subPage = 2">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                Coordonnées
+              </a>
+            </li>
+            <li>
+              <a href="" data-toggle="pill" ng-click="subPage = 3">
+                <i class="fa fa-gamepad" aria-hidden="true"></i>
+                Infos joueur
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- END MENU -->
+      </div>
     </div>
+
+    <div class="profile-content col-md-9">
+      <div class="form-group" ng-show="subPage == 1">
+
+        <div class="alert alert-info">
+          <h2>News</h2>
+          <h4>Inscrit depuis le {{ user.created_at.split(' ')[0] | date: 'dd MMMM yyyy' }}</h4>
+          <p>
+            Les informations ci-dessous ne sont actuellement pas modifiables.<br />
+            Contactez <a href="mailto:info@festigeek.ch">info@festigeek.ch</a> en cas d'erreur.
+          </p>
+        </div>
+
+        <h3>Infos compte</h3>
+        <label for="username_field">Username</label>
+        <input type="text" class="form-control" id="username_field" ng-value="user.username" readonly>
+        <label for="email_field">E-Mail</label>
+        <input type="text" class="form-control" id="email_field" ng-value="user.email" readonly>
+        <label for="birthdate_field">Date de naissance</label>
+        <input type="text" class="form-control" id="birthdate_field" ng-value="user.birthdate" readonly>
+        <!--
+          <label>Changez mot de passe</label>
+          <input type="password" class="form-control" ng-model="user.password">
+          <label>Confirmer nouveau mot de passe</label>
+          <input type="password" class="form-control" ng-model="user.confirm_password">
+          <br />
+          <a href="#" class="btn btn-success">Mettre à jour</a>
+        -->
+      </div>
+
+      <div class="form-group" ng-show="subPage == 2">
+
+        <h3>Coordonnées</h3>
+        <p class="form-inline">
+          <label for="man_field">M.</label>
+          <input type="radio" for="man_field" value="M">
+          &nbsp;
+          <label for="woman_field">Mme</label>
+          <input type="radio" for="woman_field" value="F">
+        </p>
+
+        <label for="lastname_field">Nom</label>
+        <input type="text" class="form-control" id="lastname_field" ng-model="user.lastname">
+
+        <label for="firstname_field">Prenom</label>
+        <input type="text" class="form-control" id="firstname_field" ng-model="user.firstname">
+
+        <label for="street_field">Adresse</label>
+        <input type="text" class="form-control" id="street_field" ng-model="user.address.street">
+
+        <label for="npa_field">Npa</label>
+        <input type="text" class="form-control" id="npa_field" ng-model="user.address.npa">
+
+        <label for="city_field">Ville</label>
+        <input type="text" class="form-control" id="city_field" ng-model="user.address.city">
+
+        <br />
+        <a href="#" class="btn btn-success">Mettre à jour</a>
+
+      </div>
+
+      <div class="form-group" ng-show="subPage == 3">
+        <h3>Infos joueur</h3>
+        <label for="lol_field">League of Legends</label>
+        <input type="text" class="form-control" id="lol_field" ng-model="user.lol_account" placeholder="Compte LoL">
+
+        <label for="steam_field">SteamID</label>
+        <input type="text" class="form-control" id="steam_field" ng-model="user.steamID64" placeholder="SteamID64 (suite de chiffres)"
+               uib-tooltip-html="'Utilisez <b><i>steam user {username}</i></b> sur notre serveur Discord !'"
+               tooltip-placement="top-left" tooltip-class="customClass">
+
+        <label for="battletag_field">Battle Tag</label>
+        <input type="text" class="form-control" id="battletag_field" ng-model="user.battleTag" placeholder="Battle Tag">
+
+        <br />
+        <a href="#" class="btn btn-success">Mettre à jour</a>
+      </div>
+    </div>
+  </div>
 </div>
 
 <br />

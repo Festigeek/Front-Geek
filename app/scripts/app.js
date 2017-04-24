@@ -28,7 +28,8 @@ angular
     'duScroll',
     'angucomplete-alt',
     'ui.select',
-    'ngCart'
+    'ngCart',
+    'ngStorage'
   ])
 
   // CONSTANTS
@@ -91,19 +92,20 @@ angular
               method: 'GET',
               url: urls.BASE_API + '/users/activate',
               params: {activation_token: $stateParams.token}
-            }).then(function (res) {
-              console.log('THEN:', res);
+            })
+            .then(function (res) {
               if(res.data.success === 'user_activated') {
                 toastr.success('Votre compte a été activé avec succès !');
               }
               else {
                 toastr.success(res.data.success, res.statusText);
               }
-            }).catch(function (res) {
-              console.log('CATCH:', res);
+            })
+            .catch(function (res) {
               toastr.error(res.data.error, res.statusText);
-            }).finally(function () {
-              $state.go('main');
+            })
+            .finally(function () {
+              $state.target('main');
             });
           }]
         }
@@ -166,13 +168,13 @@ angular
   })
 
   // RUNNING CODE
-  .run(function($rootScope, $location, urls, $auth, ngDialog, toastr){
+  .run(function($rootScope, $location, urls, $auth, ngDialog, toastr, $localStorage){
     /*
     // Variables
     */
-    $rootScope.loggedUser = {};
+    $rootScope.username = $localStorage.loggedUser.username;
     $rootScope.dialog = undefined;
-    $rootScope.dataDebug = { user: $rootScope.loggedUser };
+    $rootScope.dataDebug = {};
 
     /*
     // Functions
@@ -209,7 +211,7 @@ angular
         $auth.logout()
           .then(function () {
             toastr.info('Vous vous être déconnecté avec succès');
-            $rootScope.loggedUser = {};
+            delete $localStorage.loggedUser;
             $location.path('/');
           });
       }

@@ -29,7 +29,8 @@
     "ngCart": "ngcart#^1.0.0",
     "font-awesome": "^4.7.0",
     "angular-ui-select": "^0.19.6",
-    "angucomplete-alt": "^3.0.0"
+    "angucomplete-alt": "^3.0.0",
+    "ngstorage": "^0.3.11"
   },
   "devDependencies": {
     "angular-mocks": "^1.6.0"

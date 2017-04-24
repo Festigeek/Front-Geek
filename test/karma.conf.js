@@ -48,6 +48,7 @@ module.exports = function(config) {
       'bower_components/ngCart/dist/ngCart.js',
       'bower_components/angular-ui-select/dist/select.js',
       'bower_components/angucomplete-alt/angucomplete-alt.js',
+      'bower_components/ngstorage/ngStorage.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

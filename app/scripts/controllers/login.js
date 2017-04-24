@@ -8,7 +8,8 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('LoginCtrl', function ($scope, urls, $http, $auth, $location, ngDialog, toastr, User, $rootScope) {
+  .controller('LoginCtrl', function (urls, $rootScope, $scope, $http, $auth, $location, ngDialog, toastr, User, $localStorage) {
+    $scope.$storage = $localStorage;
     var drupalDialog;
 
     $scope.login = function() {
@@ -22,19 +23,19 @@ angular.module('frontGeekApp')
           }
           else {
             User.get({ id: $auth.getPayload().sub }, function(res) {
-              $rootScope.loggedUser = res.user;
+              $scope.$storage.loggedUser = res.user;
+              $rootScope.username = $scope.$storage.loggedUser.username;
             });
             toastr.success('Authentification réussie !');
-            $rootScope.dialog.close();
+            // $rootScope.dialog.close();
             ngDialog.closeAll();
-            //$location.path('/');
           }
         })
         .catch(function(error) {
           console.log(error);
           toastr.error(error.data.error, error.statusText);
           ngDialog.closeAll();
-          $rootScope.dialog.close();
+          // $rootScope.dialog.close();
         });
     };
   });
