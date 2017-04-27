@@ -15,16 +15,18 @@ angular.module('frontGeekApp')
     $scope.login = function() {
       $auth.login($scope.user)
         .then(function(response) {
-          if(response.data.drupal_account === true) {
+          if(response.data.success === 'drupal_account') {
             drupalDialog = ngDialog.open({
               template: 'templateNewForm',
               scope: $scope
             });
           }
           else {
-            User.get({ id: $auth.getPayload().sub }, function(res) {
-              $scope.$storage.loggedUser = res.user;
-              $rootScope.username = $scope.$storage.loggedUser.username;
+            User.get({ id: 'me' }, function(user) {
+              $scope.$storage.loggedUser = {
+                username: user.username
+              };
+              $rootScope.username = user.username;
             });
             toastr.success('Authentification réussie !');
             // $rootScope.dialog.close();

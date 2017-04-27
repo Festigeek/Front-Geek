@@ -4,14 +4,11 @@
  * @ngdoc service
  * @name frontGeekApp.User
  * @description
- * # User
+ * # Country
  * Factory in the frontGeekApp.
  */
 angular.module('frontGeekApp')
-  .factory('User', function (urls, $resource) {
+  .factory('Country', function (urls, $resource) {
     // User service used to communicate with the user ressource of the API
-    return $resource(urls.BASE_API + '/users/:id', { id: '@id' }, {
-      'login': { method: 'POST' },
-      'update': { method: 'PUT' }
-    });
+    return $resource(urls.BASE_API + '/countries/:id', { id: '@id' });
   });

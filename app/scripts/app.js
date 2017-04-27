@@ -35,9 +35,9 @@ angular
   // CONSTANTS
   .constant('urls', {
     // BASE: 'https://www.festigeek.ch',
-    BASE_API: 'https://api.festigeek.ch/v1',
-    BASE: 'http://localhost:9000'
-    // BASE_API: 'http://localhost/v1',
+    // BASE_API: 'https://api.festigeek.ch/v1',
+    BASE: 'http://localhost:9000',
+    BASE_API: 'http://localhost:8080/v1'
   })
 
   // VARIABLES
@@ -168,11 +168,12 @@ angular
   })
 
   // RUNNING CODE
-  .run(function($rootScope, $location, urls, $auth, ngDialog, toastr, $localStorage){
+  .run(function($rootScope, $location, urls, $auth, ngDialog, toastr, Country, $localStorage){
     /*
     // Variables
     */
-    $rootScope.username = $localStorage.loggedUser.username;
+    $rootScope.username = ($localStorage.loggedUser !== undefined) ? $localStorage.loggedUser.username : undefined;
+    $rootScope.countries = ($localStorage.countries !== undefined) ? $localStorage.countries : Country.query();
     $rootScope.dialog = undefined;
     $rootScope.dataDebug = {};
 

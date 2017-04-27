@@ -1,4 +1,4 @@
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="100">
+<nav id="mainNav" ng-class="['navbar', 'navbar-default', 'navbar-fixed-top', {'moveMenu': isAuthenticated()}]" data-spy="affix" data-offset-top="100">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle collapsed" id="mobile_button" type="button" data-toggle="collapse" data-target="#navigationbar">

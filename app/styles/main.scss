@@ -91,7 +91,7 @@ figure {
 #fh5co-header {
   position: relative;
   margin-bottom: 0;
-  z-index: 9999999;
+  z-index: 999999;
 }
 
 .stuck {
@@ -109,7 +109,7 @@ figure {
   right: 0;
   left: 0;
   top: 0;
-  z-index: 98;
+  z-index: 95;
   padding: 10px 0;
   background: #3F2E79;
 }
@@ -1689,7 +1689,7 @@ figure {
 
 nav.navbar-fixed-top {
   top: 45px;
-  z-index: 90;
+  z-index: 97;
 }
 
 .purpleBG {
@@ -1808,7 +1808,7 @@ nav.navbar-fixed-top {
   background-size: 1920px;
 }
 
-/* Text general*/
+/* Text general */
 .txtjustify {
   text-align: justify;
 }
@@ -1816,6 +1816,19 @@ nav.navbar-fixed-top {
 .abouttitle {
   color: #5c46a4;
   font-weight: 200;
+}
+
+/* ngDialogs */
+.ngdialog {
+  overflow: hidden !important;
+}
+
+.ngdialog .form-group {
+  margin-bottom: 20px;
+}
+
+.ngdialog.ngdialog-theme-default {
+  padding-top: 55px;
 }
 
 /* Sous-menu */
@@ -1904,6 +1917,11 @@ nav.affix a.navbar-brand {
 
 nav.affix a img {
   height: 40px !important;
+}
+
+nav.moveMenu {
+  top: 45px !important;
+  z-index: 90 !important;
 }
 
 /* Adapt on mobile screen */
@@ -2042,6 +2060,10 @@ html.ngdialog-open, body.ngdialog-open {
 }
 
 @media screen and (min-width: 768px) {
+  #subNav ul {
+    margin-top: 35px;
+  }
+
   #subNav ul li:hover {
     background-color: rgba(200, 200, 200, 0.7);
   }
@@ -2053,10 +2075,11 @@ html.ngdialog-open, body.ngdialog-open {
 
 /* Profile menu */
 ul.dropdown-menu {
-  z-index: 99;
+  z-index: 200;
 }
 
 ul.dropdown-menu li a:hover,
 ul.dropdown-menu li a:visited:hover {
   color: #777;
 }
+

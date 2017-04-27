@@ -78,10 +78,10 @@
         <h3>Coordonnées</h3>
         <p class="form-inline">
           <label for="man_field">M.</label>
-          <input type="radio" for="man_field" value="M">
+          <input type="radio" for="man_field" value="M" ng-model="user.gender">
           &nbsp;
           <label for="woman_field">Mme</label>
-          <input type="radio" for="woman_field" value="F">
+          <input type="radio" for="woman_field" value="F" ng-model="user.gender">
         </p>
 
         <label for="lastname_field">Nom</label>
@@ -91,16 +91,25 @@
         <input type="text" class="form-control" id="firstname_field" ng-model="user.firstname">
 
         <label for="street_field">Adresse</label>
-        <input type="text" class="form-control" id="street_field" ng-model="user.address.street">
+        <input type="text" class="form-control" id="street_field" ng-model="user.street">
 
-        <label for="npa_field">Npa</label>
-        <input type="text" class="form-control" id="npa_field" ng-model="user.address.npa">
+        <div class="row">
+          <div class="col-sm-2">
+            <label class="control-label" for="info_npa">NPA</label>
+            <input type="text" class="form-control" placeholder="NPA" name="npa" id="npa_field" ng-model="user.npa" />
+          </div>
+          <div class="col-sm-10">
+            <label class="control-label" for="info_ville">Ville</label>
+            <input type="text" class="form-control" name="ville" placeholder="Ville" id="city_field" ng-model="user.city" />
+          </div>
+        </div>
 
-        <label for="city_field">Ville</label>
-        <input type="text" class="form-control" id="city_field" ng-model="user.address.city">
+        <label for="country_field">Pays</label>
+        <select class="form-control" id="country_field" ng-model="user.country_id"
+                ng-options="c.id as c.name for c in countries"></select>
 
         <br />
-        <a href="#" class="btn btn-success">Mettre à jour</a>
+        <a ng-click="updateUser()" role="button" class="btn btn-success">Mettre à jour</a>
 
       </div>
 
@@ -111,14 +120,14 @@
 
         <label for="steam_field">SteamID</label>
         <input type="text" class="form-control" id="steam_field" ng-model="user.steamID64" placeholder="SteamID64 (suite de chiffres)"
-               uib-tooltip-html="'Utilisez <b><i>steam user {username}</i></b> sur notre serveur Discord !'"
+               uib-tooltip-html="'Trouvez votre SteamID avec <b><i>steam user {username}</i></b> sur notre serveur Discord !'"
                tooltip-placement="top-left" tooltip-class="customClass">
 
         <label for="battletag_field">Battle Tag</label>
         <input type="text" class="form-control" id="battletag_field" ng-model="user.battleTag" placeholder="Battle Tag">
 
         <br />
-        <a href="#" class="btn btn-success">Mettre à jour</a>
+        <a ng-click="updateUser()" role="button" class="btn btn-success">Mettre à jour</a>
       </div>
     </div>
   </div>

@@ -12,8 +12,11 @@ angular.module('frontGeekApp')
     $scope.user = {};
     $scope.subPage = 1;
 
-    User.get({ id: $auth.getPayload().sub }, function(res) {
-      $scope.user = res.user;
+    User.get({ id: 'me' }, function(user) {
+      $scope.user = user;
     });
 
+    $scope.updateUser = function() {
+      User.update({ id: 'me' }, $scope.user);
+    };
   });
