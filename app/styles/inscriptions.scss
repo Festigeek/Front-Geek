@@ -2,6 +2,22 @@
   font-family: 'Roboto', sans-serif;
 }
 
+span.title {
+  color: #585858 !important;
+
+}
+#status-buttons a.active span.title {
+    background: none !important;
+      text-decoration: none !important;
+}
+
+#status-buttons a.active:hover {
+  text-decoration: none !important;
+}
+#status-buttons a.active:focus {
+  text-decoration: none !important;
+}
+
 #form-container {
   margin-top: 45px;
 }

@@ -8,9 +8,9 @@
         <!-- the links to our nested states using relative paths -->
         <!-- add the active class if the state matches our ui-sref -->
         <div id="status-buttons" class="text-center">
-          <a ui-sref-active="active" ui-sref=".infos"><span class="chip">1</span> Coordonnées</a>
-          <a ui-sref-active="active" ui-sref=".games"><span class="chip" ng-disabled="signupform.$invalid">2</span> Inscription</a>
-          <a ui-sref-active="active" ui-sref=".payment"><span class="chip">3</span> Paiement</a>
+          <a ui-sref-active="active" ui-sref=".infos"><span class="chip">1</span> <span class="title">Coordonnées</span></a>
+          <a ui-sref-active="active" ui-sref=".games"><span class="chip" ng-disabled="signupform.$invalid">2</span><span class="title"> Inscription</span></a>
+          <a ui-sref-active="active" ui-sref=".payment"><span class="chip">3</span> <span class="title">Paiement</span></a>
           <span class="stretch"></span>
         </div>
       </div>
@@ -18,7 +18,7 @@
       <!-- use ng-submit to catch the form submission and use our Angular function -->
       <form name="signupform" id="signup-form" ng-submit="processForm()">
         <script type="text/ng-template" id="error-messages">
-          <div ng-message="required">* Champ obligatoire</div>
+          <div ng-message="required">* Champs obligatoires</div>
           <div ng-message="minlength">Champ invalide - trop court</div>
           <div ng-message="maxlength">Champ invalide - trop long</div>
         </script>
