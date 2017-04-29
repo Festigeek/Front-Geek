@@ -60,15 +60,16 @@
   <div class="row">
     <div class="col-sm-4">
       <label for="info_battleTag">BattleTag</label>
-      <input type="text" class="form-control" placeholder="BattleTag" name="battleTag" id="info_battleTag" ng-model="formData.accounts.battleTag" ng-pattern="/^[\\p{L}\\p{Mn}][\\p{L}\\p{Mn}0-9]{2,11}#[0-9]{4,5}$/u" />
+      <input type="text" class="form-control" placeholder="BattleTag" name="battleTag" id="info_battleTag" ng-maxlength="20" ng-model="formData.accounts.battleTag" ng-pattern="/^[\\p{L}\\p{Mn}][\\p{L}\\p{Mn}0-9]{2,11}#[0-9]{4,5}$/u" />
     </div>
     <div class="col-sm-4">
       <label for="info_Lol">Compte LoL</label>
-      <input type="text" class="form-control" placeholder="Compte League of Legends" name="lol" id="info_Lol" ng-model="formData.accounts.lol" />
+      <input type="text" class="form-control" placeholder="Compte League of Legends" name="lol" id="info_Lol" ng-maxlength="20" ng-model="formData.accounts.lol" />
     </div>
     <div class="col-sm-4">
       <label for="info_Steam">Compte Steam</label>
-      <input type="text" class="form-control" placeholder="UserName" name="steam" id="info_Steam" ng-model="formData.accounts.steam" />
+      <input type="text" class="form-control" placeholder="UserName" name="steam" id="info_Steam" ng-maxlength="20" ng-model="formData.accounts.steam" />
+      <!-- valider chiffres -->
     </div>
   </div>
 </div>
