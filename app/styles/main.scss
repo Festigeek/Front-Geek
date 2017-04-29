@@ -10,8 +10,6 @@ $icomoon-font-path: "./ressources/icomoon/fonts";
 @import "ngDialog.scss";
 
 //views styles
-@import "account.scss";
-@import "login.scss";
 @import "signup.scss";
 
 @import "profile.scss";
@@ -1395,7 +1393,17 @@ figure {
   background: #D8D8D8 !important;
    border-color: #D8D8D8 !important;
 }
+.btn-success:hover {
 
+  background: #3f2e79 !important;
+  color:white !important;
+
+}
+
+.btn-sucess {
+  background: #D8D8D8 !important;
+   border-color: #D8D8D8 !important;
+}
 .js .animate-box {
   opacity: 0;
 }
