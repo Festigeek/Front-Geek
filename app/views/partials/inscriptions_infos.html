@@ -1,36 +1,54 @@
+<p class="form-inline">
+  <label for="man_field">M.</label>
+  <input type="radio" for="man_field" value="M" ng-model="formData.infosUser.gender">
+  &nbsp; &nbsp;
+  <label for="woman_field">Mme</label>
+  <input type="radio" for="woman_field" value="F" ng-model="formData.infosUser.gender">
+</p>
+
 <div class="form-group">
-  <label for="info_nom">Nom</label>
-  <input type="text" class="form-control" placeholder="Nom" name="nom" id="info_nom" ng-model="formData.nom" />
+  <label for="info_nom">Nom *</label>
+  <input type="text" class="form-control" placeholder="Nom" name="nom" id="info_nom" ng-model="formData.nom" required/>
 </div>
 
 <div class="form-group">
-  <label for="info_prenom">Prénom</label>
-  <input type="text" class="form-control" placeholder="Prénom" name="prenom" id="info_prenom" ng-model="formData.prenom" />
+  <label for="info_prenom">Prénom *</label>
+  <input type="text" class="form-control" placeholder="Prénom" name="prenom" id="info_prenom" ng-model="formData.prenom" required/>
 </div>
 
 <div class="form-group">
-  <label for="info_adresse">Adresse</label>
-  <input type="text" class="form-control" placeholder="Adresse" name="adresse" id="info_adresse" ng-model="formData.adresse" />
+  <label for="info_adresse">Adresse *</label>
+  <input type="text" class="form-control" placeholder="Adresse" name="adresse" id="info_adresse" ng-model="formData.adresse" required/>
+
 </div>
 
 <div class="form-group">
   <div class="row">
     <div class="col-sm-2">
-      <label class="control-label" for="info_npa">NPA</label>
-      <input type="number" class="form-control" placeholder="NPA" name="npa" id="info_npa" ng-model="formData.npa" />
+      <label class="control-label" for="info_npa">NPA *</label>
+      <input type="text" class="form-control" placeholder="NPA" name="npa" id="info_npa" ng-model="formData.npa" required/>
+      <!-- valider chiffres -->
+
     </div>
     <div class="col-sm-10">
-      <label class="control-label" for="info_ville">Ville</label>
-      <input type="text" class="form-control" name="ville" placeholder="Ville" id="info_ville" ng-model="formData.ville" />
+      <label class="control-label" for="info_ville">Ville *</label>
+      <input type="text" class="form-control" name="ville" placeholder="Ville" id="info_ville" ng-model="formData.ville" required/>
     </div>
   </div>
+</div>
+
+<div class="form-group">
+  <label for="country_field">Pays</label>
+  <select class="form-control" id="country_field" ng-model="formData.infosUser.country_id"
+          ng-options="c.id as c.name for c in countries"></select>
 </div>
 
 <br />
 <div class="form-group">
   <div class="col-xs-4 col-xs-offset-4">
-    <a ui-sref="inscriptions.games" class="btn btn-block btn-info">
+    <p class="alert alert-warning" ng-show="signupform.$invalid">*Champs obligatoires</p>
+    <button ng-disabled="signupform.$invalid" ui-sref="inscriptions.games" class="btn btn-block btn-info">
       Suite <span class="glyphicon glyphicon-circle-arrow-right"></span>
-    </a>
+    </button>
   </div>
 </div>
