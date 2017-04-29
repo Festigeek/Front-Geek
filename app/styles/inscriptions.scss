@@ -17,6 +17,13 @@ span.title {
 #status-buttons a.active:focus {
   text-decoration: none !important;
 }
+label.minititle, h4.minititle{
+  color: #3f2e79;
+  font-size: 1.2em;
+}
+.form-group ng-scope .btn:hover, .form-group ng-scope .btn-default:hover {
+  background: #00BC8C !important;
+}
 
 #form-container {
   margin-top: 45px;

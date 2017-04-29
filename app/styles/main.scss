@@ -1375,6 +1375,25 @@ figure {
 
 .btn.btn-default:hover, .btn.btn-default:focus, .btn.btn-default:active {
   border-color: transparent;
+  background: white !important;
+
+
+}
+
+.text-muted{
+      text-transform: none;
+}
+
+.btn-info:hover {
+
+  background: #3f2e79 !important;
+  color:white !important;
+
+}
+
+.btn-info {
+  background: #D8D8D8 !important;
+   border-color: #D8D8D8 !important;
 }
 
 .js .animate-box {
@@ -2082,4 +2101,3 @@ ul.dropdown-menu li a:hover,
 ul.dropdown-menu li a:visited:hover {
   color: #777;
 }
-

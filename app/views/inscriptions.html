@@ -18,7 +18,10 @@
       <!-- use ng-submit to catch the form submission and use our Angular function -->
       <form name="signupform" id="signup-form" ng-submit="processForm()">
         <script type="text/ng-template" id="error-messages">
-          <div ng-message="required">* Champs obligatoires</div>
+          <div class="row">
+            <div class="col-md-12">* Champs obligatoires</div>
+          </div>
+
           <div ng-message="minlength">Champ invalide - trop court</div>
           <div ng-message="maxlength">Champ invalide - trop long</div>
         </script>
