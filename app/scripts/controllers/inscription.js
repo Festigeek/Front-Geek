@@ -9,6 +9,7 @@
  */
 angular.module('frontGeekApp')
   .controller('InscriptionCtrl', function ($rootScope, $scope, $state, $localStorage, toastr, ngCart, User, Product, Team) {
+    $scope.checkedUser = false;
     $scope.$storage = $localStorage;
 
     $scope.paypalInfos = {
@@ -33,20 +34,27 @@ angular.module('frontGeekApp')
 
     $scope.existingTeams = Team.query({event_id: 1});
     $scope.gameProducts = Product.query({type_id: 1});
-    $scope.mealProducts = Product.query({type: 'repas'});
-
-    // toaster si équipe inexistante
+    // $scope.mealProducts = Product.query({type: 'repas'});
 
     // FUNCTIONS
 
-    $scope.goTo = function(page, form, source) {
-      if($state.current.name !== source) {
-        if(form.$valid) {
-          $state.go(page);
-        }
-        else {
+    $scope.goTo = function(dest, form, source) {
+      console.log(form);
+      if($state.current.name === source && form !== undefined && form.$invalid) {
           toastr.warning('Merci de vérifier le contenu du formulaire', 'Données incomplètes');
-        }
+      }
+      else {
+        $state.go(dest);
+      }
+    };
+
+    $scope.updateUser = function() {
+      if(!$scope.checkedUser) {
+        User.update({id: 'me'}, $scope.formData.infosUser).$promise
+          .then(function () {
+            toastr.info('Profil mis à jour.');
+            $scope.checkedUser = true;
+          });
       }
     };
 

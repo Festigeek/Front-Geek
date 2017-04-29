@@ -1,130 +1,141 @@
-<h3>Infos Tournoi</h3>
+<form name="gamesForm">
+  <h3>Infos Tournoi</h3>
 
-<div class="form-group">
-  <h4 class="control-label minititle">Tournoi</h4>
-  <ui-select id="info_tournoi"
-             ng-model="formData.products.tournoi"
-             theme="bootstrap"
-             title="Choix du tournoi">
-    <ui-select-match placeholder="Sélectionnez ou cherchez un tournoi dans la liste...">{{$select.selected.name}}</ui-select-match>
-    <ui-select-choices position="down" repeat="game in gameProducts | filter: $select.search">
-      <div ng-bind-html="game.name | highlight: $select.search"></div>
-    </ui-select-choices>
-  </ui-select>
-</div>
+  <div class="form-group">
+    <h4 class="control-label minititle">Tournoi</h4>
+    <ui-select id="info_tournoi"
+               ng-model="formData.products.tournament"
+               theme="bootstrap"
+               title="Choix du tournoi"
+               required>
+      <ui-select-match placeholder="Sélectionnez ou cherchez un tournoi dans la liste...">{{ $select.selected.name }}</ui-select-match>
+      <ui-select-choices position="down" repeat="game in gameProducts | filter: $select.search">
+        <div ng-bind-html="game.name | highlight: $select.search"></div>
+      </ui-select-choices>
+    </ui-select>
+  </div>
 
-<div class="form-group">
-  <h4 class="minititle">Repas (le plus important !)</h4>
-  <div class="row">
-    <div class="col-sm-4">
-      Burger(s) <span class="price">13 CHF</span>
-    </div>
-    <div class="col-sm-2">
-      <select id="info_burger" ng-model="formData.products.burger">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-      </select>
-    </div>
-    <div class="col-sm-4">
-      Petit(s)-déj(s) <span class="price">5 CHF</span>
-    </div>
-    <div class="col-sm-2">
-      <select id="info_dej" ng-model="formData.products.dej">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-      </select>
+  <div class="form-group">
+    <h4 class="minititle">Repas (le plus important !)</h4>
+    <div class="row">
+      <div class="col-sm-4">
+        Burger(s) <span class="price">13 CHF</span>
+      </div>
+      <div class="col-sm-2">
+        <select id="info_burger" ng-model="formData.products.burger">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+      <div class="col-sm-4">
+        Petit(s)-déj(s) <span class="price">5 CHF</span>
+      </div>
+      <div class="col-sm-2">
+        <select id="info_dej" ng-model="formData.products.dej">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </select>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="clearfix"><br /></div>
-<hr class="separator">
-<h3>Infos Joueur</h3>
+  <div class="clearfix"><br /></div>
+  <hr class="separator">
+  <h3>Infos Joueur</h3>
 
-<div class="form-group">
-  <label for="info_equipe">Nom de mon équipe</label>
-  <div angucomplete-alt
-       id="info_equipe"
-       placeholder="Équipe"
-       pause="100"
-       local-data="existingTeams"
-       search-fields="name"
-       title-field="name"
-       selected-object="formData.existTeam"
-       override-suggestions="true"
-       minlength="1"
-       input-class="form-control form-control-small"><!--remote-url remote-url-data-field--></div>
-</div>
+  <div class="form-group">
+    <label for="info_equipe">Nom de mon équipe</label>
+    <div angucomplete-alt
+         id="info_equipe"
+         placeholder="Équipe"
+         pause="100"
+         local-data="existingTeams"
+         search-fields="name"
+         title-field="name"
+         selected-object="formData.existTeam"
+         override-suggestions="true"
+         minlength="1"
+         input-class="form-control form-control-small"><!--remote-url remote-url-data-field--></div>
+  </div>
 
-<div class="form-group">
-  <div class="row">
-    <div class="col-sm-4">
-      <label for="info_battleTag">BattleTag</label>
-      <input type="text" class="form-control" placeholder="BattleTag" name="battleTag" id="info_battleTag" ng-maxlength="20" ng-model="formData.accounts.battleTag" ng-pattern="/^[\\p{L}\\p{Mn}][\\p{L}\\p{Mn}0-9]{2,11}#[0-9]{4,5}$/u" />
-    </div>
-    <div class="col-sm-4">
-      <label for="info_Lol">Compte LoL</label>
-      <input type="text" class="form-control" placeholder="Compte League of Legends" name="lol" id="info_Lol" ng-maxlength="20" ng-model="formData.accounts.lol" />
-    </div>
-    <div class="col-sm-4">
-      <label for="info_Steam">Compte Steam</label>
-      <input type="text" class="form-control" placeholder="UserName" name="steam" id="info_Steam" ng-maxlength="20" ng-model="formData.accounts.steam" />
-      <!-- valider chiffres -->
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-4">
+        <label for="info_battleTag">BattleTag</label>
+        <input type="text" class="form-control" placeholder="BattleTag" name="battleTag" id="info_battleTag" ng-maxlength="20" ng-model="formData.accounts.battleTag" ng-pattern="/^\w{2,11}#[0-9]{4,5}$/i" />
+      </div>
+      <div class="col-sm-4">
+        <label for="info_Lol">Compte LoL</label>
+        <input type="text" class="form-control" placeholder="Compte League of Legends" name="lol" id="info_Lol" ng-maxlength="20" ng-model="formData.accounts.lol" />
+      </div>
+      <div class="col-sm-4">
+        <label for="steam_field">Compte Steam</label>
+        <input type="text" class="form-control" id="steam_field" ng-model="formData.account.steamID64" placeholder="SteamID64 (suite de chiffres)"
+               uib-tooltip-html="'Trouvez votre SteamID avec:<br /> &lt; <b><i>steam user { username }</i></b> &gt;<br /> sur notre serveur Discord !'"
+               tooltip-placement="top-left" tooltip-class="customClass" />
+      </div>
     </div>
   </div>
-</div>
 
-<div class="clearfix"><br /></div>
-<hr class="separator">
-<h3>Infos Diverses</h3>
+  <div class="clearfix"><br /></div>
+  <hr class="separator">
+  <h3>Infos Diverses</h3>
 
-<div class="form-group">
-  <label>Règlements</label>
-  <div class="row">
-    <div class="col-sm-4 text-center">
-      <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Doc 1
-    </div>
-    <div class="col-sm-4 text-center">
-      <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Doc 2
-    </div>
-    <div class="col-sm-4 text-center">
-      <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Doc 3
+  <div class="form-group">
+    <label>Règlements</label>
+    <div class="row">
+      <div class="col-sm-4 text-center">
+        <a href="assets/FG2017_reglement_csgo.pdf" target="_blank">
+          <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Règlement CS: GO
+        </a>
+      </div>
+      <div class="col-sm-4 text-center">
+        <a href="assets/FG2017_reglement_lol.pdf" target="_blank">
+          <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Règlement League of Legends
+        </a>
+      </div>
+      <div class="col-sm-4 text-center">
+        <a href="assets/FG2017_reglement_ow.pdf" target="_blank">
+          <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Règlement Overwatch
+        </a>
+      </div>
     </div>
   </div>
-</div>
 
-<br />
-<div class="form-group">
-  <label>Consentements</label>
-</div>
-
-<div class="checkbox">
-  <label for="info_cable">
-    <input type="checkbox" name="cable" id="info_cable" ng-model="formData.consent.cable" />
-    J'ai un câble RJ-45 pour me brancher au réseau (5 mètres)
-  </label>
   <br />
-  <label for="info_reglements">
-    <input type="checkbox" name="reglements" id="info_reglements" ng-model="formData.consent.reglements" required />
-    J'ai lu et accepte les règlements de la LAN
-  </label>
-  <!-- TODO: si mineur... -->
-  <hr />
-  <label for="info_mineur">
-    <input type="checkbox" name="mineur" id="info_mineur" ng-model="formData.consent.mineur" />
-    En tant que mineur, j'ai un exemplaire du formulaire de consentement parental signé.
-  </label>
-</div>
-
-<br />
-<div class="checkbox">
-  <div class="col-xs-4 col-xs-offset-4">
-    <a ng-click="goTo('inscriptions.payment', signupform)" class="btn btn-block btn-info">
-      Suite <span class="glyphicon glyphicon-circle-arrow-right"></span>
-    </a>
+  <div class="form-group">
+    <label>Consentements</label>
   </div>
-</div>
+
+  <div class="checkbox">
+    <label for="info_cable">
+      <input type="checkbox" name="cable" id="info_cable" ng-model="formData.consent.cable" required />
+      J'ai un câble RJ-45 pour me brancher au réseau (5 mètres)
+    </label>
+    <br />
+    <label for="info_reglements">
+      <input type="checkbox" name="reglements" id="info_reglements" ng-model="formData.consent.rules" required />
+      J'ai lu et accepte les règlements de la LAN qui me concernent.
+    </label>
+    <hr />
+    <label for="info_mineur">
+      <!-- TODO: Comparer avec user.birthdate -->
+      <input type="checkbox" name="mineur" id="info_mineur" ng-model="formData.consent.minor" />
+      En tant que mineur, j'ai un <a href="assets/FG2017_consentement_parental.pdf" target="_blank">exemplaire du formulaire de consentement parental</a> signé.
+    </label>
+  </div>
+
+  <br />
+  <div class="checkbox">
+    <div class="col-xs-4 col-xs-offset-4">
+      <a ng-click="goTo('inscriptions.payment', gamesForm, 'inscriptions.games')" class="btn btn-block btn-info">
+        Suite <span class="glyphicon glyphicon-circle-arrow-right"></span>
+      </a>
+    </div>
+  </div>
+
+</form>

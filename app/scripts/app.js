@@ -104,7 +104,7 @@ angular
             return $http({
               method: 'GET',
               url: urls.BASE_API + '/users/activate',
-              params: {activation_token: $stateParams.token}
+              params: { activation_token: $stateParams.token }
             })
             .then(function (res) {
               if(res.data.success === 'user_activated') {
@@ -162,7 +162,10 @@ angular
         controller: 'InscriptionCtrl',
         redirectTo: 'inscriptions.infos',
         resolve: {
-          loginRequired: loginRequired
+          loginRequired: loginRequired,
+          // toto: [function(){
+          // TODO: test si déjà inscrit
+          // }]
         }
       })
       .state('inscriptions.infos', {
@@ -188,7 +191,7 @@ angular
   })
 
   // RUNNING CODE
-  .run(function($rootScope, $location, urls, $auth, ngDialog, toastr, Country, $localStorage){
+  .run(function($rootScope, $location, urls, $auth, $trace, ngDialog, toastr, Country, $localStorage){
     /*
     // Variables
     */
@@ -246,6 +249,8 @@ angular
     /*
      // Events
      */
+    $trace.enable('TRANSITION');
+
     $rootScope.$on('$routeChangeError', function() {
       $location.path('/missing');
     });
