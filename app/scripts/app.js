@@ -19,17 +19,18 @@ angular
     'ngSanitize',
     'ngTouch',
     'ngDialog',
+    'ngStorage',
+    'ngCart',
+    'angular-loading-bar',
     'ui.bootstrap',
-    'picardy.fontawesome',
     'ui.router',
+    'ui.select',
+    'picardy.fontawesome',
     'satellizer',
     'toastr',
     'vcRecaptcha',
     'duScroll',
-    'angucomplete-alt',
-    'ui.select',
-    'ngCart',
-    'ngStorage'
+    'angucomplete-alt'
   ])
 
   // CONSTANTS
@@ -47,7 +48,7 @@ angular
   // CONFIGURATIONS
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $authProvider, toastrConfig, urls) {
     angular.extend(toastrConfig, {
-      timeOut: 1000
+      timeOut: 1500
     });
 
     // CONFIG SATELLIZER
@@ -58,24 +59,36 @@ angular
       var deferred = $q.defer();
       if ($auth.isAuthenticated()) {
         deferred.reject();
-      } else {
-        deferred.resolve();
-      }
-      return deferred.promise;
-    }
-
-    function loginRequired($q, $location, $auth) {
-      var deferred = $q.defer();
-
-      if ($auth.isAuthenticated()) {
-        deferred.resolve();
       }
       else {
-        $location.path('/login');
+        deferred.resolve();
       }
-
       return deferred.promise;
     }
+
+    // function loginRequired($q, $location, $auth, toastr) {
+    //   var deferred = $q.defer();
+    //   if (!$auth.isAuthenticated()) {
+    //     $location.path('/');
+    //     toastr.info('Connectez-vous pour accéder à cette page.');
+    //   }
+    //   else {
+    //     deferred.resolve();
+    //   }
+    //   return deferred.promise;
+    // }
+
+    var loginRequired = ['$q', '$location', '$auth', 'toastr', function ($q, $location, $auth, toastr) {
+      var deferred = $q.defer();
+      if (!$auth.isAuthenticated()) {
+        $location.path('/');
+        toastr.info('Connectez-vous pour accéder à cette page.');
+      }
+      else {
+        deferred.resolve();
+      }
+      return deferred.promise;
+    }];
 
     // ROUTING
     $stateProvider
@@ -147,7 +160,10 @@ angular
         url: '/inscriptions',
         templateUrl: 'views/inscriptions.html',
         controller: 'InscriptionCtrl',
-        redirectTo: 'inscriptions.infos'
+        redirectTo: 'inscriptions.infos',
+        resolve: {
+          loginRequired: loginRequired
+        }
       })
       .state('inscriptions.infos', {
         url: '/infos',

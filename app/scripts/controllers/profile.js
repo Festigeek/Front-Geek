@@ -8,7 +8,7 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('ProfileCtrl', function ($scope, $auth, User) {
+  .controller('ProfileCtrl', function ($scope, $auth, toastr, User) {
     $scope.user = {};
     $scope.subPage = 1;
 
@@ -17,6 +17,9 @@ angular.module('frontGeekApp')
     });
 
     $scope.updateUser = function() {
-      User.update({ id: 'me' }, $scope.user);
+      User.update({ id: 'me' }, $scope.user).$promise
+        .then(function() {
+          toastr.success('Profil mis à jour avec succès !');
+        });
     };
   });

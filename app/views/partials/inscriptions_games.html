@@ -20,18 +20,18 @@
       Burger(s):
       <select id="info_burger" ng-model="formData.products.burger">
         <option value="0">0</option>
-        <option value="0">1</option>
-        <option value="0">2</option>
-        <option value="0">3</option>
-        <option value="0">4</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
       </select>
     </div>
     <div class="col-sm-6 text-center">
       Petit(s)-déj(s):
       <select id="info_dej" ng-model="formData.products.dej">
         <option value="0">0</option>
-        <option value="0">1</option>
-        <option value="0">2</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
       </select>
     </div>
   </div>
@@ -101,8 +101,9 @@
 <div class="checkbox">
   <label for="info_cable">
     <input type="checkbox" name="cable" id="info_cable" ng-model="formData.consent.cable" />
-    J'ai un câble RJ-45 pour me brancher au réseau (de 10m de long, histoire d'être sûr !)
+    J'ai un câble RJ-45 pour me brancher au réseau (5 mètres)
   </label>
+  <br />
   <label for="info_reglements">
     <input type="checkbox" name="reglements" id="info_reglements" ng-model="formData.consent.reglements" required />
     J'ai lu et accepte les règlements de la LAN
