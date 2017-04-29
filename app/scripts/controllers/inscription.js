@@ -8,8 +8,17 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('InscriptionCtrl', function ($rootScope, $scope, $localStorage, ngCart, User, Product, Team) {
+  .controller('InscriptionCtrl', function ($rootScope, $scope, $state, $localStorage, toastr, ngCart, User, Product, Team) {
     $scope.$storage = $localStorage;
+
+    $scope.paypalInfos = {
+      paypal: {
+        business:'tresorier@festigeek.ch',
+        item_number:'lan2017',
+        currency_code:'CHF'
+      }
+    };
+
     $scope.formData = {
       products: {
         burger: '0',
@@ -17,16 +26,34 @@ angular.module('frontGeekApp')
       }
     };
 
+    // GET API
     User.get({ id: 'me' }, function(user) {
       $scope.formData.infosUser = user;
     });
 
     $scope.existingTeams = Team.query({event_id: 1});
-    $scope.gameProducts = Product.query({type: 'inscriptions'});
-    $scope.otherProducts = Product.query({type: 'repas'});
+    $scope.gameProducts = Product.query({type_id: 1});
+    $scope.mealProducts = Product.query({type: 'repas'});
+
+    // toaster si équipe inexistante
+
+    // FUNCTIONS
+
+    $scope.goTo = function(page, form, source) {
+      if($state.current.name !== source) {
+        if(form.$valid) {
+          $state.go(page);
+        }
+        else {
+          toastr.warning('Merci de vérifier le contenu du formulaire', 'Données incomplètes');
+        }
+      }
+    };
 
     $rootScope.dataDebug.formData = $scope.formData;
     $rootScope.dataDebug.cart = ngCart.getCart();
+
+    // MOCK DATA
 
     // $scope.gameProducts = [
     //   {id:1, name:'Animations', max:1, price: 20.00},
@@ -46,14 +73,4 @@ angular.module('frontGeekApp')
     //   {id:3, name:'TrololoBoyz'},
     //   {id:4, name:'Boloss United'}
     // ];
-
-    $scope.paypalInfos = {
-      paypal: {
-        business:'tresorier@festigeek.ch',
-        item_number:'lan2017',
-        currency_code:'CHF'
-      }
-    };
-
-    // toaster si équipe inexistante
   });

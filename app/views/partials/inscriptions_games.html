@@ -1,7 +1,7 @@
 <h3>Infos Tournoi</h3>
 
 <div class="form-group">
-  <label class="control-label minititle" for="info_tournoi">Tournoi</label>
+  <h4 class="control-label minititle">Tournoi</h4>
   <ui-select id="info_tournoi"
              ng-model="formData.products.tournoi"
              theme="bootstrap"
@@ -123,7 +123,7 @@
 <br />
 <div class="checkbox">
   <div class="col-xs-4 col-xs-offset-4">
-    <a ui-sref="inscriptions.payment" class="btn btn-block btn-info">
+    <a ng-click="goTo('inscriptions.payment', signupform)" class="btn btn-block btn-info">
       Suite <span class="glyphicon glyphicon-circle-arrow-right"></span>
     </a>
   </div>
