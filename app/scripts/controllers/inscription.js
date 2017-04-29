@@ -23,6 +23,7 @@ angular.module('frontGeekApp')
 
     $scope.existingTeams = Team.query({event_id: 1});
     $scope.gameProducts = Product.query({type: 'inscriptions'});
+    $scope.otherProducts = Product.query({type: 'repas'});
 
     $rootScope.dataDebug.formData = $scope.formData;
     $rootScope.dataDebug.cart = ngCart.getCart();
@@ -34,10 +35,10 @@ angular.module('frontGeekApp')
     //   {id:4, name:'Overwatch', max:1, price: 20.00}
     // ];
 
-    $scope.otherProducts = [
-      {id:1, name:'Burger', max: 4, price: 13.00},
-      {id:2, name:'Petit-dej', max: 2, price: 5.00}
-    ];
+    // $scope.otherProducts = [
+    //   {id:1, name:'Burger', max: 4, price: 13.00},
+    //   {id:2, name:'Petit-dej', max: 2, price: 5.00}
+    // ];
 
     // $scope.existingTeams = [
     //   {id:1, name:'CouCouchClan'},
