@@ -1,5 +1,6 @@
 'use strict';
 
+
 /**
  * @ngdoc function
  * @name frontGeekApp.controller:InscriptionCtrl
@@ -8,8 +9,9 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('InscriptionCtrl', function ($rootScope, $scope, $localStorage, $state, $transitions, toastr, User, Country, Product, Team, Order) {
+  .controller('InscriptionCtrl', function ($rootScope, $scope, $localStorage, $state, $transitions, toastr, User, Country, Product, Team, Order, moment) {
     $scope.$storage = $localStorage;
+
     $scope.$storage.checkedUser = ($scope.$storage.checkedUser !== undefined) ? $scope.$storage.checkedUser : false;
     $scope.$storage.checkedInscription = ($scope.$storage.checkedInscription !== undefined) ? $scope.$storage.checkedInscription : false;
     $scope.$storage.countries = ($scope.$storage.countries !== undefined) ? $scope.$storage.countries : Country.query();
@@ -47,7 +49,18 @@ angular.module('frontGeekApp')
 
     // GET API
 
-    $scope.formData.infosUser = User.get({ id: 'me' });
+    $scope.formData.infosUser = User.get({ id: 'me' }, function(e) {
+        var $now = moment();
+        var $age = $now.diff(moment(e.birthdate), 'years');
+        if($age >=18){
+        $scope.birthdate = true;
+      }
+      else {
+            $scope.birthdate = false;
+      }
+      });
+
+
 
     $scope.existingTeams = Team.query({event_id: 1});
     $scope.gameProducts = Product.query({type_id: 1});

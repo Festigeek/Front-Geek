@@ -29,7 +29,8 @@ angular
     'toastr',
     'vcRecaptcha',
     'duScroll',
-    'angucomplete-alt'
+    'angucomplete-alt',
+    'angularMoment'
   ])
 
   // CONSTANTS
