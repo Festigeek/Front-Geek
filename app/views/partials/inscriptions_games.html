@@ -11,6 +11,7 @@
       <ui-select-match placeholder="Sélectionnez ou cherchez un tournoi dans la liste...">{{ $select.selected.name }}</ui-select-match>
       <ui-select-choices position="down" repeat="game in gameProducts | filter: $select.search">
         <div ng-bind-html="game.name | highlight: $select.search"></div>
+        <i ng-bind-html="game.available | highlight: $select.search"></i> places restantes
       </ui-select-choices>
     </ui-select>
   </div>
@@ -48,7 +49,7 @@
   <hr class="separator">
   <h3>Infos Joueur</h3>
 
-  <div class="form-group">
+  <div class="form-group" ng-if="game.name">
     <label for="info_equipe">Nom de mon équipe</label>
     <div angucomplete-alt
          id="info_equipe"

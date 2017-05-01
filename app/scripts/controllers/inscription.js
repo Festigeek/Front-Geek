@@ -53,17 +53,25 @@ angular.module('frontGeekApp')
         var $now = moment();
         var $age = $now.diff(moment(e.birthdate), 'years');
         if($age >=18){
-        $scope.birthdate = true;
+        $scope.birthdate = false;
       }
       else {
-            $scope.birthdate = false;
+            $scope.birthdate = true;
       }
       });
 
 
 
     $scope.existingTeams = Team.query({event_id: 1});
-    $scope.gameProducts = Product.query({type_id: 1});
+    $scope.gameProducts = Product.query({type_id: 1}, function(e){
+      $scope.gameProducts.forEach(function(gameProduct){
+        gameProduct.available = gameProduct.quantity_max - gameProduct.sold;
+
+      });
+      console.log($scope.gameProducts);
+
+    });
+
     $scope.mealProducts = Product.query({type: 'repas'});
 
     // FUNCTIONS
@@ -106,6 +114,7 @@ angular.module('frontGeekApp')
           }
         ]
       };
+
     };
 
     // Fonction permettant de soumettre la commande (inscription)
