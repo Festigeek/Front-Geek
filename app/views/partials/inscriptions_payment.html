@@ -1,19 +1,59 @@
 <div class="row">
-  <ngcart-cart template-url="bower_components/ngCart/template/ngCart/cart.html"></ngcart-cart>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Contenu</th>
+      <th>Nombre</th>
+      <th>Prix</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <th>Total:</th>
+      <th>51.00 CHF</th>
+    </tr>
+    </tfoot>
+    <tbody>
+    <tr>
+      <td>#1</td>
+      <td></td>
+      <td>Inscription</td>
+      <td>1</td>
+      <td>20.00</td>
+    </tr>
+    <tr>
+      <td>#2</td>
+      <td></td>
+      <td>Bon pour burger Festigeek</td>
+      <td>2</td>
+      <td>26.00</td>
+    </tr>
+    <tr>
+      <td>#3</td>
+      <td></td>
+      <td>Bon pour petit-déj.</td>
+      <td>1</td>
+      <td>5.00</td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 
 <div class="row">
   <div class="col-sm-6 text-center">
-    <ngcart-checkout service="http"
-                     settings="{ url:'/' }"
-                     template-url="bower_components/ngCart/template/ngCart/checkout.html">
-      Virement banquaire
-    </ngcart-checkout>
+    <button class="btn btn-primary" ng-click="postOrder(1)">Paiement par virement</button>
   </div>
   <div class="col-sm-6 text-center">
-    <ngcart-checkout service="paypal"
-                     settings="paypalInfos"
-                     template-url="bower_components/ngCart/template/ngCart/checkout.html">
-    </ngcart-checkout>
+    <div>
+      <a href="" ng-click="postOrder(2)">
+        <img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" alt="PayPal - The safer, easier way to pay online!" /><br />
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+      </a>
+    </div>
   </div>
 </div>

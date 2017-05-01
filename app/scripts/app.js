@@ -20,7 +20,6 @@ angular
     'ngTouch',
     'ngDialog',
     'ngStorage',
-    'ngCart',
     'angular-loading-bar',
     'ui.bootstrap',
     'ui.router',
@@ -66,21 +65,26 @@ angular
       return deferred.promise;
     }
 
-    // function loginRequired($q, $location, $auth, toastr) {
-    //   var deferred = $q.defer();
-    //   if (!$auth.isAuthenticated()) {
-    //     $location.path('/');
-    //     toastr.info('Connectez-vous pour accéder à cette page.');
-    //   }
-    //   else {
-    //     deferred.resolve();
-    //   }
-    //   return deferred.promise;
-    // }
+    var serverRequired = ['$q', '$location', 'checkServer', 'toastr', function ($q, $location, checkServer, toastr) {
+      var deferred = $q.defer();
+
+      checkServer()
+        .then(function(){
+            deferred.resolve();
+        })
+        .catch(function(){
+          deferred.reject();
+          $location.path('/');
+          toastr.error('Serveur indisponible.');
+        });
+
+      return deferred.promise;
+    }];
 
     var loginRequired = ['$q', '$location', '$auth', 'toastr', function ($q, $location, $auth, toastr) {
       var deferred = $q.defer();
       if (!$auth.isAuthenticated()) {
+        deferred.reject();
         $location.path('/');
         toastr.info('Connectez-vous pour accéder à cette page.');
       }
@@ -100,6 +104,7 @@ angular
       .state('activate', {
         url: '/activate/:token',
         resolve: {
+          serverRequired: serverRequired,
           activation: ['$http','$stateParams', 'toastr', '$state', function($http, $stateParams, toastr, $state) {
             return $http({
               method: 'GET',
@@ -132,6 +137,7 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         resolve: {
+          serverRequired: serverRequired,
           skipIfLoggedIn: skipIfLoggedIn
         }
       })
@@ -140,6 +146,7 @@ angular
         templateUrl: 'views/signup.html',
         controller: 'SignupCtrl',
         resolve: {
+          serverRequired: serverRequired,
           skipIfLoggedIn: skipIfLoggedIn
         }
       })
@@ -153,6 +160,7 @@ angular
         templateUrl: 'views/profile.html',
         controller: 'ProfileCtrl',
         resolve: {
+          serverRequired: serverRequired,
           loginRequired: loginRequired
         }
       })
@@ -162,7 +170,8 @@ angular
         controller: 'InscriptionCtrl',
         redirectTo: 'inscriptions.infos',
         resolve: {
-          loginRequired: loginRequired,
+          serverRequired: serverRequired,
+          loginRequired: loginRequired
           // toto: [function(){
           // TODO: test si déjà inscrit
           // }]
@@ -191,12 +200,11 @@ angular
   })
 
   // RUNNING CODE
-  .run(function($rootScope, $location, urls, $auth, $trace, ngDialog, toastr, Country, $localStorage){
+  .run(function($rootScope, $location, $state, urls, $auth, $trace, $localStorage, ngDialog, toastr, checkServer){
     /*
     // Variables
     */
     $rootScope.username = ($localStorage.loggedUser !== undefined) ? $localStorage.loggedUser.username : undefined;
-    $rootScope.countries = ($localStorage.countries !== undefined) ? $localStorage.countries : Country.query();
     $rootScope.dialog = undefined;
     $rootScope.dataDebug = {};
 
@@ -204,26 +212,37 @@ angular
     // Functions
     */
     $rootScope.openLogin = function() {
-      if($rootScope.dialog !== undefined) {
-        $rootScope.dialog.close();
-      }
+      checkServer()
+        .then(function(){
+          if ($rootScope.dialog !== undefined) {
+            $rootScope.dialog.close();
+          }
 
-      //TODO: try Bootstrap modal (https://angular-ui.github.io/bootstrap)
-      $rootScope.dialog = ngDialog.open({
-        template: 'views/partials/login.html',
-        controller: 'LoginCtrl'
-      });
+          $rootScope.dialog = ngDialog.open({
+            template: 'views/partials/login.html',
+            controller: 'LoginCtrl'
+          });
+        })
+        .catch(function(){
+          toastr.error('Serveur indisponible.');
+        });
     };
 
     $rootScope.openSignup = function() {
-      if($rootScope.dialog !== undefined) {
-        $rootScope.dialog.close();
-      }
+      checkServer()
+        .then(function(){
+          if($rootScope.dialog !== undefined) {
+            $rootScope.dialog.close();
+          }
 
-      $rootScope.dialog = ngDialog.open({
-        template: 'views/partials/signup.html',
-        controller: 'SignupCtrl'
-      });
+          $rootScope.dialog = ngDialog.open({
+            template: 'views/partials/signup.html',
+            controller: 'SignupCtrl'
+          });
+        })
+        .catch(function(){
+          toastr.error('Serveur indisponible.');
+        });
     };
 
     $rootScope.isAuthenticated = function() {
@@ -235,8 +254,8 @@ angular
         $auth.logout()
           .then(function () {
             toastr.info('Vous vous être déconnecté avec succès');
-            delete $localStorage.loggedUser;
-            $location.path('/');
+            delete $localStorage.checkedUser;
+            $state.go('/');
           });
       }
     };
@@ -252,7 +271,7 @@ angular
     $trace.enable('TRANSITION');
 
     $rootScope.$on('$routeChangeError', function() {
-      $location.path('/missing');
+      $state.go('/missing');
     });
 
     // TODO: Transformer ce qui suit en directive

@@ -45,7 +45,6 @@ module.exports = function(config) {
       'bower_components/jquery.stellar/jquery.stellar.js',
       'bower_components/angular-recaptcha/release/angular-recaptcha.js',
       'bower_components/angular-scroll/angular-scroll.js',
-      'bower_components/ngCart/dist/ngCart.js',
       'bower_components/angular-ui-select/dist/select.js',
       'bower_components/angucomplete-alt/angucomplete-alt.js',
       'bower_components/ngstorage/ngStorage.js',

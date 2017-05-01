@@ -15,6 +15,7 @@
     </ui-select>
   </div>
 
+  <!-- TODO: Les id des repas sont codés en dur. -->
   <div class="form-group">
     <h4 class="minititle">Repas (le plus important !)</h4>
     <div class="row">
@@ -22,7 +23,7 @@
         Burger(s) <span class="price">13 CHF</span>
       </div>
       <div class="col-sm-2">
-        <select id="info_burger" ng-model="formData.products.burger">
+        <select id="info_burger" ng-model="formData.products.burger.amout">
           <option value="0">0</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -34,7 +35,7 @@
         Petit(s)-déj(s) <span class="price">5 CHF</span>
       </div>
       <div class="col-sm-2">
-        <select id="info_dej" ng-model="formData.products.dej">
+        <select id="info_dej" ng-model="formData.products.bfast.amount">
           <option value="0">0</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -132,7 +133,7 @@
   <br />
   <div class="checkbox">
     <div class="col-xs-4 col-xs-offset-4">
-      <a ng-click="goTo('inscriptions.payment', gamesForm, 'inscriptions.games')" class="btn btn-block btn-info">
+      <a ng-click="goTo('inscriptions.payment', gamesForm, 'inscriptions.games', updateInscription)" class="btn btn-block btn-info">
         Suite <span class="glyphicon glyphicon-circle-arrow-right"></span>
       </a>
     </div>

@@ -8,13 +8,13 @@
         <!-- the links to our nested states using relative paths -->
         <!-- add the active class if the state matches our ui-sref -->
         <div id="status-buttons" class="text-center">
-          <a ui-sref-active="active" ui-sref=".infos" ng-click="goTo('inscriptions.infos', signupform); $event.preventDefault()">
+          <a ui-sref-active="active" ui-sref=".infos" ng-click="goTo('inscriptions.infos'); $event.preventDefault()">
             <span class="chip">1</span> <span class="title">Coordonnées</span>
           </a>
-          <a ui-sref-active="active" ui-sref=".games" ng-click="goTo('inscriptions.games', signupform, 'inscriptions.infos'); $event.preventDefault()">
+          <a ui-sref-active="active" ui-sref=".games" ng-click="goTo('inscriptions.games', infoForm, 'inscriptions.infos'); $event.preventDefault()">
             <span class="chip">2</span><span class="title"> Inscription</span>
           </a>
-          <a ui-sref-active="active" ui-sref=".payment" ng-click="goTo('inscriptions.payment', signupform, 'inscriptions.games'); $event.preventDefault()">
+          <a ui-sref-active="active" ui-sref=".payment" ng-click="goTo('inscriptions.payment', gamesForm, 'inscriptions.games'); $event.preventDefault()">
             <span class="chip">3</span> <span class="title">Paiement</span>
           </a>
           <span class="stretch"></span>
