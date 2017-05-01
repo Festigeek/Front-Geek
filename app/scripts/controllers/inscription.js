@@ -65,7 +65,7 @@ angular.module('frontGeekApp')
     $scope.existingTeams = Team.query({event_id: 1});
     $scope.gameProducts = Product.query({type_id: 1}, function(){
       $scope.gameProducts.forEach(function(gameProduct){
-        gameProduct.available = gameProduct.quantity_max - gameProduct.sold;
+        gameProduct.available = gameProduct.quantity_max - gameProduct.sold; //TODO if 0, --> disabled
 
       });
 
@@ -112,7 +112,6 @@ angular.module('frontGeekApp')
     $scope.viewLoL = function(){
       console.log($scope.formData.products.tournament.name );
       if($scope.formData.products.tournament.name == 'League Of Legend'){
-
         return true;
       }else {
         return false;
