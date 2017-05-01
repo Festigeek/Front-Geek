@@ -66,10 +66,10 @@ angular.module('frontGeekApp')
     $scope.existingTeams = Team.query({event_id: 1});
     $scope.gameProducts = Product.query({type_id: 1}, function(){
       $scope.gameProducts.forEach(function(gameProduct){
-        gameProduct.available = gameProduct.quantity_max - gameProduct.sold;
+        gameProduct.available = gameProduct.quantity_max - gameProduct.sold; //TODO if 0, --> disabled
 
       });
-      console.log($scope.gameProducts);
+
 
     });
     // $scope.mealProducts = Product.query({type: 'repas'});
@@ -91,6 +91,36 @@ angular.module('frontGeekApp')
           return false;
         });
     };
+
+    //
+    $scope.needTeam = function(){
+
+      if($scope.formData.products.tournament.need_team == 1){
+
+        return true;
+      }else {
+        return false;
+      }
+    }
+
+    $scope.viewBattleTag = function(){
+      console.log($scope.formData.products.tournament.name );
+      if($scope.formData.products.tournament.name == 'Overwatch'){
+
+        return true;
+      }else {
+        return false;
+      }
+    }
+
+    $scope.viewLoL = function(){
+      console.log($scope.formData.products.tournament.name );
+      if($scope.formData.products.tournament.name == 'League Of Legend'){
+        return true;
+      }else {
+        return false;
+      }
+    }
 
     // Fonction s'assurant que le formulaire d'inscription est complet
     var inscriptionComplete = function() {
