@@ -16,6 +16,7 @@ angular.module('frontGeekApp')
     $scope.$storage.checkedInscription = ($scope.$storage.checkedInscription !== undefined) ? $scope.$storage.checkedInscription : false;
     $scope.$storage.countries = ($scope.$storage.countries !== undefined) ? $scope.$storage.countries : Country.query();
 
+    $scope.nb = 1;
     $scope.countries = $scope.$storage.countries;
     $scope.formData = {
       teamCheck: false, // Doit être passé à true par les fonctions de tests du nom de team !!!
@@ -25,10 +26,12 @@ angular.module('frontGeekApp')
         tournament: {},
         burger: {
           id:5,
+          price:13.00,
           amout:'0'
         },
         bfast:{
           id: 6,
+          price:5.00,
           amount: '0'
         }
       },
@@ -49,6 +52,7 @@ angular.module('frontGeekApp')
 
     // GET API
 
+<<<<<<< Updated upstream
     $scope.formData.infosUser = User.get({ id: 'me' }, function(e) {
         var $now = moment();
         var $age = $now.diff(moment(e.birthdate), 'years');
@@ -73,6 +77,15 @@ angular.module('frontGeekApp')
     });
 
     $scope.mealProducts = Product.query({type: 'repas'});
+=======
+    $scope.formData.infosUser = User.get({ id: 'me' }, function(user) {
+      console.log(user);
+    });
+
+    $scope.existingTeams = Team.query({event_id: 1});
+    $scope.gameProducts = Product.query({type_id: 1});
+    // $scope.mealProducts = Product.query({type: 'repas'});
+>>>>>>> Stashed changes
 
     // FUNCTIONS
 
@@ -90,7 +103,8 @@ angular.module('frontGeekApp')
 
     // Fonction s'assurant que le formulaire d'inscription est complet
     var inscriptionComplete = function() {
-      return $scope.formData.consent.cable && $scope.formData.consent.rules && $scope.formData.checked_legal && $scope.formData.teamCheck && $scope.formData.products.tournament.id;
+      return true;
+      // return $scope.formData.consent.cable && $scope.formData.consent.rules && $scope.formData.checked_legal && $scope.formData.teamCheck && $scope.formData.products.tournament.id;
     };
 
     // Fonction mettant à jour le payload de l'inscription
@@ -154,7 +168,7 @@ angular.module('frontGeekApp')
     // Conditions pour atteindre l'état .payment
     $transitions.onBefore({to: 'inscriptions.payment'}, function(){
       if(!$scope.formData.infosUser.is_consistent() || !inscriptionComplete()) {
-        toastr.warning('Impossible d\'accéder à la page de paiement, données incomplètes.', 'Données manquantes');
+        toastr.warning('Impossible d\'accéder à la page de paiement.', 'Données incomplètes');
         return false;
       }
     });

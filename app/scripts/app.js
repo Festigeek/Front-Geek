@@ -271,9 +271,9 @@ angular
      */
     $trace.enable('TRANSITION');
 
-    $rootScope.$on('$routeChangeError', function() {
-      $state.go('/missing');
-    });
+    // $rootScope.$on('$routeChangeError', function() {
+    //   $state.go('/missing');
+    // });
 
     // TODO: Transformer ce qui suit en directive
     // Click outside of the Mobile Menu

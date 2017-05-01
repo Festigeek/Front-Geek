@@ -15,30 +15,30 @@
       <td></td>
       <td></td>
       <th>Total:</th>
-      <th>51.00 CHF</th>
+      <th>{{ (formData.products.tournament.price) ? formData.products.tournament.price : '0' | number:2 }} CHF</th>
     </tr>
     </tfoot>
     <tbody>
     <tr>
-      <td>#1</td>
       <td></td>
-      <td>Inscription</td>
+      <td></td>
+      <td>Inscription - {{ formData.products.tournament.name }}</td>
       <td>1</td>
-      <td>20.00</td>
+      <td>{{ formData.products.tournament.price }}</td>
     </tr>
-    <tr>
-      <td>#2</td>
+    <tr ng-if="formData.products.burger.amout > 0">
+      <td></td>
       <td></td>
       <td>Bon pour burger Festigeek</td>
-      <td>2</td>
-      <td>26.00</td>
+      <td>{{ formData.products.burger.amount }}</td>
+      <td>{{ formData.products.burger.price * formData.products.burger.amount }}</td>
     </tr>
-    <tr>
-      <td>#3</td>
+    <tr ng-if="formData.products.bfast.amout > 0">
+      <td></td>
       <td></td>
       <td>Bon pour petit-déj.</td>
-      <td>1</td>
-      <td>5.00</td>
+      <td>{{ formData.products.bfast.amount }}</td>
+      <td>{{ formData.products.bfast.price * formData.products.bfast.amount }}</td>
     </tr>
     </tbody>
   </table>
