@@ -53,32 +53,19 @@ angular.module('frontGeekApp')
     // GET API
 
     $scope.formData.infosUser = User.get({ id: 'me' }, function(e) {
-        var $now = moment();
-        var $age = $now.diff(moment(e.birthdate), 'years');
-        if($age >=18){
-        $scope.birthdate = false;
+      if(moment().diff(moment(e.birthdate), 'years') < 18){
+        $scope.underage = true;
       }
-      else {
-            $scope.birthdate = true;
-      }
-      });
+    });
 
     $scope.existingTeams = Team.query({event_id: 1});
     $scope.gameProducts = Product.query({type_id: 1}, function(){
-      $scope.gameProducts.forEach(function(gameProduct){
+      $scope.gameProducts.map(function(gameProduct){
         gameProduct.available = gameProduct.quantity_max - gameProduct.sold; //TODO if 0, --> disabled
-
       });
-
-
     });
-    // $scope.mealProducts = Product.query({type: 'repas'});
 
     // FUNCTIONS
-
-    $scope.moreThanZero = function(amount) {
-      return amount > 0;
-    };
 
     // Fonction s'assurant que le compte de l'utilisateur a été mis à jour
     var updateUser = function() {
@@ -94,38 +81,20 @@ angular.module('frontGeekApp')
 
     //
     $scope.needTeam = function(){
-
-      if($scope.formData.products.tournament.need_team == 1){
-
-        return true;
-      }else {
-        return false;
-      }
-    }
+        return $scope.formData.products.tournament.need_team === '1';
+    };
 
     $scope.viewBattleTag = function(){
-      console.log($scope.formData.products.tournament.name );
-      if($scope.formData.products.tournament.name == 'Overwatch'){
-
-        return true;
-      }else {
-        return false;
-      }
-    }
+      return $scope.formData.products.tournament.name === 'Overwatch';
+    };
 
     $scope.viewLoL = function(){
-      console.log($scope.formData.products.tournament.name );
-      if($scope.formData.products.tournament.name == 'League Of Legend'){
-        return true;
-      }else {
-        return false;
-      }
-    }
+      return $scope.formData.products.tournament.name === 'League Of Legend';
+    };
 
     // Fonction s'assurant que le formulaire d'inscription est complet
     var inscriptionComplete = function() {
-      return true;
-      // return $scope.formData.consent.cable && $scope.formData.consent.rules && $scope.formData.checked_legal && $scope.formData.teamCheck && $scope.formData.products.tournament.id;
+      return $scope.formData.consent.cable && $scope.formData.consent.rules && $scope.formData.checked_legal && $scope.formData.teamCheck && $scope.formData.products.tournament.id && (!$scope.underage || $scope.formData.consent.check_underage);
     };
 
     // Fonction mettant à jour le payload de l'inscription
@@ -201,29 +170,4 @@ angular.module('frontGeekApp')
       }
       updatePayload();
     });
-
-    // DEBUG
-
-    $rootScope.dataDebug.formData = $scope.formData;
-
-    // MOCK DATA
-
-    // $scope.gameProducts = [
-    //   {id:1, name:'Animations', max:1, price: 20.00},
-    //   {id:2, name:'Counter-Strike: Global Offensive', max:1, price: 20.00},
-    //   {id:3, name:'League of Legends', max:1, price: 20.00},
-    //   {id:4, name:'Overwatch', max:1, price: 20.00}
-    // ];
-
-    // $scope.otherProducts = [
-    //   {id:1, name:'Burger', max: 4, price: 13.00},
-    //   {id:2, name:'Petit-dej', max: 2, price: 5.00}
-    // ];
-
-    // $scope.existingTeams = [
-    //   {id:1, name:'CouCouchClan'},
-    //   {id:2, name:'Les zebis'},
-    //   {id:3, name:'TrololoBoyz'},
-    //   {id:4, name:'Boloss United'}
-    // ];
   });

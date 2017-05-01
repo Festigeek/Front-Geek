@@ -123,12 +123,14 @@
       <input type="checkbox" name="reglements" id="info_reglements" ng-model="formData.consent.rules" required />
       J'ai lu et accepte les règlements de la LAN qui me concernent.
     </label>
-    <hr />
-    <label ng-if="birthdate" for="info_mineur">
-      <!-- TODO: Comparer avec user.birthdate -->
-      <input type="checkbox" name="mineur" id="info_mineur" ng-model="formData.consent.minor" />
-      En tant que mineur, j'ai un <a href="assets/FG2017_consentement_parental.pdf" target="_blank">exemplaire du formulaire de consentement parental</a> signé.
-    </label>
+
+    <div ng-show="underage">
+      <hr />
+      <label for="info_mineur">
+        <input type="checkbox" name="mineur" id="info_mineur" ng-model="formData.consent.check_underage" />
+        En tant que mineur, j'ai un <a href="assets/FG2017_consentement_parental.pdf" target="_blank">exemplaire du formulaire de consentement parental</a> signé.
+      </label>
+    </div>
   </div>
 
   <br />
