@@ -27,7 +27,6 @@
     "jquery.stellar": "^0.6.2",
     "angular-recaptcha": "^4.0",
     "angular-scroll": "^1.0.0",
-    "ngCart": "ngcart#^1.0.0",
     "angular-ui-select": "^0.19.6",
     "angucomplete-alt": "^3.0.0",
     "ngstorage": "^0.3.11"

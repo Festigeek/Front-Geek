@@ -10,8 +10,15 @@
 angular.module('frontGeekApp')
   .factory('User', function (urls, $resource) {
     // User service used to communicate with the user ressource of the API
-    return $resource(urls.BASE_API + '/users/:id', { id: '@id' }, {
+    var User = $resource(urls.BASE_API + '/users/:id', { id: '@id' }, {
       'login': { method: 'POST' },
       'update': { method: 'PUT' }
     });
+
+    // Vérifie si l'utilisateur a renseigné toutes les informations nécessaires
+    User.prototype.is_consistent = function() {
+      return this.gender && this.firstname && this.lastname && this.country_id && this.street && this.npa && this.city;
+    };
+
+    return User;
   });

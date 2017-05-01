@@ -8,20 +8,26 @@
         <!-- the links to our nested states using relative paths -->
         <!-- add the active class if the state matches our ui-sref -->
         <div id="status-buttons" class="text-center">
-          <a ui-sref-active="active" ng-click="goTo('.infos', signupform)">
+          <a ui-sref-active="active" ui-sref=".infos">
             <span class="chip">1</span> <span class="title">Coordonnées</span>
           </a>
-          <a ui-sref-active="active" ng-click="goTo('.games', signupform)">
+          <a ui-sref-active="active" ui-sref=".games">
             <span class="chip">2</span><span class="title"> Inscription</span>
           </a>
-          <a ui-sref-active="active" ng-click="goTo('.payment', signupform)">
+          <a ui-sref-active="active" ui-sref=".payment">
             <span class="chip">3</span> <span class="title">Paiement</span>
           </a>
           <span class="stretch"></span>
         </div>
       </div>
 
+      <!-- our nested state views will be injected here -->
+      <div id="inscriptions-content">
+        <div id="form-views" ui-view></div>
+      </div>
+
       <!-- use ng-submit to catch the form submission and use our Angular function -->
+      <!--
       <form name="signupform" id="signup-form" ng-submit="processForm()">
         <script type="text/ng-template" id="error-messages">
           <div class="row">
@@ -32,9 +38,8 @@
           <div ng-message="maxlength">Champ invalide - trop long</div>
         </script>
 
-        <!-- our nested state views will be injected here -->
-        <div id="form-views" ui-view></div>
       </form>
+      -->
 
     </div>
   </div>
