@@ -124,7 +124,7 @@
                tooltip-placement="top-left" tooltip-class="customClass">
 
         <label for="battletag_field">Battle Tag</label>
-        <input type="text" class="form-control" id="battletag_field" ng-model="user.battleTag" placeholder="Battle Tag">
+        <input type="text" class="form-control" id="battletag_field" ng-model="user.battleTag" ng-pattern="/^\w{2,11}#[0-9]{4,5}$/i" placeholder="Battle Tag">
 
         <br />
         <a ng-click="updateUser()" role="button" class="btn btn-success">Mettre à jour</a>

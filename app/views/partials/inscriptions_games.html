@@ -9,7 +9,7 @@
                title="Choix du tournoi"
                required>
       <ui-select-match placeholder="Sélectionnez ou cherchez un tournoi dans la liste...">{{ $select.selected.name }}</ui-select-match>
-      <ui-select-choices position="down" repeat="game in gameProducts | filter: $select.search">
+      <ui-select-choices position="down" repeat="game in gameProducts | filter: $select.search" ui-disable-choice="game.available == 0">
         <div ng-bind-html="game.name | highlight: $select.search"></div>
         <i ng-bind-html="game.available | highlight: $select.search"></i> places restantes
       </ui-select-choices>
@@ -49,7 +49,7 @@
   <hr class="separator">
   <h3>Infos Joueur</h3>
 
-  <div class="form-group"  ng-if="needTeam()">
+  <div class="form-group">
     <label for="info_equipe">Nom de mon équipe</label>
     <div angucomplete-alt
          id="info_equipe"
@@ -58,7 +58,7 @@
          local-data="existingTeams"
          search-fields="name"
          title-field="name"
-         selected-object="formData.existTeam"
+         selected-object="formData.team"
          override-suggestions="true"
          minlength="1"
          input-class="form-control form-control-small"><!--remote-url remote-url-data-field--></div>
@@ -66,17 +66,17 @@
 
   <div class="form-group">
     <div class="row">
-      <div class="col-sm-4" ng-if="viewBattleTag()">
+      <div class="col-sm-4" ng-show="viewBattleTag()">
         <label for="info_battleTag">BattleTag</label>
-        <input type="text" class="form-control" placeholder="BattleTag" name="battleTag" id="info_battleTag" ng-maxlength="20" ng-model="formData.accounts.battleTag" ng-pattern="/^\w{2,11}#[0-9]{4,5}$/i" />
+        <input type="text" class="form-control" placeholder="BattleTag" name="battleTag" id="info_battleTag" ng-maxlength="20" ng-model="infosUser.battleTag" ng-pattern="/^\w{2,11}#[0-9]{4,5}$/i" />
       </div>
-      <div class="col-sm-4" ng-if="viewLoL()">
+      <div class="col-sm-4" ng-show="viewLoL()">
         <label for="info_Lol" >Compte LoL</label>
-        <input type="text" class="form-control" placeholder="Compte League of Legends" name="lol" id="info_Lol" ng-maxlength="20" ng-model="formData.accounts.lol" />
+        <input type="text" class="form-control" placeholder="Compte League of Legends" name="lol" id="info_Lol" ng-maxlength="20" ng-model="infosUser.lol_account" />
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-4" ng-show="viewSteamID()">
         <label for="steam_field">Compte Steam</label>
-        <input type="text" class="form-control" id="steam_field" ng-model="formData.account.steamID64" placeholder="SteamID64 (suite de chiffres)"
+        <input type="text" class="form-control" id="steam_field" ng-model="infosUser.steamID64" placeholder="SteamID64 (suite de chiffres)"
                uib-tooltip-html="'Trouvez votre SteamID avec:<br /> &lt; <b><i>steam user { username }</i></b> &gt;<br /> sur notre serveur Discord !'"
                tooltip-placement="top-left" tooltip-class="customClass" />
       </div>

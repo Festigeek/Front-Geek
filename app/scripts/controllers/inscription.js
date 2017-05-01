@@ -11,17 +11,11 @@
 angular.module('frontGeekApp')
   .controller('InscriptionCtrl', function ($rootScope, $scope, $localStorage, $state, $transitions, toastr, User, Country, Product, Team, Order, moment) {
     $scope.$storage = $localStorage;
-
-    $scope.$storage.checkedUser = ($scope.$storage.checkedUser !== undefined) ? $scope.$storage.checkedUser : false;
-    $scope.$storage.checkedInscription = ($scope.$storage.checkedInscription !== undefined) ? $scope.$storage.checkedInscription : false;
     $scope.$storage.countries = ($scope.$storage.countries !== undefined) ? $scope.$storage.countries : Country.query();
 
-    $scope.nb = 1;
     $scope.countries = $scope.$storage.countries;
     $scope.formData = {
-      teamCheck: false, // Doit être passé à true par les fonctions de tests du nom de team !!!
-      checked_legal: false, // Doit être passé à true par les fonctions de tests des consentements !!!
-      team: null,
+      team: '',
       products: {
         tournament: {},
         burger: {
@@ -44,24 +38,25 @@ angular.module('frontGeekApp')
 
     $scope.paypalInfos = {
       business:'tresorier@festigeek.ch',
-      item_name: 'toto',
+      item_name: 'toto', //TODO modif ça...
       item_number:'lan2017',
       currency_code:'CHF',
-      no_note: 'toto'
+      no_note: 'toto' //TODO modif ça...
     };
 
     // GET API
 
-    $scope.formData.infosUser = User.get({ id: 'me' }, function(e) {
-      if(moment().diff(moment(e.birthdate), 'years') < 18){
+    $scope.infosUser = User.get({ id: 'me' }, function(user) {
+      $scope.formData.user_id = user.id;
+      if(moment().diff(moment(user.birthdate), 'years') < 18){
         $scope.underage = true;
       }
     });
 
-    $scope.existingTeams = Team.query({event_id: 1});
+    $scope.existingTeams = [{id:1, name:'RageQuit'}];//Team.query({event_id: 1});
     $scope.gameProducts = Product.query({type_id: 1}, function(){
       $scope.gameProducts.map(function(gameProduct){
-        gameProduct.available = gameProduct.quantity_max - gameProduct.sold; //TODO if 0, --> disabled
+        gameProduct.available = gameProduct.quantity_max - gameProduct.sold;
       });
     });
 
@@ -69,7 +64,7 @@ angular.module('frontGeekApp')
 
     // Fonction s'assurant que le compte de l'utilisateur a été mis à jour
     var updateUser = function() {
-      $scope.formData.infosUser.$update(function () {
+      $scope.infosUser.$update(function () {
           toastr.info('Profil mis à jour.');
           return true;
         },
@@ -77,11 +72,6 @@ angular.module('frontGeekApp')
           toastr.error('Erreur lors de la mise à jour du profil.');
           return false;
         });
-    };
-
-    //
-    $scope.needTeam = function(){
-        return $scope.formData.products.tournament.need_team === '1';
     };
 
     $scope.viewBattleTag = function(){
@@ -92,17 +82,28 @@ angular.module('frontGeekApp')
       return $scope.formData.products.tournament.name === 'League Of Legend';
     };
 
+    $scope.viewSteamID = function(){
+      return $scope.formData.products.tournament.name === 'Counter-Strike: GO';
+    };
+
     // Fonction s'assurant que le formulaire d'inscription est complet
     var inscriptionComplete = function() {
-      return $scope.formData.consent.cable && $scope.formData.consent.rules && $scope.formData.checked_legal && $scope.formData.teamCheck && $scope.formData.products.tournament.id && (!$scope.underage || $scope.formData.consent.check_underage);
+      return $scope.formData.consent.cable &&
+        $scope.formData.consent.rules &&
+        $scope.formData.products.tournament.id &&
+        ($scope.formData.products.tournament.need_team === 0 || $scope.formData.team) &&
+        (!$scope.underage || $scope.formData.consent.check_underage) &&
+        (!$scope.viewBattleTag() || $scope.infosUser.battleTag) &&
+        (!$scope.viewLoL() || $scope.infosUser.lol_account) &&
+        (!$scope.viewSteamID() || $scope.infosUser.steamID64);
     };
 
     // Fonction mettant à jour le payload de l'inscription
     var updatePayload = function() {
       $scope.payload = {
         event_id: 1,
-        checked_legal: $scope.formData.checked_legal,
-        team: $scope.formData.team,
+        checked_legal: $scope.formData.consent.rules,
+        team: (typeof $scope.formData.team.originalObject === 'object') ? $scope.formData.team.originalObject.name : $scope.formData.team.originalObject,
         products: [
           {
             product_id: $scope.formData.products.tournament.id,
@@ -116,7 +117,8 @@ angular.module('frontGeekApp')
             product_id: 6,
             amount: $scope.formData.products.bfast.amount
           }
-        ]
+        ],
+        data: JSON.stringify($scope.formData)
       };
 
     };
@@ -144,7 +146,7 @@ angular.module('frontGeekApp')
 
     // Conditions pour atteindre l'état .games depuis .infos
     $transitions.onBefore({to: 'inscriptions.games', from: 'inscriptions.infos'}, function(){
-      if(!$scope.formData.infosUser.is_consistent()) {
+      if(!$scope.infosUser.is_consistent()) {
         toastr.warning('Merci de vérifier le contenu du formulaire', 'Données incomplètes');
         return false;
       }
@@ -157,17 +159,15 @@ angular.module('frontGeekApp')
 
     // Conditions pour atteindre l'état .payment
     $transitions.onBefore({to: 'inscriptions.payment'}, function(){
-      if(!$scope.formData.infosUser.is_consistent() || !inscriptionComplete()) {
+      if(!$scope.infosUser.is_consistent() || !inscriptionComplete()) {
         toastr.warning('Impossible d\'accéder à la page de paiement.', 'Données incomplètes');
         return false;
       }
     });
 
     // Lors de l'accès à l'état .payment
-    $transitions.onStart({to: 'inscriptions.payment'}, function(trans){
-      if(trans.from.name === 'inscriptions.infos') {
-        updateUser();
-      }
+    $transitions.onStart({to: 'inscriptions.payment'}, function(){
       updatePayload();
+      return updateUser();
     });
   });
