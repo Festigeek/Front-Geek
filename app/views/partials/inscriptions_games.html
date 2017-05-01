@@ -49,7 +49,7 @@
   <hr class="separator">
   <h3>Infos Joueur</h3>
 
-  <div class="form-group" ng-if="game.name">
+  <div class="form-group"  ng-if="needTeam()">
     <label for="info_equipe">Nom de mon équipe</label>
     <div angucomplete-alt
          id="info_equipe"
@@ -66,12 +66,12 @@
 
   <div class="form-group">
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-4" ng-if="viewBattleTag()">
         <label for="info_battleTag">BattleTag</label>
         <input type="text" class="form-control" placeholder="BattleTag" name="battleTag" id="info_battleTag" ng-maxlength="20" ng-model="formData.accounts.battleTag" ng-pattern="/^\w{2,11}#[0-9]{4,5}$/i" />
       </div>
-      <div class="col-sm-4">
-        <label for="info_Lol">Compte LoL</label>
+      <div class="col-sm-4" ng-if="viewLoL()">
+        <label for="info_Lol" >Compte LoL</label>
         <input type="text" class="form-control" placeholder="Compte League of Legends" name="lol" id="info_Lol" ng-maxlength="20" ng-model="formData.accounts.lol" />
       </div>
       <div class="col-sm-4">
