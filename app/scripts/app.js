@@ -38,7 +38,7 @@ angular
     // BASE: 'https://www.festigeek.ch',
     // BASE_API: 'https://api.festigeek.ch/v1',
     BASE: 'http://localhost:9000',
-    BASE_API: 'http://127.0.0.1/v1'
+    BASE_API: 'http://127.0.0.1:8080/v1'
   })
 
   // VARIABLES

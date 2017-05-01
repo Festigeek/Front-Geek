@@ -26,13 +26,13 @@ angular.module('frontGeekApp')
         tournament: {},
         burger: {
           id:5,
-          price:13.00,
-          amout:'0'
+          price:13,
+          amount:0
         },
         bfast:{
-          id: 6,
-          price:5.00,
-          amount: '0'
+          id:6,
+          price:5,
+          amount:0
         }
       },
       consent: {
@@ -52,7 +52,6 @@ angular.module('frontGeekApp')
 
     // GET API
 
-<<<<<<< Updated upstream
     $scope.formData.infosUser = User.get({ id: 'me' }, function(e) {
         var $now = moment();
         var $age = $now.diff(moment(e.birthdate), 'years');
@@ -64,10 +63,8 @@ angular.module('frontGeekApp')
       }
       });
 
-
-
     $scope.existingTeams = Team.query({event_id: 1});
-    $scope.gameProducts = Product.query({type_id: 1}, function(e){
+    $scope.gameProducts = Product.query({type_id: 1}, function(){
       $scope.gameProducts.forEach(function(gameProduct){
         gameProduct.available = gameProduct.quantity_max - gameProduct.sold;
 
@@ -75,19 +72,13 @@ angular.module('frontGeekApp')
       console.log($scope.gameProducts);
 
     });
-
-    $scope.mealProducts = Product.query({type: 'repas'});
-=======
-    $scope.formData.infosUser = User.get({ id: 'me' }, function(user) {
-      console.log(user);
-    });
-
-    $scope.existingTeams = Team.query({event_id: 1});
-    $scope.gameProducts = Product.query({type_id: 1});
     // $scope.mealProducts = Product.query({type: 'repas'});
->>>>>>> Stashed changes
 
     // FUNCTIONS
+
+    $scope.moreThanZero = function(amount) {
+      return amount > 0;
+    };
 
     // Fonction s'assurant que le compte de l'utilisateur a été mis à jour
     var updateUser = function() {
@@ -120,7 +111,7 @@ angular.module('frontGeekApp')
           },
           {
             product_id: 5,
-            amount: $scope.formData.products.burger.amout
+            amount: $scope.formData.products.burger.amount
           },
           {
             product_id: 6,
