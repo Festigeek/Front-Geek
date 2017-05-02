@@ -36,14 +36,6 @@ angular.module('frontGeekApp')
     };
     $scope.payload = undefined;
 
-    $scope.paypalInfos = {
-      business:'tresorier@festigeek.ch',
-      item_name: 'toto', //TODO modif ça...
-      item_number:'lan2017',
-      currency_code:'CHF',
-      no_note: 'toto' //TODO modif ça...
-    };
-
     // GET API
 
     $scope.infosUser = User.get({ id: 'me' }, function(user) {

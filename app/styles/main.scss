@@ -76,6 +76,11 @@ figure {
   margin-bottom: 2em;
 }
 
+::-webkit-selection {
+  color: #fcfcfc;
+  background: #3F2E79;
+}
+
 ::-moz-selection {
   color: #fcfcfc;
   background: #3F2E79;
@@ -123,7 +128,7 @@ figure {
 }
 
 .header-top .fh5co-link a:hover {
-  color: white;
+  color: white !important;
 }
 
 @media screen and (max-width: 768px) {
@@ -148,7 +153,7 @@ figure {
 
 .header-top .fh5co-social a:hover, .header-top .fh5co-social a:focus, .header-top .fh5co-social a:active {
   text-decoration: none;
-  color: white;
+  color: white !important;
 }
 
 .header-top .fh5co-social a:hover i, .header-top .fh5co-social a:focus i, .header-top .fh5co-social a:active i {
@@ -359,7 +364,9 @@ figure {
   background: transparent;
 }
 
-.fg-menu ul li {
+.fg-menu ul li {  #fh5co-services, #fh5co-about, #fh5co-contact {
+  padding: 4em 0;
+}
   background: transparent;
 }
 
@@ -1291,7 +1298,7 @@ figure {
 }
 
 #fh5co-start-project-section a:hover, #fh5co-start-project-section a:focus, #fh5co-start-project-section a:active {
-  color: white;
+  color: white !important;
 }
 
 #map {
@@ -1374,36 +1381,34 @@ figure {
 .btn.btn-default:hover, .btn.btn-default:focus, .btn.btn-default:active {
   border-color: transparent;
   background: white !important;
-
-
 }
 
+/* START : différence avec le onepage_2016 */
 .text-muted{
-      text-transform: none;
+  text-transform: none;
 }
 
 .btn-info:hover {
-
   background: #3f2e79 !important;
   color:white !important;
-
 }
 
 .btn-info {
   background: #D8D8D8 !important;
-   border-color: #D8D8D8 !important;
+  border-color: #D8D8D8 !important;
 }
 .btn-success:hover {
 
   background: #3f2e79 !important;
   color:white !important;
-
 }
 
 .btn-sucess {
   background: #D8D8D8 !important;
-   border-color: #D8D8D8 !important;
+  border-color: #D8D8D8 !important;
 }
+/* END : différence avec le onepage_2016 */
+
 .js .animate-box {
   opacity: 0;
 }
@@ -1768,8 +1773,6 @@ nav.navbar-fixed-top {
   list-style: none;
 }
 
-
-
 .sectioncomite {
 
   border-top: 5px solid #5C46A4;
@@ -1802,7 +1805,6 @@ nav.navbar-fixed-top {
 .lan2017 h4 {
   color:#BDBDBD;
 }
-
 
 .lan2017 a {
   text-decoration: underline;
@@ -1858,7 +1860,37 @@ nav.navbar-fixed-top {
   padding-top: 55px;
 }
 
+/* Modals */
+#myModal div.modal-body {
+  text-align: justify;
+}
+
+#logo_benevoles {
+  width: 200px;
+  float: left;
+  padding: 8px;
+}
+
+#modal-copyright {
+  float: left;
+}
+
+/* Pubs */
+#logo_fifa {
+  float:left; width:100px;
+}
+
+@media (max-width:768px){
+  #logo_fifa{
+    margin-bottom:10px;
+  }
+}
+
 /* Sous-menu */
+ul.dropdown-menu {
+  z-index: 200;
+}
+
 ul.dropdown-menu li a:link,
 ul.dropdown-menu li a:visited {
   color: #777;
@@ -1866,7 +1898,7 @@ ul.dropdown-menu li a:visited {
 
 ul.dropdown-menu li a:hover,
 ul.dropdown-menu li a:visited:hover {
-  color: #3f2e79;
+  color: #777;
 }
 
 ul.dropdown-menu li.active a:link,
@@ -1927,7 +1959,7 @@ ul.open {
   }
 }
 
-/* Logo FG */
+/* Logos */
 #logofg {
   transition: none;
   padding: 5px 15px;
@@ -1935,6 +1967,15 @@ ul.open {
 
 #logofg img {
   height: 55px;
+}
+
+#logo_header_discord {
+  height: 15px;
+  margin-bottom: 2px;
+}
+
+#logo_footer_discord {
+  margin-bottom: 12px;
 }
 
 /* Collapse logo on affix */
@@ -2100,12 +2141,26 @@ html.ngdialog-open, body.ngdialog-open {
   }
 }
 
-/* Profile menu */
-ul.dropdown-menu {
-  z-index: 200;
+/* Contact en travaux */
+#contact_container {
+  position: relative;
 }
 
-ul.dropdown-menu li a:hover,
-ul.dropdown-menu li a:visited:hover {
-  color: #777;
+#overlay_travaux {
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 15px;
+  text-align: center;
+  z-index: 50;
+}
+
+#overlay_travaux img {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -150px;
 }
