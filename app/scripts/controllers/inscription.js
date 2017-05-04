@@ -117,21 +117,16 @@ angular.module('frontGeekApp')
 
     // Fonction permettant de soumettre la commande (inscription)
     $scope.postOrder = function(type) {
-      if($scope.$storage.checkedUser && $scope.$storage.checkedInscription) {
-        $scope.payload.payment_type_id = type;
-        var newOrder = new Order($scope.payload);
-        newOrder.$save().$promise
-          .then(function() {
-            // TODO: Commande OK -> $state.go('inscriptions_result')
-          })
-          .catch(function() {
-            // TODO: Commande KO ->
-            toastr.error('Erreur lors de l\'envoi de l\'inscription.');
-          });
-      }
-      else {
-        toastr.warning('Impossible d\'effectuer l\'inscription, coordonnées incomplètes.', 'Données utilisateurs');
-      }
+      $scope.payload.payment_type_id = type;
+      var newOrder = new Order($scope.payload);
+      newOrder.$save().$promise
+        .then(function() {
+          // TODO: Commande OK -> $state.go('inscriptions_result')
+        })
+        .catch(function() {
+          // TODO: Commande KO ->
+          toastr.error('Erreur lors de l\'envoi de l\'inscription.');
+        });
     };
 
     // EVENTS
