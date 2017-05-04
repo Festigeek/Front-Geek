@@ -48,7 +48,8 @@ angular
   // CONFIGURATIONS
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $authProvider, toastrConfig, urls) {
     angular.extend(toastrConfig, {
-      timeOut: 1500
+      timeOut: 1500,
+      preventOpenDuplicates: true
     });
 
     // CONFIG SATELLIZER
@@ -124,7 +125,7 @@ angular
               toastr.error(res.data.error, res.statusText);
             })
             .finally(function () {
-              $state.target('main');
+              $state.go('main');
             });
           }]
         }

@@ -9,7 +9,7 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('InscriptionCtrl', function ($rootScope, $scope, $localStorage, $state, $transitions, toastr, User, Country, Product, Team, Order, moment) {
+  .controller('InscriptionCtrl', function ($window, $rootScope, $scope, $localStorage, $state, $transitions, toastr, User, Country, Product, Team, Order, moment) {
     $scope.$storage = $localStorage;
     $scope.$storage.countries = ($scope.$storage.countries !== undefined) ? $scope.$storage.countries : Country.query();
 
@@ -118,13 +118,20 @@ angular.module('frontGeekApp')
     // Fonction permettant de soumettre la commande (inscription)
     $scope.postOrder = function(type) {
       $scope.payload.payment_type_id = type;
+
       var newOrder = new Order($scope.payload);
       newOrder.$save().$promise
-        .then(function() {
-          // TODO: Commande OK -> $state.go('inscriptions_result')
+        .then(function(res) {
+          if(type === 1) {
+            $state.go('checkout', {state: res.state});
+          }
+
+          if(type === 2) {
+            $window.open(res.link, '_self');
+          }
         })
         .catch(function() {
-          // TODO: Commande KO ->
+          $state.go('checkout', {state: 'error'});
           toastr.error('Erreur lors de l\'envoi de l\'inscription.');
         });
     };

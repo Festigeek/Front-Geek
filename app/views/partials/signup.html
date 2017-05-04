@@ -22,7 +22,7 @@
 
         <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.birthdate.$invalid && signupForm.birthdate.$dirty }">
           <div class="input-group">
-            <input class="form-control input-lg" type="text" id="birthdate" name="birthdate" uib-datepicker-popup="{{dateFormat}}" ng-model="user.birthdate" placeholder="Date de naissance" is-open="isDatepickerOpen" ng-required="true" />
+            <input class="form-control input-lg" type="text" id="birthdate" name="birthdate" uib-datepicker-popup="{{dateFormat}}" ng-model="user.birthdate" placeholder="JJ.MM.AAAA" is-open="isDatepickerOpen" ng-required="true" />
             <span class="input-group-btn">
               <button type="button" class="btn btn-default input-lg" ng-click="openDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>
