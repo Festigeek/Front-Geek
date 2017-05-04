@@ -1,0 +1,33 @@
+<div class="container" id="checkout_result">
+  <!-- Résultat de l'inscription -->
+  <div uib-alert ng-if="resultState === 'success' || resultState === 'win'" class="alert-success">
+    <h3>Inscription réussie !</h3>
+    <div ng-show="resultState === 'win'" id="checkout_win">
+      <h4>Félicitation !</h4>
+      Et en plus, on a un vainqueur !<br/>
+      Profites bien de ton Burger offert ;)
+      <br/><br/>
+    </div>
+    À très bientôt pour une LAN de folie ! :)
+  </div>
+  <div uib-alert ng-if="resultState === 'cancelled'" class="alert-warning">
+    <h3>Inscription annulée !</h3>
+    C'est dommage, on a fait quelque chose de mal ? :(
+  </div>
+  <div uib-alert ng-if="resultState === 'error'" class="alert-danger">
+    <h3>Erreur lors de l'inscription !</h3>
+    Zut, flûte, saperlipopette !<br />
+    Y a un truc qui a pas marché...
+  </div>
+</div>
+
+<div class="container">
+  <div ng-if="resultState === 'success' || resultState === 'cancelled'" class="col-md-12 text-center">
+    <a href="/" role="button" class="btn btn-success">Retour à la page d'accueil</a>
+  </div>
+  <div ng-if="resultState === 'error'" class="col-md-12 text-center">
+    <a href="/#!/inscriptions/games" role="button" class="btn btn-success">On réessaye ?</a>
+  </div>
+</div>
+
+<br/>

@@ -190,9 +190,10 @@ angular
         url: '/payment',
         templateUrl: 'views/partials/inscriptions_payment.html',
       })
-      .state('inscriptions.result', {
-        url: '/result',
-        templateUrl: 'views/partials/inscriptions_result.html',
+      .state('checkout', {
+        url: '/checkout?state',
+        templateUrl: 'views/checkout.html',
+        controller: 'CheckoutCtrl'
       });
 
     $urlRouterProvider.when('', '/');
