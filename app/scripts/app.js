@@ -96,6 +96,30 @@ angular
       return deferred.promise;
     }];
 
+    var previousOrder = ['$q', 'urls', '$location', '$auth', '$http', 'toastr', function ($q, urls, $location, $auth, $http, toastr) {
+      var deferred = $q.defer();
+
+      // TODO Fix 'undefined' in stateService.ts
+      $http.get(urls.BASE_API + '/users/me/orders')
+      .then(function(res){
+        console.log(res.data);
+        if(res.data.length > 0) {
+          deferred.reject();
+          $location.path('/');
+          toastr.error('Vous avez déjà effectué votre inscription.');
+        }
+        else {
+          deferred.resolve();
+        }
+      })
+      .catch(function() {
+        deferred.reject();
+        $location.path('/');
+      });
+
+      return deferred.promise;
+    }];
+
     // ROUTING
     $stateProvider
       .state('main', {
@@ -173,10 +197,8 @@ angular
         redirectTo: 'inscriptions.infos',
         resolve: {
           serverRequired: serverRequired,
-          loginRequired: loginRequired
-          // toto: [function(){
-          // TODO: test si déjà inscrit
-          // }]
+          loginRequired: loginRequired,
+          previousOrder: previousOrder
         }
       })
       .state('inscriptions.infos', {

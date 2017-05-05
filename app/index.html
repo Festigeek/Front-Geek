@@ -53,10 +53,14 @@
         <div class="container">
           <div class="row">
             <!--[if lte IE 8]>
-                <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a
-                  href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-                <![endif]-->
-            <div class="col-md-6 col-sm-6 text-left fh5co-link"></div>
+              <p class="browsehappy">You are using an <strong>outdated</strong> browser.
+              Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+            <div class="col-md-6 col-sm-6 text-left fh5co-link">
+              <a href="/" class="grow" ng-show="!isActive('/')">
+                <fa name="home" size="2"></fa>
+              </a>
+            </div>
             <div class="col-md-6 col-sm-6 text-right fh5co-social">
               <a ng-if="!isAuthenticated()" href="" ng-click="openLogin()">
                 <fa name="user-circle-o"></fa>

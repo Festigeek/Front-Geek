@@ -120,20 +120,19 @@ angular.module('frontGeekApp')
       $scope.payload.payment_type_id = type;
 
       var newOrder = new Order($scope.payload);
-      newOrder.$save().$promise
-        .then(function(res) {
-          if(type === 1) {
-            $state.go('checkout', {state: res.state});
-          }
+      newOrder.$save(function(res) {
+        if(type === 1) {
+          $state.go('checkout', {state: res.state});
+        }
 
-          if(type === 2) {
-            $window.open(res.link, '_self');
-          }
-        })
-        .catch(function() {
-          $state.go('checkout', {state: 'error'});
-          toastr.error('Erreur lors de l\'envoi de l\'inscription.');
-        });
+        if(type === 2) {
+          $window.open(res.link, '_self');
+        }
+      }),
+      function() {
+        $state.go('checkout', {state: 'error'});
+        toastr.error('Erreur lors de l\'envoi de l\'inscription.');
+      };
     };
 
     // EVENTS
