@@ -196,15 +196,13 @@ angular
         redirectTo: 'inscriptions.infos',
         resolve: {
           serverRequired: serverRequired,
-          loginRequired: loginRequired
+          loginRequired: loginRequired,
+          previousOrder: previousOrder
         }
       })
       .state('inscriptions.infos', {
         url: '/infos',
-        templateUrl: 'views/partials/inscriptions_infos.html',
-        resolve: {
-          previousOrder: previousOrder
-        }
+        templateUrl: 'views/partials/inscriptions_infos.html'
       })
       .state('inscriptions.games', {
         url: '/games',
