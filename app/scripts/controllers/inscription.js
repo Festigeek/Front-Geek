@@ -94,10 +94,10 @@ angular.module('frontGeekApp')
     var updatePayload = function() {
       var productsList = [{ product_id: $scope.formData.products.tournament.id, amount: 1 }];
       if($scope.formData.products.burger.amount > 0) {
-        products.push({product_id: 5, amount: $scope.formData.products.burger.amount});
+        productsList.push({product_id: 5, amount: $scope.formData.products.burger.amount});
       }
       if($scope.formData.products.bfast.amount > 0) {
-        products.push({ product_id: 6, amount: $scope.formData.products.bfast.amount });
+        productsList.push({ product_id: 6, amount: $scope.formData.products.bfast.amount });
       }
 
       $scope.payload = {
