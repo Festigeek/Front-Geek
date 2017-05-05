@@ -92,24 +92,19 @@ angular.module('frontGeekApp')
 
     // Fonction mettant à jour le payload de l'inscription
     var updatePayload = function() {
+      var products = [{ product_id: $scope.formData.products.tournament.id, amount: 1 }];
+      if($scope.formData.products.burger.amount) {
+        products.push({product_id: 5, amount: $scope.formData.products.burger.amount});
+      }
+      if($scope.formData.products.bfast.amount) {
+        products.push({ product_id: 6, amount: $scope.formData.products.bfast.amount });
+      }
+
       $scope.payload = {
         event_id: 1,
         checked_legal: $scope.formData.consent.rules,
         team: (typeof $scope.formData.team.originalObject === 'object') ? $scope.formData.team.originalObject.name : $scope.formData.team.originalObject,
-        products: [
-          {
-            product_id: $scope.formData.products.tournament.id,
-            amount: 1
-          },
-          {
-            product_id: 5,
-            amount: $scope.formData.products.burger.amount
-          },
-          {
-            product_id: 6,
-            amount: $scope.formData.products.bfast.amount
-          }
-        ],
+        products: products,
         data: JSON.stringify($scope.formData)
       };
 

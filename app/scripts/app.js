@@ -102,7 +102,6 @@ angular
       // TODO Fix 'undefined' in stateService.ts
       $http.get(urls.BASE_API + '/users/me/orders')
       .then(function(res){
-        console.log(res.data);
         if(res.data.length > 0) {
           deferred.reject();
           $location.path('/');
@@ -197,21 +196,23 @@ angular
         redirectTo: 'inscriptions.infos',
         resolve: {
           serverRequired: serverRequired,
-          loginRequired: loginRequired,
-          previousOrder: previousOrder
+          loginRequired: loginRequired
         }
       })
       .state('inscriptions.infos', {
         url: '/infos',
         templateUrl: 'views/partials/inscriptions_infos.html',
+        resolve: {
+          previousOrder: previousOrder
+        }
       })
       .state('inscriptions.games', {
         url: '/games',
-        templateUrl: 'views/partials/inscriptions_games.html',
+        templateUrl: 'views/partials/inscriptions_games.html'
       })
       .state('inscriptions.payment', {
         url: '/payment',
-        templateUrl: 'views/partials/inscriptions_payment.html',
+        templateUrl: 'views/partials/inscriptions_payment.html'
       })
       .state('checkout', {
         url: '/checkout?state',
