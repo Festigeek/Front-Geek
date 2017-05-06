@@ -9,14 +9,12 @@
  */
 angular.module('frontGeekApp')
   .controller('ProfileCtrl', function ($scope, $auth, $localStorage, toastr, User, Country) {
+    $scope.subPage = 1;
 
     $scope.$storage = $localStorage;
-
     $scope.$storage.countries = ($scope.$storage.countries !== undefined) ? $scope.$storage.countries : Country.query();
     $scope.countries = $scope.$storage.countries;
     $scope.user = {};
-
-    $scope.subPage = 1;
 
     User.get({ id: 'me' }, function(user) {
       $scope.user = user;
