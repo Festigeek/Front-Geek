@@ -107,7 +107,6 @@ angular.module('frontGeekApp')
         products: productsList,
         data: JSON.stringify($scope.formData)
       };
-
     };
 
     // Fonction permettant de soumettre la commande (inscription)
