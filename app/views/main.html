@@ -16,12 +16,12 @@
       <ul du-spy-context class="nav navbar-nav fg-menu" id="fh5co-primary-menu">
         <li class="active" du-scrollspy="home"><a href="#home" du-smooth-scroll>Accueil</a></li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" data-target=".dropdown-menu">
+          <a class="dropdown-toggle" data-toggle="dropdown" data-target=".dropdown-menu-main" href="">
             A propos <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu">
-            <li du-scrollspy="events"><a href="#about" du-smooth-scroll>L'association</a></li>
-            <li du-scrollspy="events"><a href="#team" du-smooth-scroll>L'équipe</a></li>
+          <ul class="dropdown-menu dropdown-menu-main">
+            <li du-scrollspy="events"><a href="#about" class="close-dropdown-main" du-smooth-scroll>L'association</a></li>
+            <li du-scrollspy="events"><a href="#team" class="close-dropdown-main" du-smooth-scroll>L'équipe</a></li>
             <li role="separator" class="fg-divider"></li>
           </ul>
         </li>
@@ -54,7 +54,7 @@
     <div class="desc animate-box">
       <h2><strong>Festigeek</strong></h2>
       <span>Lan party - e-sport - events</span>
-      <span><a class="btn btn-primary btn-lg" href="#about">A propos</a></span>
+      <span><a class="btn btn-primary btn-lg" href="#about" du-scrollspy="about" du-smooth-scroll>A propos</a></span>
     </div>
   </div>
 </div>

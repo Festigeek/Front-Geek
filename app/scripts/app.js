@@ -40,13 +40,15 @@ angular
     BASE: 'http://localhost:9000',
     BASE_API: 'http://127.0.0.1:8080/v1'
   })
+  .constant('newsModal', 'inscriptions2017')
 
   // VARIABLES
   .value('duScrollEasing', function (t) { return t<0.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t;})
   .value('duScrollDuration', 1500)
 
   // CONFIGURATIONS
-  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $authProvider, toastrConfig, urls) {
+  .config(function ($qProvider, $stateProvider, $urlRouterProvider, $httpProvider, $authProvider, toastrConfig, urls) {
+    $qProvider.errorOnUnhandledRejections(false);
     angular.extend(toastrConfig, {
       timeOut: 1500,
       preventOpenDuplicates: true
@@ -224,7 +226,7 @@ angular
   })
 
   // RUNNING CODE
-  .run(function($rootScope, $location, $state, urls, $auth, $trace, $localStorage, ngDialog, toastr, checkServer){
+  .run(function($rootScope, $location, $state, urls, newsModal, $auth, $trace, $localStorage, ngDialog, toastr, checkServer){
     /*
     // Variables
     */
@@ -289,6 +291,16 @@ angular
       return viewLocation === $location.path();
     };
 
+    // Function to open pub modal
+    $rootScope.openAdv = function() {
+      //ngDialog.closeAll();
+      if(newsModal !== null) {
+        $rootScope.dialog = ngDialog.open({
+          template: 'views/partials/pubs/' + newsModal + '.html'
+        });
+      }
+    };
+
     /*
      // Events
      */
@@ -300,21 +312,22 @@ angular
 
     // TODO: Transformer ce qui suit en directive
     // Click outside of the Mobile Menu
-    $(document).click(function (e) {
+    $(document).click(function(e) {
       var container = $('#navigationbar');
       if (!container.is(e.target) && container.has(e.target).length === 0 && container.hasClass('in')) {
         $('#mobile_button').click();
       }
     });
 
-    $('#navigationbar a').click(function (e) {
+    $('#navigationbar a').click(function(e) {
       var container = $('#navigationbar');
       if (container.hasClass('in') && !e.target.hasClass('dropdown-toggle')) {
         $('#mobile_button').click();
       }
     });
 
-    $('.dropdown-menu a').click(function ( ) {
+    $('ul.dropdown-menu li a').click(function() {
+      console.log('TOTO');
       var submenu = $('.dropdown-menu');
       if(submenu.hasClass('open')) {
         submenu.removeClass('open');

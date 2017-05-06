@@ -1972,7 +1972,7 @@ ul.open {
 
 #logo_header_discord {
   height: 15px;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 
 #logo_footer_discord {
@@ -1995,8 +1995,17 @@ nav.moveMenu {
 
 /* Adapt on mobile screen */
 @media screen and (max-width: 768px) {
+  nav.moveMenu {
+    top: 70px !important;
+  }
+
+  nav.navbar-fixed-top {
+    top: 70px;
+    z-index: 97;
+  }
+
   .affix {
-    top: 0;
+    top: 0px;
   }
 
   #logofg {
