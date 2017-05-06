@@ -8,7 +8,7 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('LoginCtrl', function (urls, $rootScope, $scope, $http, $auth, $location, ngDialog, toastr, User) {
+  .controller('LoginCtrl', function (urls, $rootScope, $scope, $http, $auth, $localStorage, $location, ngDialog, toastr, User) {
     var drupalDialog;
 
     $scope.login = function() {
@@ -22,7 +22,10 @@ angular.module('frontGeekApp')
           }
           else {
             User.get({ id: 'me' }, function(user) {
-              $rootScope.username = user.username;
+              $localStorage.loggedUser = {
+                username : user.username
+              };
+              $rootScope.username = $localStorage.loggedUser.username;
               toastr.success('Authentification réussie !');
               ngDialog.closeAll();
             }, function() {

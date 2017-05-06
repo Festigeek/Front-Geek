@@ -1850,7 +1850,7 @@ nav.navbar-fixed-top {
 
 /* ngDialogs */
 .ngdialog {
-  overflow: hidden !important;
+  /* overflow: hidden !important; */
 }
 
 .ngdialog .form-group {
@@ -1864,6 +1864,10 @@ nav.navbar-fixed-top {
 /* Modals */
 #myModal div.modal-body {
   text-align: justify;
+}
+
+button.ngdialog-close {
+  display: none;
 }
 
 #logo_benevoles {

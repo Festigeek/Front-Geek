@@ -292,8 +292,11 @@ angular
     };
 
     // Function to open pub modal
+    $rootScope.closeModal = function() {
+      ngDialog.closeAll();
+    };
+
     $rootScope.openAdv = function() {
-      //ngDialog.closeAll();
       if(newsModal !== null) {
         $rootScope.dialog = ngDialog.open({
           template: 'views/partials/pubs/' + newsModal + '.html'
