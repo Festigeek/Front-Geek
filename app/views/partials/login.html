@@ -20,10 +20,12 @@
   </div>
 </script>
 
-<!--<div class="row">-->
-<!--<div class="center-form panel white">-->
-  <!--<div class="panel-body">-->
+<div>
+  <div id="ngModal-header">
+    <button type="button" class="close" ng-click="closeModal()">&times;</button>
     <h3 class="text-center">Se connecter</h3>
+  </div>
+  <div id="ngModal-content">
     <form method="post" ng-submit="login()" name="loginForm">
       <div class="form-group has-feedback">
         <div class="input-group">
@@ -47,6 +49,5 @@
         <small>Pas de compte ? <a href="" ng-click="openSignup()">Inscrivez-vous</a></small>
       </p>
     </form>
-  <!--</div>-->
-<!--</div>-->
-<!--</div>-->
+  </div>
+</div>
