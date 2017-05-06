@@ -49,7 +49,8 @@
 
         <div class="alert alert-info">
           <h2>News</h2>
-          <h4>Inscrit depuis le {{ user.created_at.split(' ')[0] | date: 'dd MMMM yyyy' }}</h4>
+          <h4>Inscrit depuis le {{ user.created_at}}</h4> 
+          <!-- .split(' ')[0] | date: 'dd MMM yyyy'  -->
           <p>
             Les informations ci-dessous ne sont actuellement pas modifiables.<br />
             Contactez <a href="mailto:info@festigeek.ch">info@festigeek.ch</a> en cas d'erreur.
