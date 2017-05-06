@@ -242,9 +242,10 @@ angular
     $rootScope.openLogin = function() {
       checkServer()
         .then(function(){
-          if ($rootScope.dialog !== undefined) {
-            $rootScope.dialog.close();
-          }
+          // if ($rootScope.dialog !== undefined) {
+          //   $rootScope.dialog.close();
+          // }
+          ngDialog.closeAll();
 
           $rootScope.dialog = ngDialog.open({
             template: 'views/partials/login.html',
@@ -259,9 +260,10 @@ angular
     $rootScope.openSignup = function() {
       checkServer()
         .then(function(){
-          if($rootScope.dialog !== undefined) {
-            $rootScope.dialog.close();
-          }
+          // if($rootScope.dialog !== undefined) {
+          //   $rootScope.dialog.close();
+          // }
+          ngDialog.closeAll();
 
           $rootScope.dialog = ngDialog.open({
             template: 'views/partials/signup.html',
@@ -303,6 +305,15 @@ angular
         $rootScope.dialog = ngDialog.open({
           template: 'views/partials/news/' + newsModal + '.html'
         });
+      }
+    };
+
+    $rootScope.goInscriptions = function() {
+      if($auth.isAuthenticated()) {
+        $state.go('/inscriptions/');
+      }
+      else {
+        $rootScope.openLogin();
       }
     };
 
