@@ -40,7 +40,7 @@ angular
     BASE: 'http://localhost:9000',
     BASE_API: 'http://127.0.0.1:8080/v1'
   })
-  .constant('newsModal', 'inscriptions2017')
+  .constant('newsModal', 'ouverture_inscriptions')
 
   // VARIABLES
   .value('duScrollEasing', function (t) { return t<0.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t;})
@@ -298,7 +298,7 @@ angular
       ngDialog.closeAll();
     };
 
-    $rootScope.openAdv = function() {
+    $rootScope.openModal = function() {
       if(newsModal !== null) {
         $rootScope.dialog = ngDialog.open({
           template: 'views/partials/news/' + newsModal + '.html'

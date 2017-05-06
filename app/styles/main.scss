@@ -1546,6 +1546,31 @@ figure {
   transition: 0.2s;
 }
 
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+  width: 80% !important;
+
+  strong{
+    font-weight: bold;
+  }
+}
+
+div.button-modal{
+  position: absolute;
+  bottom:   0;
+}
+div.modal_content{
+  height:390px;
+}
+@media (max-width: 768px) {
+  div.modal_content{
+    height:100%;
+  }
+}
+
+  strong{
+    font-weight: bold !important;
+  }
+
 .fh5co-nav-toggle.dark i {
   position: relative;
   color: #000;
