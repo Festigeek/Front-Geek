@@ -8,7 +8,7 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('ProfileCtrl', function ($scope, $auth, $localStorage, toastr, User, Country, moment) {
+  .controller('ProfileCtrl', function ($scope, $auth, $localStorage, toastr, User, Country) {
 
     $scope.$storage = $localStorage;
 
@@ -19,12 +19,7 @@ angular.module('frontGeekApp')
     $scope.subPage = 1;
 
     User.get({ id: 'me' }, function(user) {
-
       $scope.user = user;
-      $scope.user.created_at = moment($scope.user.created_at).format('DD.MM.YYYY');
-      $scope.user.birthdate = moment($scope.user.birthdate).format('DD.MM.YYYY');
-        console.log($scope.user);
-
     });
 
     $scope.updateUser = function() {

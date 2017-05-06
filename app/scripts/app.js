@@ -47,7 +47,7 @@ angular
   .value('duScrollDuration', 1500)
 
   // CONFIGURATIONS
-  .config(function ($qProvider, $stateProvider, $urlRouterProvider, $httpProvider, $authProvider, toastrConfig, urls) {
+  .config(function ($qProvider, $stateProvider, $urlRouterProvider, $httpProvider, $authProvider, urls, toastrConfig) {
     $qProvider.errorOnUnhandledRejections(false);
     angular.extend(toastrConfig, {
       timeOut: 1500,
@@ -226,7 +226,9 @@ angular
   })
 
   // RUNNING CODE
-  .run(function($rootScope, $location, $state, urls, newsModal, $auth, $trace, $localStorage, ngDialog, toastr, checkServer){
+  .run(function($rootScope, $location, $state, urls, newsModal, checkServer, $auth, $trace, $localStorage, ngDialog, toastr, amMoment){
+    amMoment.changeLocale('fr');
+
     /*
     // Variables
     */
@@ -299,7 +301,7 @@ angular
     $rootScope.openAdv = function() {
       if(newsModal !== null) {
         $rootScope.dialog = ngDialog.open({
-          template: 'views/partials/pubs/' + newsModal + '.html'
+          template: 'views/partials/news/' + newsModal + '.html'
         });
       }
     };
