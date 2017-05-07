@@ -2,8 +2,9 @@
   <!-- Résultat de l'inscription -->
   <div uib-alert ng-if="resultState === 'success' || resultState === 'win'" class="alert-success">
     <h3>Inscription réussie !</h3>
-    <p>On t'as envoyé un p'tit mail de confirmation <em>(si c'est pas le cas, pense à jeter un oeil dans tes spams...)</em></p>
-    <div ng-show="resultState === 'win'" id="checkout_win">
+    <p>On t'as envoyé un p'tit mail de confirmation avec les informations de paiement <em>(si c'est pas le cas, pense à jeter un oeil dans tes spams...)</em></p>
+    <p>Jête aussi un oeil à notre <a href="/#!/infolan">page d'informations </a>de la LAN</p>
+      <div ng-show="resultState === 'win'" id="checkout_win">
       <h4>Félicitation !</h4>
       <p>
         <strong>Et en plus, on a un vainqueur !</strong><br/>
