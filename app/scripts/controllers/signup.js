@@ -24,7 +24,7 @@ angular.module('frontGeekApp')
       var newUser = new User($scope.user);
       newUser.birthdate = $scope.user.birthdate.getFullYear() + '-' + ('0' + ($scope.user.birthdate.getMonth() + 1)).slice(-2) + '-' + $scope.user.birthdate.getDate();
       newUser.$save(function() {
-          toastr.success('Un lien d\'activation vous a été envoyé par e-mail', 'Création de votre compte réussie !');
+          toastr.success('Un lien d\'activation vous a été envoyé par e-mail. Vérifiez votre dossier de spams!', 'Création de votre compte réussie !');
           ngDialog.closeAll();
         }, function() {
           toastr.error('Échec de la création de compte.');
