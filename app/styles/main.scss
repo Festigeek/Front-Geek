@@ -292,7 +292,7 @@ figure {
 
 .fh5co-cover .desc span a:hover.btn, .fh5co-cover .desc span a:focus.btn {
   border: 2px solid #fff !important;
-  background: transparent !important;
+  background: transparent;
 }
 
 .fh5co-cover .desc span a.fh5co-site-name {
@@ -1365,6 +1365,20 @@ figure {
   color: #fff;
   border: none !important;
   border: 2px solid transparent !important;
+}
+
+.btn.btn-primary.lan {
+  background: black;
+  color: #fff;
+  border: none !important;
+  border: 2px solid white !important;
+}
+div.lan2017{
+.btn.btn-primary#lan:hover, .btn.btn-primary.lan:active, .btn.btn-primary.lan:focus {
+  box-shadow: none;
+  background: #3F2E79 !important;
+  color: #fff !important;
+}
 }
 
 .btn.btn-primary:hover, .btn.btn-primary:active, .btn.btn-primary:focus {

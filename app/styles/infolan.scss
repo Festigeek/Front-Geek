@@ -2,7 +2,11 @@ div.top-padding{
   height: 100px;
 }
 div.infolan_page{
+
     font-family: "Roboto", "Open Sans", Arial, sans-serif;
+    strong{
+      font-weight: bold !important;
+    }
   h1 {
 
   }
@@ -10,13 +14,11 @@ div.infolan_page{
     margin-top:20px;
     margin-bottom: 10px;
   }
-  p{
-    margin-bottom:10px;
-  }
+
   ul li, ol li {
     line-height: 1.5em;
   }
-  ul, ol {
+  ul, ol, h4, p {
     margin-bottom: 10px;
   }
 
