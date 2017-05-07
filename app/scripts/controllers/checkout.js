@@ -8,6 +8,11 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('CheckoutCtrl', function ($scope, $stateParams) {
-    $scope.resultState = $stateParams.state;
+  .controller('CheckoutCtrl', function ($scope, $stateParams, $state) {
+    if($stateParams.state) {
+      $scope.resultState = $stateParams.state;
+    }
+    else {
+      $state.go('/');
+    }
   });

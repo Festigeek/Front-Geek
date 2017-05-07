@@ -221,7 +221,7 @@ angular
         controller: 'CheckoutCtrl'
       })
       .state('infolan', {
-        url: 'infolan',
+        url: '/infolan',
         templateUrl: 'views/infolan.html',
         controller: 'InfolanCtrl'
       });
