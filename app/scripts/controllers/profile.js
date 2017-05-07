@@ -21,7 +21,7 @@ angular.module('frontGeekApp')
     });
 
     $scope.updateUser = function() {
-      User.update({ id: 'me' }, $scope.user).$promise
+      User.update($scope.user).$promise
         .then(function() {
           $scope.$storage.checkedUser = true;
           toastr.success('Profil mis à jour avec succès !');
