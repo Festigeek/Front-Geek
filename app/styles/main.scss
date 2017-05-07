@@ -1,5 +1,5 @@
-$icon-font-path:    "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
-$fa-font-path:      "../bower_components/font-awesome/fonts";
+$icon-font-path:    "./ressources/bootstrap/fonts";
+$fa-font-path:      "./ressources/font-awesome/fonts";
 $icomoon-font-path: "./ressources/icomoon/fonts";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
@@ -1558,18 +1558,10 @@ div.button-modal{
   position: absolute;
   bottom:   0;
 }
-div.modal_content{
-  height:390px;
-}
-@media (max-width: 768px) {
-  div.modal_content{
-    height:100%;
-  }
-}
 
-  strong{
-    font-weight: bold !important;
-  }
+strong{
+  font-weight: bold !important;
+}
 
 .fh5co-nav-toggle.dark i {
   position: relative;
@@ -1895,8 +1887,8 @@ button.ngdialog-close {
   display: none;
 }
 
-#logo_benevoles {
-  width: 200px;
+.image_news {
+  height: 210px;
   float: left;
   padding: 8px;
 }
@@ -2118,9 +2110,8 @@ html.ngdialog-open, body.ngdialog-open {
   color: #bbb;
 }
 
-.toast-top-right {
+.toast-top-center {
   top: 47px;
-  right: 12px;
 }
 
 /*New submenu*/

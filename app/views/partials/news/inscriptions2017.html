@@ -1,33 +1,54 @@
 <!-- Modal content-->
-<div>
-  <div id="ngModal-header">
-    <button type="button" class="close" ng-click="closeModal()">&times;</button>
-    <h3>Inscriptions ouvertes !</h3>
-  </div>
-  <div id="ngModal-content">
+<div id="ngModal-header">
+  <button type="button" class="close" ng-click="closeModal()">&times;</button>
+  <br />
+</div>
+
+<div class="row">
+  <div id="benevole" class="modal_content col-sm-6">
+    <h2>Deviens bénévole</h2>
+
     <a href="https://goo.gl/forms/9zlPykVQXPoKQwep1" target="_blank" class="close_modal">
-      <img src="images/soldier76_iwantyou.jpg" id="logo_benevoles" />
+      <img src="images/soldier76_iwantyou.jpg" class="image_news" id="logo_benevoles" />
     </a>
     <p>Tu veux profiter d'une ambiance incroyable pendant un week-end ? Manger des burgers et faire passer un moment génial à nos fidèles gamers ?</p>
     <p>Alors deviens un bénévole à <strong>FestiGeek</strong>, que ce soit une demi-journée ou tout le week-end vous être tous les bienvenus !</p>
-    <br class="clearfix" />
-    <div class="text-center">
+
+    <div class="row text-center hidden-sm hidden-md hidden-lg">
       <a href="https://goo.gl/forms/9zlPykVQXPoKQwep1" target="_blank" class="btn btn-success close_modal" role="button">
         Je participe !
       </a>
+      <br/><br/>
     </div>
-    <hr />
-    <div class="text-center">
-      Dans tous les cas, n'hésite pas à rejoindre notre serveur <strong>Discord</strong> officiel !<br />
-      <a href="https://discord.gg/QQ2KEUY" target="_blank">
-        <img id="logo_pub_discord" alt="logo discord" src="images/Discord-Logo-Wordmark-Color.png" />
+  </div>
+
+  <div id="inscriptions" class="modal_content col-sm-6">
+    <h2>Ouverture des inscriptions!</h2>
+    <a href="" ng-click="goInscriptions()" target="_blank">
+      <img src="images/logo_simple.png" class="image_news" id="logo_fg" />
+    </a>
+    <p>Viens t'inscrire dès maintenant à notre prochaine LAN (DATES).
+      Festigeek t'offre aussi la possibilité de <strong>gagner ton burger</strong> pour la LAN.</p>
+    <p>Il te suffit de t'inscrire dans les <strong> 24h</strong> et laisser notre algorithme te choisir ! <br />
+      Bonne chance !</p>
+
+    <div class="row text-center hidden-sm hidden-md hidden-lg">
+      <a href="" target="_blank" class="btn btn-success close_modal" role="button" ng-click="goInscriptions()">
+        S'inscrire
       </a>
     </div>
   </div>
-  <div id="ngModal-footer">
-    <div id="modal-copyright">
-      &copy; Source image: <a href="http://sandramj.deviantart.com/">sandramj@deviantart</a>
-    </div>
-    <a href="" data-dismiss="modal">Non merci</a>
+</div>
+
+<div class="row visible-md-block visible-sm-block visible-md-block visible-lg-block">
+  <div class="col-sm-6 text-center">
+    <a href="https://goo.gl/forms/9zlPykVQXPoKQwep1" target="_blank" class="btn btn-success close_modal" role="button">
+      Je participe !
+    </a>
+  </div>
+  <div class="col-sm-6 text-center">
+    <a href="" target="_blank" class="btn btn-success close_modal" role="button" ng-click="goInscriptions()">
+      S'inscrire
+    </a>
   </div>
 </div>
