@@ -35,8 +35,10 @@ angular
 
   // CONSTANTS
   .constant('urls', {
-    BASE: 'https://www.festigeek.ch',
-    BASE_API: 'https://api.festigeek.ch/v1'
+    BASE: '@@localURL',
+    BASE_API: '@@apiURL'
+    // BASE: 'https://www.festigeek.ch',
+    // BASE_API: 'https://api.festigeek.ch/v1'
     // BASE: 'http://localhost:9000',
     // BASE_API: 'http://127.0.0.1:8080/v1'
   })

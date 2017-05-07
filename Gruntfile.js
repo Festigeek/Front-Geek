@@ -60,7 +60,7 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= yeoman.app %>/{,*/}*.html',
+          '<%= yeoman.app %>/**/*.html',
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
@@ -213,7 +213,7 @@ module.exports = function (grunt) {
           js: {
             block: /(([\s\t]*)\/{2}\s*?bower:\s*?(\S*))(\n|\r|.)*?(\/{2}\s*endbower)/gi,
               detect: {
-                js: /'(.*\.js)'/gi
+                js: /'(.*\.js)'/gi,
               },
               replace: {
                 js: '\'{{filePath}}\','
@@ -289,14 +289,16 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/**/{,*/}*.html'],
+      html: ['<%= yeoman.dist %>/**/*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       js: ['<%= yeoman.dist %>/scripts/{,*/}*.js'],
+      pdf: ['<%= yeoman.dist %>/files/{,*/}*.pdf'],
       options: {
         assetsDirs: [
           '<%= yeoman.dist %>',
           '<%= yeoman.dist %>/images',
-          '<%= yeoman.dist %>/styles'
+          '<%= yeoman.dist %>/styles',
+          '<%= yeoman.dist %>/files'
         ],
         patterns: {
           js: [[/(images\/[^''""]*\.(png|jpg|jpeg|gif|webp|svg))/g, 'Replacing references to images']]
@@ -363,7 +365,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.dist %>',
-          src: ['*.html'],
+          src: ['**/*.html'],
           dest: '<%= yeoman.dist %>'
         }]
       }
@@ -377,7 +379,7 @@ module.exports = function (grunt) {
           usemin: 'scripts/scripts.js'
         },
         cwd: '<%= yeoman.app %>',
-        src: 'views/{,*/}*.html',
+        src: 'views/**/*.html',
         dest: '.tmp/templateCache.js'
       }
     },
@@ -398,7 +400,7 @@ module.exports = function (grunt) {
     // Replace Google CDN references
     cdnify: {
       dist: {
-        html: ['<%= yeoman.dist %>/*.html']
+        html: ['<%= yeoman.dist %>/**/*.html']
       }
     },
 
@@ -414,9 +416,9 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '*.html',
             'images/{,*/}*.{webp}',
-            'styles/ressources/{,*/}*.*',
-            'views/partials/**',
-            'views/partials/news/**'
+            'styles/ressources/{,*/}*.*'
+            // 'views/partials/**',
+            // 'views/partials/news/**'
           ]
         }, {
           expand: true,
@@ -474,6 +476,50 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    // Replace Variables
+    replace: {
+      dist: {
+        options: {
+          patterns: [
+            {
+              match: 'localURL',
+              replacement: 'https://www.festigeek.ch'
+            },
+            {
+              match: 'apiURL',
+              replacement: 'https://api.festigeek.ch/v1'
+            }
+          ]
+        },
+        files: [{
+          expand: true,
+          cwd: '.tmp/concat/scripts',
+          src: '**.js',
+          dest: '.tmp/concat/scripts/'
+        }]
+      },
+      server: {
+        options: {
+          patterns: [
+            {
+              match: 'localURL',
+              replacement: 'http://127.0.0.1:<%= connect.options.port =>'
+            },
+            {
+              match: 'apiURL',
+              replacement: 'http://127.0.0.1:8080/v1'
+            }
+          ]
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>/scripts',
+          src: '**.js',
+          dest: '.tmp/scripts/'
+        }]
+      }
     }
   });
 
@@ -486,6 +532,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
+      'replace:server',
       'concurrent:server',
       'postcss:server',
       'connect:livereload',
@@ -507,6 +554,19 @@ module.exports = function (grunt) {
     //'karma'
   ]);
 
+/*
+BUILD ONLY:
+
+'useminPrepare',
+'ngtemplates',
+'concat',
+'ngAnnotate',
+'cssmin',
+'filerev',
+'usemin',
+'htmlmin'
+*/
+
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
@@ -516,6 +576,7 @@ module.exports = function (grunt) {
     'ngtemplates',
     'concat',
     'ngAnnotate',
+    'replace:dist',
     'copy:dist',
     'cdnify',
     'cssmin',
