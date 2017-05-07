@@ -219,6 +219,11 @@ angular
         url: '/checkout?state',
         templateUrl: 'views/checkout.html',
         controller: 'CheckoutCtrl'
+      })
+      .state('infolan', {
+        url: 'infolan',
+        templateUrl: 'views/infolan.html',
+        controller: 'InfolanCtrl'
       });
 
     $urlRouterProvider.when('', '/');
