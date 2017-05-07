@@ -8,5 +8,5 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('InfolanCtrl', function ($scope, $stateParams) {
+  .controller('InfolanCtrl', function () {
   });
