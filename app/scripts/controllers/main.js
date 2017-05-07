@@ -9,7 +9,7 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('MainCtrl', function ($window, $scope) {
+  .controller('MainCtrl', function ($window, $scope, $rootScope) {
 
     // Imported from 2016 One-Page site
 
@@ -93,5 +93,7 @@ angular.module('frontGeekApp')
       // $scope.formValidator(); // FORM VALIDATOR
     };
 
+    // Onload functions execution
+    $rootScope.openModal();
     $scope.initOnePage();
   });
