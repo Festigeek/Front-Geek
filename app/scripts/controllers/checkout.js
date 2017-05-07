@@ -9,10 +9,10 @@
  */
 angular.module('frontGeekApp')
   .controller('CheckoutCtrl', function ($scope, $stateParams, $state) {
-    if($stateParams.state) {
+    if($stateParams.state !== undefined) {
       $scope.resultState = $stateParams.state;
     }
     else {
-      $state.go('/');
+      $state.go('main');
     }
   });
