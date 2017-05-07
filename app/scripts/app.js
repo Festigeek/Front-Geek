@@ -291,7 +291,6 @@ angular
           .then(function () {
             toastr.info('Vous vous être déconnecté avec succès');
             delete $localStorage.checkedUser;
-            $state.go('/');
           });
       }
     };
