@@ -35,12 +35,12 @@ angular
 
   // CONSTANTS
   .constant('urls', {
-    // BASE: 'https://www.festigeek.ch',
-    // BASE_API: 'https://api.festigeek.ch/v1',
-    BASE: 'http://localhost:9000',
-    BASE_API: 'http://127.0.0.1:8080/v1'
+    BASE: 'https://www.festigeek.ch',
+    BASE_API: 'https://api.festigeek.ch/v1'
+    // BASE: 'http://localhost:9000',
+    // BASE_API: 'http://127.0.0.1:8080/v1'
   })
-  .constant('newsModal', 'ouverture_inscriptions')
+  .constant('newsModal', 'inscriptions2017')
 
   // VARIABLES
   .value('duScrollEasing', function (t) { return t<0.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t;})
@@ -51,6 +51,7 @@ angular
     $qProvider.errorOnUnhandledRejections(false);
     angular.extend(toastrConfig, {
       timeOut: 1500,
+      positionClass: 'toast-top-center',
       preventOpenDuplicates: true
     });
 
@@ -227,7 +228,7 @@ angular
 
   // RUNNING CODE
   .run(function($rootScope, $location, $state, urls, newsModal, checkServer, $auth, $trace, $localStorage, ngDialog, toastr, amMoment){
-    amMoment.changeLocale('fr');
+    amMoment.changeLocale('fr-ch');
 
     /*
     // Variables
@@ -310,7 +311,8 @@ angular
 
     $rootScope.goInscriptions = function() {
       if($auth.isAuthenticated()) {
-        $state.go('/inscriptions/');
+        ngDialog.closeAll();
+        $state.go('inscriptions');
       }
       else {
         $rootScope.openLogin();
@@ -349,4 +351,7 @@ angular
         submenu.removeClass('open');
       }
     });
+
+    // NEWS MODAL
+    $rootScope.openModal();
   });

@@ -308,27 +308,27 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
+    cssmin: {
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/styles/main.css': [
+            '.tmp/styles/{,*/}*.css'
+          ]
+        }
+      }
+    },
+    uglify: {
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/scripts/scripts.js': [
+            '<%= yeoman.dist %>/scripts/scripts.js'
+          ]
+        }
+      }
+    },
+    concat: {
+      dist: {}
+    },
 
     imagemin: {
       dist: {
@@ -414,8 +414,15 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '*.html',
             'images/{,*/}*.{webp}',
-            'styles/fonts/{,*/}*.*'
+            'styles/ressources/{,*/}*.*',
+            'views/partials/**',
+            'views/partials/news/**'
           ]
+        }, {
+          expand: true,
+          cwd: '.tmp/concat',
+          dest: '<%= yeoman.dist %>',
+          src: 'scripts/**'
         }, {
           expand: true,
           cwd: '.tmp/images',
@@ -423,14 +430,19 @@ module.exports = function (grunt) {
           src: ['generated/*']
         }, {
           expand: true,
-          cwd: '.',
-          src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
-          dest: '<%= yeoman.dist %>'
+          cwd: '<%= yeoman.app %>/assets',
+          dest: '<%= yeoman.dist %>/files/',
+          src: '**'
         }, {
           expand: true,
-          cwd: '.',
-          src: 'bower_components/font-awesome/fonts/*',
-          dest: '<%= yeoman.dist %>'
+          cwd: '<%= yeoman.app %>/styles/ressources/icomoon/fonts',
+          dest: '<%= yeoman.dist %>/styles/ressources/icomoon/fonts/',
+          src: '*.{ttf,woff,woff2}'
+        }, {
+          expand: true,
+          cwd: 'bower_components/font-awesome/fonts',
+          dest: '<%= yeoman.dist %>/styles/ressources/font-awesome/fonts/',
+          src: '*.{ttf,woff,woff2}'
         }]
       },
       styles: {
@@ -507,7 +519,7 @@ module.exports = function (grunt) {
     'copy:dist',
     'cdnify',
     'cssmin',
-    'uglify',
+    // 'uglify',
     'filerev',
     'usemin',
     'htmlmin'
