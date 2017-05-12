@@ -1,6 +1,5 @@
 'use strict';
 
-
 /**
  * @ngdoc function
  * @name frontGeekApp.controller:InscriptionCtrl
@@ -45,7 +44,7 @@ angular.module('frontGeekApp')
       }
     });
 
-    $scope.existingTeams = [{id:1, name:'RageQuit'}];//Team.query({event_id: 1});
+    $scope.existingTeams = Team.query({event_id: 1});
     $scope.gameProducts = Product.query({type_id: 1}, function(){
       $scope.gameProducts.map(function(gameProduct){
         gameProduct.available = gameProduct.quantity_max - gameProduct.sold;
