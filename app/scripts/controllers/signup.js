@@ -26,8 +26,13 @@ angular.module('frontGeekApp')
       newUser.$save(function() {
           toastr.success('Un lien d\'activation vous a été envoyé par e-mail. Vérifiez votre dossier de spams!', 'Création de votre compte réussie !');
           ngDialog.closeAll();
-        }, function() {
-          toastr.error('Échec de la création de compte.');
+        }, function(err) {
+          if(err.status === 409){
+            toastr.error('Il existe déjà un compte avec ces identifiants.');
+          }
+          else {
+            toastr.error('Échec de la création de compte.');
+          }
       });
     };
 

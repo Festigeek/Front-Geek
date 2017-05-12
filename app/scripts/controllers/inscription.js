@@ -8,7 +8,7 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('InscriptionCtrl', function ($window, $rootScope, $scope, $localStorage, $state, $transitions, toastr, User, Country, Product, Team, Order, moment) {
+  .controller('InscriptionCtrl', function ($window, $q, $rootScope, $scope, $localStorage, $state, $transitions, toastr, User, Country, Product, Team, Order, moment) {
     $scope.$storage = $localStorage;
     $scope.$storage.countries = ($scope.$storage.countries !== undefined) ? $scope.$storage.countries : Country.query();
 
@@ -91,21 +91,24 @@ angular.module('frontGeekApp')
 
     // Fonction mettant à jour le payload de l'inscription
     var updatePayload = function() {
-      var productsList = [{ product_id: $scope.formData.products.tournament.id, amount: 1 }];
-      if($scope.formData.products.burger.amount > 0) {
-        productsList.push({product_id: 5, amount: $scope.formData.products.burger.amount});
-      }
-      if($scope.formData.products.bfast.amount > 0) {
-        productsList.push({ product_id: 6, amount: $scope.formData.products.bfast.amount });
-      }
+      return $q(function(resolve) {
+        var productsList = [{ product_id: $scope.formData.products.tournament.id, amount: 1 }];
+        if($scope.formData.products.burger.amount > 0) {
+          productsList.push({product_id: 5, amount: $scope.formData.products.burger.amount});
+        }
+        if($scope.formData.products.bfast.amount > 0) {
+          productsList.push({ product_id: 6, amount: $scope.formData.products.bfast.amount });
+        }
 
-      $scope.payload = {
-        event_id: 1,
-        checked_legal: $scope.formData.consent.rules,
-        team: (typeof $scope.formData.team.originalObject === 'object') ? $scope.formData.team.originalObject.name : $scope.formData.team.originalObject,
-        products: productsList,
-        data: JSON.stringify($scope.formData)
-      };
+        $scope.payload = {
+          event_id: 1,
+          checked_legal: $scope.formData.consent.rules,
+          team: (typeof $scope.formData.team.originalObject === 'object') ? $scope.formData.team.originalObject.name : $scope.formData.team.originalObject,
+          products: productsList,
+          data: JSON.stringify($scope.formData)
+        };
+        resolve();
+      });
     };
 
     // Fonction permettant de soumettre la commande (inscription)
@@ -152,7 +155,8 @@ angular.module('frontGeekApp')
 
     // Lors de l'accès à l'état .payment
     $transitions.onStart({to: 'inscriptions.payment'}, function(){
-      updatePayload();
-      return updateUser();
+      return updatePayload().then(function(){
+        return updateUser();
+      });
     });
   });
