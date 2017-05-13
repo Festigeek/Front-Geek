@@ -2,6 +2,48 @@
 <div class="container infolan_page">
   <h1>LAN 2017 - Tout ce qu'il faut savoir</h1>
 
+  <h3>Équipes inscrites à la LAN</h3>
+  <div class="row" id="teams_list">
+    <div class="col-sm-4">
+      <div class="highlight">
+        <h4 class="text-center">League of Legends</h4>
+        <ul class="teams">
+          <li ng-repeat="t in teams.lol" class="team">
+            <strong>{{ t.name }}</strong>
+            <ul class="users">
+              <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ u.username }}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="highlight">
+        <h4 class="text-center">Overwatch</h4>
+        <ul class="teams">
+          <li ng-repeat="t in teams.ow" class="team">
+            <strong>{{ t.name }}</strong>
+            <ul class="users">
+              <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ u.username }}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="highlight">
+        <h4 class="text-center">Counter-Strike: GO</h4>
+        <ul class="teams">
+          <li ng-repeat="t in teams.cs" class="team">
+            <strong>{{ t.name }}</strong>
+            <ul class="users">
+              <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ u.username }}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <h3>Horaires</h3>
   <p>Ouverture de portes: vendredi, 26 mai 2017 dès 16:00</p>
   <!-- <ul>

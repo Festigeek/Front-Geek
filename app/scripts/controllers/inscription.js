@@ -8,7 +8,7 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('InscriptionCtrl', function ($window, $q, $rootScope, $scope, $localStorage, $state, $transitions, toastr, User, Country, Product, Team, Order, moment) {
+  .controller('InscriptionCtrl', function ($window, $q, $rootScope, $scope, $localStorage, $state, $transitions, toastr, ngDialog, User, Country, Product, Team, Order, moment) {
     $scope.$storage = $localStorage;
     $scope.$storage.countries = ($scope.$storage.countries !== undefined) ? $scope.$storage.countries : Country.query();
 
@@ -113,20 +113,25 @@ angular.module('frontGeekApp')
 
     // Fonction permettant de soumettre la commande (inscription)
     $scope.postOrder = function(type) {
-      $scope.payload.payment_type_id = type;
+      ngDialog.openConfirm({
+        template: '<h3>L\'inscription est sur le point d\'être envoyée.</h3><p>Es-tu sûr que tout est bon ?</p><div class="ngdialog-buttons text-center"><button type="button" class="btn btn-success" ng-click="confirm(1)">Oui, c\'est partit !</button><button type="button" class="btn btn-danger" ng-click="closeThisDialog(0)">Non, attends !</button></div>',
+        plain: true
+      }).then(function(){
+        $scope.payload.payment_type_id = type;
 
-      var newOrder = new Order($scope.payload);
-      newOrder.$save(function(res) {
-        if(type === 1) {
-          $state.go('checkout', {state: res.state});
-        }
+        var newOrder = new Order($scope.payload);
+        newOrder.$save(function(res) {
+          if(type === 1) {
+            $state.go('checkout', {state: res.state});
+          }
 
-        if(type === 2) {
-          $window.open(res.link, '_self');
-        }
-      }, function() {
-        $state.go('checkout', {state: 'error'});
-        toastr.error('Erreur lors de l\'envoi de l\'inscription.');
+          if(type === 2) {
+            $window.open(res.link, '_self');
+          }
+        }, function() {
+          $state.go('checkout', {state: 'error'});
+          toastr.error('Erreur lors de l\'envoi de l\'inscription.');
+        });
       });
     };
 

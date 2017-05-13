@@ -1,16 +1,17 @@
-div.top-padding{
+div.top-padding {
   height: 100px;
 }
-div.infolan_page{
 
-    font-family: "Roboto", "Open Sans", Arial, sans-serif;
-    strong{
-      font-weight: bold !important;
-    }
-  h1 {
+div.infolan_page {
 
+  font-family: "Roboto", "Open Sans", Arial, sans-serif;
+  strong{
+    font-weight: bold !important;
   }
-  h3{
+
+  h1 { }
+
+  h3 {
     margin-top:20px;
     margin-bottom: 10px;
   }
@@ -18,11 +19,39 @@ div.infolan_page{
   ul li, ol li {
     line-height: 1.5em;
   }
+
   ul, ol, h4, p {
     margin-bottom: 10px;
   }
 
+  #teams_list {
+    div.highlight {
+      padding: 8px 10px;
+      margin-bottom: 14px;
+      background-color: #f7f7f9;
+      border: 1px solid #e1e1e8;
+      border-radius: 4px;
+    }
 
+    ul {
+      list-style: none;
+    }
 
+    ul li:before {
+      font-family: 'FontAwesome';
+      margin:0 5px 0 -15px;
+    }
 
+    ul.teams li:before {
+      content: '\f0c0';
+    }
+
+    ul.users li.male:before {
+      content: '\f183';
+    }
+
+    ul.users li.female:before {
+      content: '\f182';
+    }
+  }
 }

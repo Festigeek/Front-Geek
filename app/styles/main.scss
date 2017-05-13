@@ -1374,7 +1374,7 @@ figure {
   border: 2px solid white !important;
 }
 div.lan2017{
-.btn.btn-primary#lan:hover, .btn.btn-primary.lan:active, .btn.btn-primary.lan:focus {
+.btn.btn-primary.lan:hover, .btn.btn-primary.lan:active, .btn.btn-primary.lan:focus {
   box-shadow: none;
   background: #3F2E79 !important;
   color: #fff !important;
@@ -1388,7 +1388,6 @@ div.lan2017{
 }
 
 .btn:hover, .btn:active, .btn:focus {
-  background: #393e46 !important;
   color: #fff;
   outline: none !important;
 }

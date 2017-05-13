@@ -16,16 +16,25 @@
       <ul du-spy-context class="nav navbar-nav fg-menu" id="fh5co-primary-menu">
         <li class="active" du-scrollspy="home"><a href="#home" du-smooth-scroll>Accueil</a></li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" data-target=".dropdown-menu-main" href="">
+          <a class="dropdown-toggle" data-toggle="dropdown" data-target=".dropdown-menu-about" href="">
             A propos <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu dropdown-menu-main">
-            <li du-scrollspy="events"><a href="#about" class="close-dropdown-main" du-smooth-scroll>L'association</a></li>
-            <li du-scrollspy="events"><a href="#team" class="close-dropdown-main" du-smooth-scroll>L'équipe</a></li>
+          <ul class="dropdown-menu dropdown-menu-about">
+            <li du-scrollspy="events"><a href="#about" class="close-dropdown-about" du-smooth-scroll>L'association</a></li>
+            <li du-scrollspy="events"><a href="#team" class="close-dropdown-about" du-smooth-scroll>L'équipe</a></li>
             <li role="separator" class="fg-divider"></li>
           </ul>
         </li>
-        <li du-scrollspy="events"><a href="#events" du-smooth-scroll>Events</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" data-target=".dropdown-menu-event" href="">
+            Events <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-event">
+            <li du-scrollspy="events"><a href="#events" class="close-dropdown-event" du-smooth-scroll>Les événements</a></li>
+            <li du-scrollspy="laninfo"><a href="#laninfo" class="close-dropdown-event" du-smooth-scroll>LAN 2017</a></li>
+            <li role="separator" class="fg-divider"></li>
+          </ul>
+        </li>
         <li du-scrollspy="join"><a href="#join" du-smooth-scroll>Nous rejoindre</a></li>
         <li du-scrollspy="sponsors"><a href="#sponsors" du-smooth-scroll>Devenir sponsor</a></li>
         <li du-scrollspy="contact"><a href="#contact" du-smooth-scroll>Contact</a></li>
@@ -40,7 +49,8 @@
     <li du-scrollspy="home" du-smooth-scroll="home"><a href="#home" du-smooth-scroll>Accueil</a></li>
     <li du-scrollspy="about" du-smooth-scroll="about"><a href="#about" du-smooth-scroll>L'association</a></li>
     <li du-scrollspy="team" du-smooth-scroll="team"><a href="#team" du-smooth-scroll>L'équipe</a></li>
-    <li du-scrollspy="events" du-smooth-scroll="events"><a href="#events" du-smooth-scroll>Events</a></li>
+    <li du-scrollspy="events" du-smooth-scroll="events"><a href="#events" du-smooth-scroll>Les événements</a></li>
+    <li du-scrollspy="laninfo" du-smooth-scroll="laninfo"><a href="#laninfo" du-smooth-scroll>LAN 2017</a></li>
     <li du-scrollspy="join" du-smooth-scroll="join"><a href="#join" du-smooth-scroll>Nous rejoindre</a></li>
     <li du-scrollspy="sponsors" du-smooth-scroll="sponsors"><a href="#sponsors" du-smooth-scroll>Devenir sponsor</a></li>
     <li du-scrollspy="partenaires" du-smooth-scroll="partenaires"><a href="#partenaires" du-smooth-scroll>Nos partenaires</a></li>
@@ -285,8 +295,8 @@
 
 
       </div>
-      <span><a target="_blank" href="/#!/infolan" class="btn btn-primary btn-lg lan" id="lan">Informations Importantes</a></span>
-        <span><a ng-click="goInscriptions()" class="btn btn-primary btn-lg lan" id="lan">Inscriptions</a></span>
+      <span><a target="_blank" href="/#!/infolan" class="btn btn-primary btn-lg lan">Informations Importantes</a></span>
+        <span><a ng-click="goInscriptions()" class="btn btn-primary btn-lg lan">Inscriptions</a></span>
     </div>
   </div>
 
