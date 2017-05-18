@@ -46,6 +46,10 @@ div.infolan_page {
       content: '\f0c0';
     }
 
+    ul.teams li.complete {
+      color: green;
+    }
+
     ul.users li.male:before {
       content: '\f183';
     }
