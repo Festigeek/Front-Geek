@@ -4,26 +4,27 @@
 
   <h3>Équipes inscrites à la LAN</h3>
   <div class="row" id="teams_list">
-    <div class="col-sm-4">
+    <div class="col-sm-6">
       <div class="highlight">
         <h4 class="text-center">League of Legends</h4>
         <ul class="teams">
           <li ng-repeat="t in teams.lol | orderBy:'-users.length'" class="team" ng-class="t.users.length>4 ? 'complete' : ''">
-            <strong>{{ t.name }} {{ t.users.length }}/5</strong>
+            <strong>{{ t.name }} ({{ t.users.length }}/5)</strong>
             <ul class="users">
-              <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ u.username }}</li>
+              <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ !u.roaster ? '(' : '' }}{{ u.username }}{{ !u.roaster ? ')' : '' }}</li>
             </ul>
           </li>
         </ul>
       </div>
     </div>
 
+<!--
     <div class="col-sm-4">
       <div class="highlight">
         <h4 class="text-center">Overwatch</h4>
         <ul class="teams">
           <li ng-repeat="t in teams.ow | orderBy:'-users.length'" class="team" ng-class="t.users.length>5 ? 'complete' : ''">
-            <strong>{{ t.name }} {{ t.users.length }}/6</strong>
+            <strong>{{ t.name }} ({{ t.users.length }}/6)</strong>
             <ul class="users">
               <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ u.username }}</li>
             </ul>
@@ -31,13 +32,14 @@
         </ul>
       </div>
     </div>
+-->
 
-    <div class="col-sm-4">
+    <div class="col-sm-6">
       <div class="highlight">
         <h4 class="text-center">Counter-Strike: GO</h4>
         <ul class="teams">
           <li ng-repeat="t in teams.cs | orderBy:'-users.length'" class="team" ng-class="t.users.length>4 ? 'complete' : ''">
-            <strong>{{ t.name }} {{ t.users.length }}/5</strong>
+            <strong>{{ t.name }} ({{ t.users.length }}/5)</strong>
             <ul class="users">
               <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ u.username }}</li>
             </ul>
@@ -81,14 +83,14 @@
     <li><strong>2e:</strong> 200 CHF (+lots)</li>
     <li><strong>3e:</strong> 100 CHF (+lots)</li>
   </ul>
-
+<!--
   <h4>Overwatch</h4>
   <ul>
     <li><strong>1er:</strong> 360 CHF (+lots)</li>
     <li><strong>2e:</strong> 240 CHF (+lots)</li>
     <li><strong>3e:</strong> 120 CHF (+lots)</li>
   </ul>
-
+-->
   <h3>Lieu</h3>
   <p>La LAN se déroule dans la cafeteria de la HEIG-VD. Route de Cheseaux 1, 1400 Yverdon-les-Bains.</p>
   <div class="text-center">
@@ -138,5 +140,5 @@
     <li><a href="assets/FG2017_reglement_general.pdf" target="_blank">Général</a></li>
     <li><a href="assets/FG2017_reglement_csgo.pdf" target="_blank">CS:GO</a></li>
     <li><a href="assets/FG2017_reglement_lol.pdf" target="_blank">League of Legends</a></li>
-    <li><a href="assets/FG2017_reglement_ow.pdf" target="_blank">Overwatch</a></li>
+    <!--<li><a href="assets/FG2017_reglement_ow.pdf" target="_blank">Overwatch</a></li>-->
   </ul>

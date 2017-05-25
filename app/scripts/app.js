@@ -222,6 +222,11 @@ angular
         url: '/infolan',
         templateUrl: 'views/infolan.html',
         controller: 'InfolanCtrl'
+      })
+      .state('intra', {
+        url: '/intra',
+        templateUrl: 'views/intra.html',
+        controller: 'IntraCtrl'
       });
 
     $urlRouterProvider.when('', '/');
