@@ -94,6 +94,6 @@ angular.module('frontGeekApp')
     };
 
     // Onload functions execution
-    $rootScope.openModal();
+    //$rootScope.openModal();
     $scope.initOnePage();
   });
