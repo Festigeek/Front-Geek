@@ -1558,9 +1558,15 @@ div.lan2017{
   -o-transition: 0.2s;
   transition: 0.2s;
 }
+div.intra_page {
+  h3{
+    margin-top: 1em;
+    font-size: 1.8em;
+  }
+}
 
 .ngdialog.ngdialog-theme-default .ngdialog-content {
-  width: 80% !important;
+  width: 50% !important;
 
   strong{
     font-weight: bold;
