@@ -38,7 +38,7 @@ angular
     BASE: '@@localURL',
     BASE_API: '@@apiURL'
   })
-  .constant('newsModal', 'inscriptions2017')
+  .constant('newsModal', 'intranet')
 
   // VARIABLES
   .value('duScrollEasing', function (t) { return t<0.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t;})
