@@ -1,8 +1,12 @@
-<div id="ngModal-header" class="intra_page">
+<div id="ngModal-header">
+  <button type="button" class="close" ng-click="closeModal()">&times;</button>
+  <br />
+</div>
+<div class="intra_page">
   <h2 class="text-center">Accédez à l'intranet</h2>
   <p class="text-center">Vous y trouverez les informations Toornament concernant vos tournois</p>
   <div class="text-center">
-    <a href="/#!/intra" class="btn btn-success close_modal" role="button">
+    <a href="/#!/intra" class="btn btn-success close_modal" role="button" ng-click="closeModal()">
       Accéder
     </a>
   </div>
