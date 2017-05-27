@@ -9,7 +9,7 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('MainCtrl', function ($window, $scope, $rootScope) {
+  .controller('MainCtrl', function ($window, $scope) {
 
     // Imported from 2016 One-Page site
 
