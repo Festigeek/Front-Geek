@@ -1769,10 +1769,6 @@ nav.navbar-fixed-top {
   background-color: white;
 }
 
-.purpleBGtxt{
-  color:white;
-}
-
 /*# sourceMappingURL=style.css.map */
 
 /**Team section*/
@@ -1883,6 +1879,10 @@ nav.navbar-fixed-top {
     height: 100%;
 }
 
+#laninfo {
+  height: 950px;
+}
+
 /* Text general */
 .txtjustify {
   text-align: justify;
@@ -1893,8 +1893,8 @@ nav.navbar-fixed-top {
   font-weight: 200;
 }
 
-#join {
-  padding-top: 12em;
+.font-white * {
+  color: white;
 }
 
 /* ngDialogs */
