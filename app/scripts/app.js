@@ -38,7 +38,7 @@ angular
     BASE: '@@localURL',
     BASE_API: '@@apiURL'
   })
-  .constant('newsModal', 'intranet')
+  //.constant('newsModal', 'intranet')
 
   // VARIABLES
   .value('duScrollEasing', function (t) { return t<0.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t;})
@@ -234,8 +234,8 @@ angular
     $httpProvider.interceptors.push('errorCatcher');
   })
 
-  // RUNNING CODE
-  .run(function($rootScope, $location, $state, urls, newsModal, checkServer, $auth, $trace, $localStorage, ngDialog, toastr, amMoment){
+  // RUNNING CODE //was removed: newsModal
+  .run(function($rootScope, $location, $state, urls, checkServer, $auth, $trace, $localStorage, ngDialog, toastr, amMoment){
     amMoment.changeLocale('fr-ch');
 
     /*
@@ -308,13 +308,13 @@ angular
       ngDialog.closeAll();
     };
 
-    $rootScope.openModal = function() {
-      if(newsModal !== null) {
-        $rootScope.dialog = ngDialog.open({
-          template: 'views/partials/news/' + newsModal + '.html'
-        });
-      }
-    };
+    // $rootScope.openModal = function() {
+    //   if(newsModal !== null) {
+    //     $rootScope.dialog = ngDialog.open({
+    //       template: 'views/partials/news/' + newsModal + '.html'
+    //     });
+    //   }
+    // };
 
     $rootScope.goInscriptions = function() {
       if($auth.isAuthenticated()) {
