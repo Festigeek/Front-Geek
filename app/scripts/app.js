@@ -97,28 +97,28 @@ angular
       return deferred.promise;
     }];
 
-    var previousOrder = ['$q', 'urls', '$location', '$auth', '$http', 'toastr', function ($q, urls, $location, $auth, $http, toastr) {
-      var deferred = $q.defer();
-
-      // TODO Fix 'undefined' in stateService.ts
-      $http.get(urls.BASE_API + '/users/me/orders')
-      .then(function(res){
-        if(res.data.length > 0) {
-          deferred.reject();
-          $location.path('/');
-          toastr.error('Vous avez déjà effectué votre inscription.');
-        }
-        else {
-          deferred.resolve();
-        }
-      })
-      .catch(function() {
-        deferred.reject();
-        $location.path('/');
-      });
-
-      return deferred.promise;
-    }];
+    // var previousOrder = ['$q', 'urls', '$location', '$auth', '$http', 'toastr', function ($q, urls, $location, $auth, $http, toastr) {
+    //   var deferred = $q.defer();
+    //
+    //   // TODO Fix 'undefined' in stateService.ts
+    //   $http.get(urls.BASE_API + '/users/me/orders')
+    //   .then(function(res){
+    //     if(res.data.length > 0) {
+    //       deferred.reject();
+    //       $location.path('/');
+    //       toastr.error('Vous avez déjà effectué votre inscription.');
+    //     }
+    //     else {
+    //       deferred.resolve();
+    //     }
+    //   })
+    //   .catch(function() {
+    //     deferred.reject();
+    //     $location.path('/');
+    //   });
+    //
+    //   return deferred.promise;
+    // }];
 
     // ROUTING
     $stateProvider
@@ -190,34 +190,34 @@ angular
           loginRequired: loginRequired
         }
       })
-      .state('inscriptions', {
-        url: '/inscriptions',
-        templateUrl: 'views/inscriptions.html',
-        controller: 'InscriptionCtrl',
-        redirectTo: 'inscriptions.infos',
-        resolve: {
-          serverRequired: serverRequired,
-          loginRequired: loginRequired,
-          previousOrder: previousOrder
-        }
-      })
-      .state('inscriptions.infos', {
-        url: '/infos',
-        templateUrl: 'views/partials/inscriptions_infos.html'
-      })
-      .state('inscriptions.games', {
-        url: '/games',
-        templateUrl: 'views/partials/inscriptions_games.html'
-      })
-      .state('inscriptions.payment', {
-        url: '/payment',
-        templateUrl: 'views/partials/inscriptions_payment.html'
-      })
-      .state('checkout', {
-        url: '/checkout?state',
-        templateUrl: 'views/checkout.html',
-        controller: 'CheckoutCtrl'
-      })
+      // .state('inscriptions', {
+      //   url: '/inscriptions',
+      //   templateUrl: 'views/inscriptions.html',
+      //   controller: 'InscriptionCtrl',
+      //   redirectTo: 'inscriptions.infos',
+      //   resolve: {
+      //     serverRequired: serverRequired,
+      //     loginRequired: loginRequired,
+      //     previousOrder: previousOrder
+      //   }
+      // })
+      // .state('inscriptions.infos', {
+      //   url: '/infos',
+      //   templateUrl: 'views/partials/inscriptions_infos.html'
+      // })
+      // .state('inscriptions.games', {
+      //   url: '/games',
+      //   templateUrl: 'views/partials/inscriptions_games.html'
+      // })
+      // .state('inscriptions.payment', {
+      //   url: '/payment',
+      //   templateUrl: 'views/partials/inscriptions_payment.html'
+      // })
+      // .state('checkout', {
+      //   url: '/checkout?state',
+      //   templateUrl: 'views/checkout.html',
+      //   controller: 'CheckoutCtrl'
+      // })
       .state('infolan', {
         url: '/infolan',
         templateUrl: 'views/infolan.html',
