@@ -38,7 +38,7 @@ angular
     BASE: '@@localURL',
     BASE_API: '@@apiURL'
   })
-  .constant('newsModal', 'intranet')
+  //.constant('newsModal', 'intranet')
 
   // VARIABLES
   .value('duScrollEasing', function (t) { return t<0.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t;})
@@ -97,28 +97,28 @@ angular
       return deferred.promise;
     }];
 
-    var previousOrder = ['$q', 'urls', '$location', '$auth', '$http', 'toastr', function ($q, urls, $location, $auth, $http, toastr) {
-      var deferred = $q.defer();
-
-      // TODO Fix 'undefined' in stateService.ts
-      $http.get(urls.BASE_API + '/users/me/orders')
-      .then(function(res){
-        if(res.data.length > 0) {
-          deferred.reject();
-          $location.path('/');
-          toastr.error('Vous avez déjà effectué votre inscription.');
-        }
-        else {
-          deferred.resolve();
-        }
-      })
-      .catch(function() {
-        deferred.reject();
-        $location.path('/');
-      });
-
-      return deferred.promise;
-    }];
+    // var previousOrder = ['$q', 'urls', '$location', '$auth', '$http', 'toastr', function ($q, urls, $location, $auth, $http, toastr) {
+    //   var deferred = $q.defer();
+    //
+    //   // TODO Fix 'undefined' in stateService.ts
+    //   $http.get(urls.BASE_API + '/users/me/orders')
+    //   .then(function(res){
+    //     if(res.data.length > 0) {
+    //       deferred.reject();
+    //       $location.path('/');
+    //       toastr.error('Vous avez déjà effectué votre inscription.');
+    //     }
+    //     else {
+    //       deferred.resolve();
+    //     }
+    //   })
+    //   .catch(function() {
+    //     deferred.reject();
+    //     $location.path('/');
+    //   });
+    //
+    //   return deferred.promise;
+    // }];
 
     // ROUTING
     $stateProvider
@@ -190,34 +190,34 @@ angular
           loginRequired: loginRequired
         }
       })
-      .state('inscriptions', {
-        url: '/inscriptions',
-        templateUrl: 'views/inscriptions.html',
-        controller: 'InscriptionCtrl',
-        redirectTo: 'inscriptions.infos',
-        resolve: {
-          serverRequired: serverRequired,
-          loginRequired: loginRequired,
-          previousOrder: previousOrder
-        }
-      })
-      .state('inscriptions.infos', {
-        url: '/infos',
-        templateUrl: 'views/partials/inscriptions_infos.html'
-      })
-      .state('inscriptions.games', {
-        url: '/games',
-        templateUrl: 'views/partials/inscriptions_games.html'
-      })
-      .state('inscriptions.payment', {
-        url: '/payment',
-        templateUrl: 'views/partials/inscriptions_payment.html'
-      })
-      .state('checkout', {
-        url: '/checkout?state',
-        templateUrl: 'views/checkout.html',
-        controller: 'CheckoutCtrl'
-      })
+      // .state('inscriptions', {
+      //   url: '/inscriptions',
+      //   templateUrl: 'views/inscriptions.html',
+      //   controller: 'InscriptionCtrl',
+      //   redirectTo: 'inscriptions.infos',
+      //   resolve: {
+      //     serverRequired: serverRequired,
+      //     loginRequired: loginRequired,
+      //     previousOrder: previousOrder
+      //   }
+      // })
+      // .state('inscriptions.infos', {
+      //   url: '/infos',
+      //   templateUrl: 'views/partials/inscriptions_infos.html'
+      // })
+      // .state('inscriptions.games', {
+      //   url: '/games',
+      //   templateUrl: 'views/partials/inscriptions_games.html'
+      // })
+      // .state('inscriptions.payment', {
+      //   url: '/payment',
+      //   templateUrl: 'views/partials/inscriptions_payment.html'
+      // })
+      // .state('checkout', {
+      //   url: '/checkout?state',
+      //   templateUrl: 'views/checkout.html',
+      //   controller: 'CheckoutCtrl'
+      // })
       .state('infolan', {
         url: '/infolan',
         templateUrl: 'views/infolan.html',
@@ -234,8 +234,8 @@ angular
     $httpProvider.interceptors.push('errorCatcher');
   })
 
-  // RUNNING CODE
-  .run(function($rootScope, $location, $state, urls, newsModal, checkServer, $auth, $trace, $localStorage, ngDialog, toastr, amMoment){
+  // RUNNING CODE //was removed: newsModal
+  .run(function($rootScope, $location, $state, urls, checkServer, $auth, $trace, $localStorage, ngDialog, toastr, amMoment){
     amMoment.changeLocale('fr-ch');
 
     /*
@@ -308,13 +308,13 @@ angular
       ngDialog.closeAll();
     };
 
-    $rootScope.openModal = function() {
-      if(newsModal !== null) {
-        $rootScope.dialog = ngDialog.open({
-          template: 'views/partials/news/' + newsModal + '.html'
-        });
-      }
-    };
+    // $rootScope.openModal = function() {
+    //   if(newsModal !== null) {
+    //     $rootScope.dialog = ngDialog.open({
+    //       template: 'views/partials/news/' + newsModal + '.html'
+    //     });
+    //   }
+    // };
 
     $rootScope.goInscriptions = function() {
       if($auth.isAuthenticated()) {

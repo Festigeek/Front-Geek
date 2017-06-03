@@ -178,7 +178,7 @@ figure {
 }
 
 @media screen and (max-width: 768px) {
-  .fh5co-cover,
+  .fh5co-cover
   .fh5co-hero {
     height: 700px;
   }
@@ -1769,10 +1769,6 @@ nav.navbar-fixed-top {
   background-color: white;
 }
 
-.purpleBGtxt{
-  color:white;
-}
-
 /*# sourceMappingURL=style.css.map */
 
 /**Team section*/
@@ -1874,6 +1870,85 @@ nav.navbar-fixed-top {
   background-size: 1920px;
 }
 
+.div-home {
+  position: relative;
+}
+
+.full-bg-overlay {
+  position: absolute !important;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  margin-top: -6px;
+  /*background: rgba(66, 64, 64, 0.9);*/
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.vid-ruben {
+  position: absolute;
+  top: 45%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 12px 0;
+  z-index: 10;
+}
+
+.vid-ruben h2 {
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-size: 60px;
+  color: white;
+}
+
+.vid-ruben span {
+  display: block;
+  margin-bottom: 30px;
+  font-size: 28px;
+  letter-spacing: 1px;
+  color: white;
+}
+
+.fullscreen-bg {
+  min-height: 420px;
+  overflow: hidden;
+}
+
+.fullscreen-bg__video {
+  width: 100%;
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .fullscreen-bg__video {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .fullscreen-bg {
+    background: url(../images/backgroundtest1_old.jpg) center center / cover no-repeat;
+  }
+
+  .fullscreen-bg__video {
+    display: none;
+  }
+}
+
+#laninfo {
+  height: 950px;
+
+  h2, h4 {
+    color: white;
+  }
+  h2 {
+    font-size: 40pt;
+  }
+}
+
 /* Text general */
 .txtjustify {
   text-align: justify;
@@ -1882,6 +1957,10 @@ nav.navbar-fixed-top {
 .abouttitle {
   color: #5c46a4;
   font-weight: 200;
+}
+
+.font-white * {
+  color: white;
 }
 
 /* ngDialogs */
@@ -2040,7 +2119,6 @@ nav.moveMenu {
   }
 
   nav.navbar-fixed-top {
-    top: 70px;
     z-index: 97;
   }
 
