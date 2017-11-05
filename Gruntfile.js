@@ -289,7 +289,7 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/**/*.html'],
+      html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       js: ['<%= yeoman.dist %>/scripts/{,*/}*.js'],
       options: {
@@ -308,27 +308,27 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-    cssmin: {
-      dist: {
-        files: {
-          '<%= yeoman.dist %>/styles/main.css': [
-            '.tmp/styles/{,*/}*.css'
-          ]
-        }
-      }
-    },
-    uglify: {
-      dist: {
-        files: {
-          '<%= yeoman.dist %>/scripts/scripts.js': [
-            '<%= yeoman.dist %>/scripts/scripts.js'
-          ]
-        }
-      }
-    },
-    concat: {
-      dist: {}
-    },
+    // cssmin: {
+    //   dist: {
+    //     files: {
+    //       '<%= yeoman.dist %>/styles/main.css': [
+    //         '.tmp/styles/{,*/}*.css'
+    //       ]
+    //     }
+    //   }
+    // },
+    // uglify: {
+    //   dist: {
+    //     files: {
+    //       '<%= yeoman.dist %>/scripts/scripts.js': [
+    //         '<%= yeoman.dist %>/scripts/scripts.js'
+    //       ]
+    //     }
+    //   }
+    // },
+    // concat: {
+    //   dist: {}
+    // },
 
     imagemin: {
       dist: {
@@ -336,7 +336,8 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.app %>/images',
           src: '{,*/}*.{png,jpg,jpeg,gif}',
-          dest: '<%= yeoman.dist %>/images'
+          dest: '<%= yeoman.dist %>/images',
+          flatten: true
         }]
       }
     },
@@ -426,8 +427,8 @@ module.exports = function (grunt) {
         }, {
           expand: true,
           cwd: '.tmp/images',
-          dest: '<%= yeoman.dist %>/images',
-          src: ['generated/*']
+          src: ['generated/*'],
+          dest: '<%= yeoman.dist %>/images'
         }, {
           expand: true,
           cwd: '<%= yeoman.app %>/assets',
@@ -518,6 +519,19 @@ module.exports = function (grunt) {
           dest: '.tmp/scripts/'
         }]
       }
+    },
+
+    // Execute ruby script
+    run: {
+      ruby_script: {
+        options: {
+          wait: false
+        },
+        cmd: 'ruby',
+        args: [
+          'replace_path.rb'
+        ]
+      }
     }
   });
 
@@ -578,10 +592,11 @@ BUILD ONLY:
     'copy:dist',
     'cdnify',
     'cssmin',
-    // 'uglify',
+    'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'run:ruby_script'
   ]);
 
   grunt.registerTask('default', [

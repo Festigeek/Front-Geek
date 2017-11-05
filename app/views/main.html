@@ -62,8 +62,8 @@
   <div class="full-bg-overlay"></div>
   <div class="fullscreen-bg">
     <video loop muted autoplay class="fullscreen-bg__video">
-      <source src="/assets/videos/vid_site.webm" type="video/webm" />
-      <source src="/assets/videos/vid_site.mp4" type="video/mp4" />
+      <source src="assets/videos/vid_site.webm" type="video/webm" />
+      <source src="assets/videos/vid_site.mp4" type="video/mp4" />
     </video>
     <div class="vid-ruben">
       <h2><strong>Festigeek</strong></h2>
@@ -193,7 +193,7 @@
           </div>
         </div>
         <div class="col-md-4 text-center teamitem">
-          <img class="teampicture" src="images/team/pa_curty.jpg" alt="Anastasia Zharkova">
+          <img class="teampicture" src="images/team/pa_curty.jpg" alt="Pierre-Alain Curty">
           <h4>Pierre-Alain Curty</h4>
           <div class="teamtitle">
             <p><strong>Vice Président</strong></p>
@@ -479,6 +479,7 @@
         <img class="smallimg" src="./images/partenaires/csgtv.png" alt="CSG-TV">
       </div>
       <div class="col-md-4 col-sponsopartners">
+        <img class="smallimg" src="./images/partenaires/nexus_team.png" alt="Nexus Team">
       </div>
       <div class="col-md-4 col-sponsopartners">
         <img class="smallimg" src="./images/partenaires/ggc.png" alt="GGC">
@@ -551,7 +552,7 @@
     </div>
 
     <div class="container text-center">
-      <a href="https://discord.gg/QQ2KEUY" target="_blank">
+      <a href="https://discord.gg/festigeek" target="_blank">
         <img alt="logo discord" src="images/Discord-Logo-Wordmark-Color.png" />
       </a>
     </div>
@@ -559,10 +560,12 @@
     <hr />
 
     <div class="container" id="contact_container">
+<!--
       <div id="overlay_travaux">
         <img src="images/engineer_tf2.png" alt="Hey buddy, I'm an engineer" />
       </div>
-      <form id="contact-form" method="post" action="contact.php">
+-->
+      <form id="contact-form" method="post" action="https://formspree.io/info@festigeek.ch">
 
         <div class="messages"></div>
 
@@ -591,7 +594,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="form_email">Email *</label>
-                <input id="form_email" type="email" name="email" class="form-control"
+                <input id="form_email" type="email" name="_replyto" class="form-control"
                        placeholder="Votre adresse mail *" required="required"
                        data-error="Adresse mail obligatoire.">
                 <div class="help-block with-errors"></div>
@@ -616,16 +619,15 @@
                 <div class="help-block with-errors"></div>
               </div>
             </div>
+<!--
             <div class="col-md-12">
               <div class="form-group">
-                <div class="g-recaptcha"
-                     data-sitekey="6LckHAQTAAAAAP2J4hfX7AvLwhB132mkJsV9VR_X"></div>
+                <div class="g-recaptcha" data-sitekey="6LckHAQTAAAAAP2J4hfX7AvLwhB132mkJsV9VR_X"></div>
               </div>
             </div>
+-->
             <div class="col-md-12">
-              <!--
               <input type="submit" class="btn btn-success btn-send" value="Envoyer">
-              -->
             </div>
           </div>
           <div class="row">

@@ -42,5 +42,8 @@
   },
   "scripts": {
     "test": "grunt test"
+  },
+  "dependencies": {
+    "grunt-run": "^0.8.0"
   }
 }
