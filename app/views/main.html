@@ -566,6 +566,7 @@
       </div>
 -->
       <form id="contact-form" method="post" action="https://formspree.io/info@festigeek.ch">
+        <input type="hidden" name="_subject" value="Formulaire du site Festigeek" />
 
         <div class="messages"></div>
 
@@ -574,7 +575,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="form_name">Nom *</label>
-                <input id="form_name" type="text" name="lastname" class="form-control"
+                <input id="form_name" type="text" name="Nom" class="form-control"
                        placeholder="Votre nom *" required="required"
                        data-error="Nom obligatoire.">
                 <div class="help-block with-errors"></div>
@@ -583,7 +584,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="form_lastname">Prénom *</label>
-                <input id="form_lastname" type="text" name="firstname" class="form-control"
+                <input id="form_lastname" type="text" name="Prenom" class="form-control"
                        placeholder="Votre prénom *" required="required"
                        data-error="Prénom obligatoire.">
                 <div class="help-block with-errors"></div>
@@ -603,7 +604,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="form_phone">Téléphone</label>
-                <input id="form_phone" type="tel" name="phone" class="form-control"
+                <input id="form_phone" type="tel" name="Telephone" class="form-control"
                        placeholder="Numéro de téléphone (facultatif)">
                 <div class="help-block with-errors"></div>
               </div>
@@ -613,7 +614,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label for="form_message">Message *</label>
-                <textarea id="form_message" name="message" class="form-control"
+                <textarea id="form_message" name="Message" class="form-control"
                           placeholder="Votre message... *" rows="4" required="required"
                           data-error="Message obligatoire."></textarea>
                 <div class="help-block with-errors"></div>
@@ -644,4 +645,6 @@
 </div>
 
 <!-- ReCaptcha -->
+<!--
 <script src='https://www.google.com/recaptcha/api.js'></script>
+-->
