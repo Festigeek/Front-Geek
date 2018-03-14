@@ -38,6 +38,12 @@
                 Infos joueur
               </a>
             </li>
+            <li>
+              <a href="" data-toggle="pill" ng-click="subPage = 4">
+                <fa name="users"></fa>
+                Gestion d'équipe
+              </a>
+            </li>
           </ul>
         </div>
         <!-- END MENU -->
@@ -55,8 +61,7 @@
           <h4>Inscrit depuis le {{ user.created_at | amDateFormat: 'DD MMM YYYY' }}.</h4>
           <!-- .split(' ')[0] | date: 'dd MMM yyyy'  -->
           <p>
-            Les informations ci-dessous ne sont actuellement pas modifiables.<br />
-            Contactez <a href="mailto:info@festigeek.ch">info@festigeek.ch</a> en cas d'erreur.
+            Les informations ci-dessous ne sont actuellement pas modifiables.<br /> Contactez <a href="mailto:info@festigeek.ch">info@festigeek.ch</a> en cas d'erreur.
           </p>
         </div>
 
@@ -82,8 +87,7 @@
         <h3>Coordonnées</h3>
         <p class="form-inline">
           <label for="man_field">M.</label>
-          <input type="radio" for="man_field" value="M" ng-model="user.gender">
-          &nbsp;
+          <input type="radio" for="man_field" value="M" ng-model="user.gender"> &nbsp;
           <label for="woman_field">Mme</label>
           <input type="radio" for="woman_field" value="F" ng-model="user.gender">
         </p>
@@ -109,8 +113,7 @@
         </div>
 
         <label for="country_field">Pays</label>
-        <select class="form-control" id="country_field" ng-model="user.country_id"
-                ng-options="c.id as c.name for c in countries"></select>
+        <select class="form-control" id="country_field" ng-model="user.country_id" ng-options="c.id as c.name for c in countries"></select>
 
         <br />
         <a ng-click="updateUser()" role="button" class="btn btn-success">Mettre à jour</a>
@@ -123,15 +126,34 @@
         <input type="text" class="form-control" id="lol_field" ng-model="user.lol_account" placeholder="Compte LoL">
 
         <label for="steam_field">SteamID</label>
-        <input type="text" class="form-control" id="steam_field" ng-model="user.steamID64" placeholder="SteamID64 (suite de chiffres)"
-               uib-tooltip-html="'Trouvez votre SteamID avec:<br /> &lt; <b><i>steam user { username }</i></b> &gt;<br /> sur notre serveur Discord !'"
-               tooltip-placement="top-left" tooltip-class="customClass">
+        <input type="text" class="form-control" id="steam_field" ng-model="user.steamID64" placeholder="SteamID64 (suite de chiffres)" uib-tooltip-html="'Trouvez votre SteamID avec:<br /> &lt; <b><i>steam user { username }</i></b> &gt;<br /> sur notre serveur Discord !'"
+          tooltip-placement="top-left" tooltip-class="customClass">
 
         <label for="battletag_field">Battle Tag</label>
         <input type="text" class="form-control" id="battletag_field" ng-model="user.battleTag" ng-pattern="/^\w{2,11}#[0-9]{4,5}$/i" placeholder="Battle Tag">
 
         <br />
         <a ng-click="updateUser()" role="button" class="btn btn-success">Mettre à jour</a>
+      </div>
+
+      <div class="form-group" ng-show="subPage == 4">
+        <h3>Gestion d'équipe</h3>
+        <p>
+          Vous êtes le capitaine de votre équipe {{team.name}}. Vous pouvez modifier le nom, les membres ainsi que le capitaine de votre équipe ici.
+        </p>
+        <table style="width:100%">
+          <tr>
+            <th>
+              Nom
+            </th>
+            <th>
+              Pseudo
+            </th>
+            <th>
+              Adresse Mail
+            </th>
+          </tr>
+        </table>
       </div>
     </div>
   </div>

@@ -16,6 +16,12 @@ angular.module('frontGeekApp')
         method: 'GET',
         params: { user_id: '@user_id' },
         isArray: true
+      },
+      'getTeam' : {
+        url: urls.BASE_API + '/orders/:order_id/team',
+        method: 'GET',
+        params: { order_id: '@order_id' },
+        isArray: true
       }
     });
 

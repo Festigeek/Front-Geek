@@ -21,11 +21,15 @@ angular.module('frontGeekApp')
       Order.getFromUser({ user_id: user.id }, function(orders) {
         $scope.orders = orders;
       });
+      Order.getTeam({ order_id: $scope.orders[0].id }, function(team) {
+        $scope.team = "test";
+      });
     });
 
     $scope.getTicket = function() {
       window.location.href = urls.BASE_API + '/orders/' + $scope.orders[0].id + '?format=pdf&token=' + $auth.getToken();
     };
+
 
     $scope.updateUser = function() {
       User.update($scope.user).$promise
