@@ -1913,9 +1913,10 @@ nav.navbar-fixed-top {
 .vid-ruben span {
   display: block;
   margin-bottom: 30px;
-  font-size: 28px;
+  font-size: 1.5em;
   letter-spacing: 1px;
   color: white;
+
 }
 
 .fullscreen-bg {
@@ -2210,6 +2211,17 @@ html.ngdialog-open, body.ngdialog-open {
 
 #missing h1 span {
   color: #bbb;
+}
+
+span.announcement {
+  font-size: 2em;
+}
+
+a.lanPartyLink{
+  color:white;
+}
+a.lanPartyLink:hover{
+  color:grey !important;
 }
 
 .toast-top-center {
