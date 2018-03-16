@@ -1,4 +1,4 @@
-DIST_FOLDER = __dir__ + "./dist"
+DIST_FOLDER = __dir__ + "/dist"
 
 # Found content script
 Dir.chdir(DIST_FOLDER + "/scripts/")
