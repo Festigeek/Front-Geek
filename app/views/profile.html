@@ -54,9 +54,9 @@
       <div class="form-group" ng-show="subPage == 1">
 
         <div class="alert alert-info">
-          <div class="pull-right ticket-button">
+          <!-- <div class="pull-right ticket-button">
             <a type="button" class="btn btn-success" ng-click="getTicket()">Ticket LAN 2017</a>
-          </div>
+          </div> -->
           <h2>News</h2>
           <h4>Inscrit depuis le {{ user.created_at | amDateFormat: 'DD MMM YYYY' }}.</h4>
           <!-- .split(' ')[0] | date: 'dd MMM yyyy'  -->
@@ -139,12 +139,20 @@
       <div class="form-group" ng-show="subPage == 4">
         <h3>Gestion d'équipe</h3>
         <p>
+          <!-- TODO NGIF -->
           Vous êtes le capitaine de votre équipe {{team.name}}. Vous pouvez modifier le nom, les membres ainsi que le capitaine de votre équipe ici.
         </p>
+        <p>
+          Voici la composition de ton équipe. Tu peux contacter le capitaine si tu souhaites y faire des changements.
+        </p>
+        <p>
+          Tu ne fais pas partie d'une équipe !
+        </p>
         <table style="width:100%">
+          <!-- TODO NGIF captain -->
           <tr>
             <th>
-              Nom
+              Nom et prénom
             </th>
             <th>
               Pseudo
@@ -152,6 +160,18 @@
             <th>
               Adresse Mail
             </th>
+          </tr>
+          <tr>
+            <!-- TODO for each user -->
+            <td>
+              Pittet Flavia
+            </td>
+            <td>
+              Flavz27
+            </td>
+            <td>
+              pittet.flavia@gmail.com
+            </td>
           </tr>
         </table>
       </div>
