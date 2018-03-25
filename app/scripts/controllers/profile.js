@@ -8,22 +8,33 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('ProfileCtrl', function (urls, $scope, $auth, $location, $localStorage, toastr, User, Country, Order) {
+  .controller('ProfileCtrl', function (urls, $scope, $auth, $location, $localStorage, toastr, User, Country, Order, Team) {
     $scope.subPage = 1;
 
     $scope.$storage = $localStorage;
     $scope.$storage.countries = ($scope.$storage.countries !== undefined) ? $scope.$storage.countries : Country.query();
     $scope.countries = $scope.$storage.countries;
     $scope.user = {};
+    $scope.updateTeam = {};
+    $scope.isCaptain = false;
 
     User.get({ id: 'me' }, function(user) {
       $scope.user = user;
       Order.getFromUser({ user_id: user.id }, function(orders) {
-        $scope.orders = orders;
+        $scope.orders = orders.filter((order)=>order.event_id == 2);
+        Team.getUserTeam({ order_id: $scope.orders[0].id }, function(team) {
+          $scope.team = team;
+          $scope.isCaptain = true;
+          if(team[0].users[0].email !== undefined){
+            console.log("in if email proterty");
+            $scope.isCaptain = true;
+          }
+
+
+        });
       });
-      Order.getTeam({ order_id: $scope.orders[0].id }, function(team) {
-        $scope.team = "test";
-      });
+
+
     });
 
     $scope.getTicket = function() {

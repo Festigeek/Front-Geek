@@ -17,7 +17,7 @@ angular.module('frontGeekApp')
         params: { event_id: '@event_id' },
         isArray: true
       }
-    })
+    });
     // Product service used to communicate with the product ressource of the API
     return Product;
   });

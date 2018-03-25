@@ -197,7 +197,7 @@ angular
         redirectTo: 'inscriptions.infos',
         resolve: {
           serverRequired: serverRequired,
-          loginRequired: loginRequired
+          loginRequired: loginRequired,
           previousOrder: previousOrder
         }
       })
