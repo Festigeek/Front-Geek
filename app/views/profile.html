@@ -38,6 +38,12 @@
                 Infos joueur
               </a>
             </li>
+            <li>
+              <a href="" data-toggle="pill" ng-click="subPage = 4">
+                <fa name="users"></fa>
+                LAN 2018
+              </a>
+            </li>
           </ul>
         </div>
         <!-- END MENU -->
@@ -48,15 +54,14 @@
       <div class="form-group" ng-show="subPage == 1">
 
         <div class="alert alert-info">
-          <div class="pull-right ticket-button">
+          <!-- <div class="pull-right ticket-button">
             <a type="button" class="btn btn-success" ng-click="getTicket()">Ticket LAN 2017</a>
-          </div>
+          </div> -->
           <h2>News</h2>
           <h4>Inscrit depuis le {{ user.created_at | amDateFormat: 'DD MMM YYYY' }}.</h4>
           <!-- .split(' ')[0] | date: 'dd MMM yyyy'  -->
           <p>
-            Les informations ci-dessous ne sont actuellement pas modifiables.<br />
-            Contactez <a href="mailto:info@festigeek.ch">info@festigeek.ch</a> en cas d'erreur.
+            Les informations ci-dessous ne sont actuellement pas modifiables.<br /> Contactez <a href="mailto:info@festigeek.ch">info@festigeek.ch</a> en cas d'erreur.
           </p>
         </div>
 
@@ -82,8 +87,7 @@
         <h3>Coordonnées</h3>
         <p class="form-inline">
           <label for="man_field">M.</label>
-          <input type="radio" for="man_field" value="M" ng-model="user.gender">
-          &nbsp;
+          <input type="radio" for="man_field" value="M" ng-model="user.gender"> &nbsp;
           <label for="woman_field">Mme</label>
           <input type="radio" for="woman_field" value="F" ng-model="user.gender">
         </p>
@@ -109,8 +113,7 @@
         </div>
 
         <label for="country_field">Pays</label>
-        <select class="form-control" id="country_field" ng-model="user.country_id"
-                ng-options="c.id as c.name for c in countries"></select>
+        <select class="form-control" id="country_field" ng-model="user.country_id" ng-options="c.id as c.name for c in countries"></select>
 
         <br />
         <a ng-click="updateUser()" role="button" class="btn btn-success">Mettre à jour</a>
@@ -123,15 +126,123 @@
         <input type="text" class="form-control" id="lol_field" ng-model="user.lol_account" placeholder="Compte LoL">
 
         <label for="steam_field">SteamID</label>
-        <input type="text" class="form-control" id="steam_field" ng-model="user.steamID64" placeholder="SteamID64 (suite de chiffres)"
-               uib-tooltip-html="'Trouvez votre SteamID avec:<br /> &lt; <b><i>steam user { username }</i></b> &gt;<br /> sur notre serveur Discord !'"
-               tooltip-placement="top-left" tooltip-class="customClass">
+        <input type="text" class="form-control" id="steam_field" ng-model="user.steamID64" placeholder="SteamID64 (suite de chiffres)" uib-tooltip-html="'Trouvez votre SteamID avec:<br /> &lt; <b><i>steam user { username }</i></b> &gt;<br /> sur notre serveur Discord !'"
+          tooltip-placement="top-left" tooltip-class="customClass">
 
         <label for="battletag_field">Battle Tag</label>
         <input type="text" class="form-control" id="battletag_field" ng-model="user.battleTag" ng-pattern="/^\w{2,11}#[0-9]{4,5}$/i" placeholder="Battle Tag">
 
         <br />
         <a ng-click="updateUser()" role="button" class="btn btn-success">Mettre à jour</a>
+      </div>
+
+      <div class="form-group" ng-show="subPage == 4">
+        <h3>Récapitulatif de ta commande</h3>
+        <!-- TODO if no order created for this event -> link to "inscription lan 2018" -->
+        <div ng-if="!orders[0]">
+          Tu ne t'es pas encore inscrit à cette LAN !
+          <button>Je veux m'inscrire !</button>
+        </div>
+        <div ng-if="orders[0]">
+          <p>
+            Tu as choisi de payer par
+            <strong ng-if="orders[0].payment_type_id == 1">virement bancaire</strong>
+            <strong ng-if="orders[0].payment_type_id == 0">paypal</strong>
+          </p>
+          <div class="alert alert-warning" role="alert" ng-if="orders[0].state == 0">
+            Le paiement de ta commande n'est pas encore validé. Si tu as dejà payé, attends que notre équipe valide ton paiement. Merci pour ta patience !
+          </div>
+          <div class="alert alert-success" role="alert" ng-if="orders[0].state == 1">
+            Ton paiement a été validé! Merci beaucoup!
+          </div>
+          <table style="width:100%">
+            <!-- TODO NGIF captain -->
+
+            <tr>
+              <th>
+                Produit
+              </th>
+              <th>
+                Prix
+              </th>
+              <th>
+                Quantité
+              </th>
+              <th>
+                Total
+              </th>
+            </tr>
+            <tr>
+              <tr ng-repeat="product in orders[0].products">
+                <td>
+                  {{product.name}}
+                </td>
+                <td>
+                  {{product.price}}
+                </td>
+                <td>
+                  {{product.pivot.amount}}
+                </td>
+                <td>
+                  {{product.price}} CHF
+                </td>
+              </tr>
+
+            </tr>
+          </table>
+        </div>
+
+        <h3>Gestion d'équipe</h3>
+
+        <div ng-if="team">
+          <div ng-if="team.isCaptain">
+            Vous êtes le capitaine de votre équipe {{team.name}}. Vous pouvez modifier le nom, les membres ainsi que le capitaine de votre équipe ici.
+          </div>
+          <div ng-if="!team.isCaptain">
+            Voici la composition de ton équipe. Tu peux contacter le capitaine si tu souhaites y faire des changements.
+          </div>
+
+        </div>
+        <div ng-if="!team">
+          Oh Zut ! Tu ne fais partie d'aucune équipe!
+        </div>
+
+        <table style="width:100%">
+          <tr ng-if="orders[0]">
+            <th ng-if="isCaptain">
+              Nom et prénom
+            </th>
+            <th>
+              Pseudo
+            </th>
+            <th ng-if="isCaptain">
+              Adresse Mail
+            </th>
+            <th>
+              Capitaine
+            </th>
+          </tr>
+
+          <tr ng-repeat="user in team[0].users">
+            <td>
+              {{user.lastname }} {{user.firstname }}
+            </td>
+            <td>
+              {{user.username }}
+            </td>
+            <td>
+              {{user.email }}
+            </td>
+            <td ng-if="user.captain">
+              <i class="fa fa-flag" aria-hidden="true" style="color:green;"></i>
+            </td>
+            <td ng-if="!user.captain">
+              <!-- TODO css button -->
+              <button type="button" class="btn btn-primary" ng-click="">Rendre capitaine</button>
+            </td>
+
+          </tr>
+        </table>
       </div>
     </div>
   </div>

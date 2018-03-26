@@ -45,7 +45,7 @@ angular.module('frontGeekApp')
     });
 
     $scope.existingTeams = Team.query({event_id: 1});
-    $scope.gameProducts = Product.query({type_id: 1}, function(){
+    $scope.gameProducts = Product.getProductsByEvent({type_id: 1, event_id: 2}, function(){
       $scope.gameProducts.map(function(gameProduct){
         gameProduct.available = gameProduct.quantity_max - gameProduct.sold;
       });
@@ -101,9 +101,10 @@ angular.module('frontGeekApp')
         }
 
         $scope.payload = {
-          event_id: 1,
+          event_id: 2,
           checked_legal: $scope.formData.consent.rules,
           team: (typeof $scope.formData.team.originalObject === 'object') ? $scope.formData.team.originalObject.name : $scope.formData.team.originalObject,
+
           products: productsList,
           data: JSON.stringify($scope.formData)
         };
@@ -114,7 +115,7 @@ angular.module('frontGeekApp')
     // Fonction permettant de soumettre la commande (inscription)
     $scope.postOrder = function(type) {
       ngDialog.openConfirm({
-        template: '<h3>L\'inscription est sur le point d\'être envoyée.</h3><p>Es-tu sûr que tout est bon ?</p><div class="ngdialog-buttons text-center"><button type="button" class="btn btn-success" ng-click="confirm(1)">Oui, c\'est partit !</button><button type="button" class="btn btn-danger" ng-click="closeThisDialog(0)">Non, attends !</button></div>',
+        template: '<h3>L\'inscription est sur le point d\'être envoyée.</h3><p>Es-tu sûr que tout est bon ?</p><div class="ngdialog-buttons text-center"><button type="button" class="btn btn-success" ng-click="confirm(1)">Oui, c\'est parti !</button><button type="button" class="btn btn-danger" ng-click="closeThisDialog(0)">Non, attends !</button></div>',
         plain: true
       }).then(function(){
         $scope.payload.payment_type_id = type;

@@ -3,11 +3,7 @@
 
   <div class="form-group">
     <h4 class="control-label minititle">Tournoi</h4>
-    <ui-select id="info_tournoi"
-               ng-model="formData.products.tournament"
-               theme="bootstrap"
-               title="Choix du tournoi"
-               required>
+    <ui-select id="info_tournoi" ng-model="formData.products.tournament" theme="bootstrap" title="Choix du tournoi" required>
       <ui-select-match placeholder="Sélectionnez ou cherchez un tournoi dans la liste...">{{ $select.selected.name }}</ui-select-match>
       <ui-select-choices position="down" repeat="game in gameProducts | filter: $select.search" ui-disable-choice="game.available == 0">
         <div ng-bind-html="game.name | highlight: $select.search"></div>
@@ -47,20 +43,28 @@
   <div class="clearfix"><br /></div>
   <hr class="separator">
   <h3>Infos Joueur</h3>
+  <div class="alert alert-warning" role="alert">
+    Vous avez la possibilité de créer ou rejoindre une équipe. Afin d'en rejoindre une, veuillez vous munir du code d'inscription.
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-6">
+      <label for="info_equipe"><i class="fa fa-plus-circle colored-icon" aria-hidden="true"></i> Créer une équipe</label>
+      <p>
+        Si tu crées une équipe, tu en seras le captitaine. Mais ne t'inquiète pas, tu pourras modifier ça après ton inscription. Par contre, tu devras communiquer le code d'invitation au reste de ton équipe pour qu'ils en fassent partie!
+      </p>
+      <div angucomplete-alt id="info_equipe" placeholder="Équipe" pause="100" local-data="existingTeams" search-fields="name" title-field="name" selected-object="formData.team" override-suggestions="true" minlength="1" input-class="form-control form-control-small">
+        <!--remote-url remote-url-data-field-->
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <label for="info_equipe"><i class="fa fa-sign-in colored-icon" aria-hidden="true"></i> Rejoindre une équipe</label>
+      <p>
+        Si quelqu'un de ton équipe en a deja créé une, tu peux entrer le code d'inscription qui t'a été transmis et rejoindre tes amis!
+      </p>
+      <input type="text" class="form-control" placeholder="Code d'activation" ng-model="formData.team_code" name="team_code" id="team_code" required/>
+      <!-- TODO test id before sending payload and only allow one (create or join)--->
+    </div>
 
-  <div class="form-group">
-    <label for="info_equipe">Nom de mon équipe</label>
-    <div angucomplete-alt
-         id="info_equipe"
-         placeholder="Équipe"
-         pause="100"
-         local-data="existingTeams"
-         search-fields="name"
-         title-field="name"
-         selected-object="formData.team"
-         override-suggestions="true"
-         minlength="1"
-         input-class="form-control form-control-small"><!--remote-url remote-url-data-field--></div>
   </div>
 
   <div class="form-group">
@@ -70,14 +74,13 @@
         <input type="text" class="form-control" placeholder="BattleTag" name="battleTag" id="info_battleTag" ng-maxlength="20" ng-model="infosUser.battleTag" ng-pattern="/^\w{2,11}#[0-9]{4,5}$/i" />
       </div>
       <div class="col-sm-4" ng-show="viewLoL()">
-        <label for="info_Lol" >Compte LoL</label>
+        <label for="info_Lol">Compte LoL</label>
         <input type="text" class="form-control" placeholder="Compte League of Legends" name="lol" id="info_Lol" ng-maxlength="20" ng-model="infosUser.lol_account" />
       </div>
       <div class="col-sm-4" ng-show="viewSteamID()">
         <label for="steam_field">Compte Steam</label>
-        <input type="text" class="form-control" id="steam_field" ng-model="infosUser.steamID64" placeholder="SteamID64 (suite de chiffres)"
-               uib-tooltip-html="'Trouvez votre SteamID avec:<br /> &lt; <b><i>steam user { username }</i></b> &gt;<br /> sur notre serveur Discord !'"
-               tooltip-placement="top-left" tooltip-class="customClass" />
+        <input type="text" class="form-control" id="steam_field" ng-model="infosUser.steamID64" placeholder="SteamID64 (suite de chiffres)" uib-tooltip-html="'Trouvez votre SteamID avec:<br /> &lt; <b><i>steam user { username }</i></b> &gt;<br /> sur notre serveur Discord !'"
+          tooltip-placement="top-left" tooltip-class="customClass" />
       </div>
     </div>
   </div>
