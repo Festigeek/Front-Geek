@@ -21,16 +21,14 @@ angular.module('frontGeekApp')
     User.get({ id: 'me' }, function(user) {
       $scope.user = user;
       Order.getFromUser({ user_id: user.id }, function(orders) {
-        $scope.orders = orders.filter((order)=>order.event_id == 2);
+        $scope.orders = orders.filter(function(order) {return order.event_id === 2;});
         Team.getUserTeam({ order_id: $scope.orders[0].id }, function(team) {
           $scope.team = team;
-          $scope.isCaptain = true;
+          $scope.isCaptain = false;
           if(team[0].users[0].email !== undefined){
-            console.log("in if email proterty");
+            console.log('in if email proterty');
             $scope.isCaptain = true;
           }
-
-
         });
       });
 
@@ -40,6 +38,18 @@ angular.module('frontGeekApp')
     $scope.getTicket = function() {
       window.location.href = urls.BASE_API + '/orders/' + $scope.orders[0].id + '?format=pdf&token=' + $auth.getToken();
     };
+
+    // $scope.copyCode = function() {
+    //   var $temp = $("h3");
+    //   $("body").append($temp);
+    //   $temp.val($(element).text()).select();
+    //   document.execCommand("copy");
+    //   $temp.remove();
+    //
+    //   toastr.success('Code copié dans le presse papier');
+    //
+    //   console.log("click!")
+    // }
 
 
     $scope.updateUser = function() {

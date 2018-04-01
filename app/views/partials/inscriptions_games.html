@@ -61,7 +61,15 @@
       <p>
         Si quelqu'un de ton équipe en a deja créé une, tu peux entrer le code d'inscription qui t'a été transmis et rejoindre tes amis!
       </p>
-      <input type="text" class="form-control" placeholder="Code d'activation" ng-model="formData.team_code" name="team_code" id="team_code" required/>
+      <div class="row">
+        <div class="col-sm-8">
+          <input type="text" class="form-control" placeholder="Code d'activation" ng-model="formData.team_code" name="team_code" id="team_code" required/>
+        </div>
+        <div class="col-sm-4">
+          <button type="button" class="btn btn-primary" ng-click="testTeamCode()">Vérifier le code</button>
+        </div>
+      </div>
+
       <!-- TODO test id before sending payload and only allow one (create or join)--->
     </div>
 

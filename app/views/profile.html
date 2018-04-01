@@ -137,11 +137,11 @@
       </div>
 
       <div class="form-group" ng-show="subPage == 4">
-        <h3>Récapitulatif de ta commande</h3>
+        <h3 class="titlelan">Récapitulatif de ta commande</h3>
         <!-- TODO if no order created for this event -> link to "inscription lan 2018" -->
         <div ng-if="!orders[0]">
           Tu ne t'es pas encore inscrit à cette LAN !
-          <button>Je veux m'inscrire !</button>
+          <button type="button" class="btn btn-primary"><a href="#!/inscriptions">Je veux m'inscrire !</a></button>
         </div>
         <div ng-if="orders[0]">
           <p>
@@ -156,7 +156,6 @@
             Ton paiement a été validé! Merci beaucoup!
           </div>
           <table style="width:100%">
-            <!-- TODO NGIF captain -->
 
             <tr>
               <th>
@@ -178,7 +177,7 @@
                   {{product.name}}
                 </td>
                 <td>
-                  {{product.price}}
+                  {{product.price}} CHF
                 </td>
                 <td>
                   {{product.pivot.amount}}
@@ -192,18 +191,18 @@
           </table>
         </div>
 
-        <h3>Gestion d'équipe</h3>
+        <h3 class="titlelan">Gestion d'équipe</h3>
 
         <div ng-if="team">
-          <div ng-if="team.isCaptain">
-            Vous êtes le capitaine de votre équipe {{team.name}}. Vous pouvez modifier le nom, les membres ainsi que le capitaine de votre équipe ici.
+          <div class="alert alert-info" role="alert" ng-if="isCaptain">
+            Tu es le capitaine de votre équipe <strong>{{team[0].name}}</strong>. Tu peux modifier le nom, les membres ainsi que le capitaine de ton équipe ici.
           </div>
-          <div ng-if="!team.isCaptain">
-            Voici la composition de ton équipe. Tu peux contacter le capitaine si tu souhaites y faire des changements.
+          <div class="alert alert-info" role="alert" ng-if="!isCaptain">
+            Voici la composition de ton équipe <strong>{{team[0].name}}</strong>. Tu peux contacter le capitaine si tu souhaites y faire des changements.
           </div>
 
         </div>
-        <div ng-if="!team">
+        <div class="alert alert-info" role="alert" ng-if="!team">
           Oh Zut ! Tu ne fais partie d'aucune équipe!
         </div>
 
@@ -224,14 +223,14 @@
           </tr>
 
           <tr ng-repeat="user in team[0].users">
-            <td>
-              {{user.lastname }} {{user.firstname }}
+            <td ng-if="isCaptain">
+              {{user.lastname}} {{user.firstname}}
             </td>
             <td>
-              {{user.username }}
+              {{user.username}}
             </td>
-            <td>
-              {{user.email }}
+            <td ng-if="isCaptain">
+              {{user.email}}
             </td>
             <td ng-if="user.captain">
               <i class="fa fa-flag" aria-hidden="true" style="color:green;"></i>
@@ -243,6 +242,17 @@
 
           </tr>
         </table>
+        <div ng-if="isCaptain" class="invitetoteam row">
+          <div class="col-sm-6">
+            <p> Pour inviter des participants, transmet leur ce code: </p>
+          </div>
+
+          <div class="col-sm-6 text-right">
+            <h3 id="teamcode">{{team[0].code}}</h3>
+            <!-- <button ng-click="copyCode()" type="button" class="btn btn-primary">Copier le code</button> -->
+          </div>
+
+        </div>
       </div>
     </div>
   </div>

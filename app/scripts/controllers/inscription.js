@@ -44,7 +44,7 @@ angular.module('frontGeekApp')
       }
     });
 
-    $scope.existingTeams = Team.query({event_id: 1});
+    $scope.existingTeams = Team.query({event_id: 2});
     $scope.gameProducts = Product.getProductsByEvent({type_id: 1, event_id: 2}, function(){
       $scope.gameProducts.map(function(gameProduct){
         gameProduct.available = gameProduct.quantity_max - gameProduct.sold;
@@ -75,6 +75,22 @@ angular.module('frontGeekApp')
 
     $scope.viewSteamID = function(){
       return $scope.formData.products.tournament.name === 'Counter-Strike: GO';
+    };
+
+    //fonction vérifiant le code d'équipe avant l'envoi du formulaire
+    $scope.testTeamCode = function(){
+      //TODO problem with callback, not going into the exception
+      $scope.teamCodeResult = Team.testCode({event_id: 2, team_code: $scope.formData.team_code}, function(name){
+        //callback
+        console.log(team)
+        $scope.teamCodeResult.name = name;
+          console.log('outside if', $scope.teamCodeResult);
+        if($scope.teamCodeResult.data.error !== undefined){
+          $scope.teamCodeResult.name = 'Aucune équipe n\'a été trouvée avec ce code';
+          console.log('dans le if erreur', $scope.teamCodeResult);
+        }
+      });//resource, modèle
+      console.log($scope.teamCodeResult);
     };
 
     // Fonction s'assurant que le formulaire d'inscription est complet
