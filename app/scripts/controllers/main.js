@@ -12,7 +12,6 @@ angular.module('frontGeekApp')
   .controller('MainCtrl', function ($window, $scope) {
 
     // Imported from 2016 One-Page site
-
     $scope.parallax = function() {
       $(window).stellar();
     };
@@ -38,13 +37,13 @@ angular.module('frontGeekApp')
         }
       };
 
-      for (var i = 0; i < elements.length; i++) {
+      /*for (var i = 0; i < elements.length; i++) {
         new $window.Waypoint({
           element: elements[i],
           handler: waypointAction,
           offset: '85%'
         });
-      }
+      }*/
     };
 
     /*

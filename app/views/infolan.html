@@ -1,8 +1,204 @@
-<div class="top-padding"></div>
+<nav id="mainNav" ng-class="['navbar', 'navbar-default', 'navbar-fixed-top', {'moveMenu': isAuthenticated()}]" data-spy="affix" data-offset-top="100">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navigationbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" id="logofg" href="/">
+        <img src="images/logo.png" alt="Logo Festigeek"/>
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navigationbar">
+      <ul du-spy-context class="nav navbar-nav fg-menu" id="fh5co-primary-menu">
+        <li class="lan2018_menu active"><a href="#!/infolan" style="color:white">LAN 2018</a></li>
+        <li du-scrollspy="home"><a href="#home" du-smooth-scroll>Accueil</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" data-target=".dropdown-menu-about" href="">
+            A propos <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-about">
+            <li du-scrollspy="events"><a href="#about" class="close-dropdown-about" du-smooth-scroll>L'association</a></li>
+            <li du-scrollspy="events"><a href="#team" class="close-dropdown-about" du-smooth-scroll>L'équipe</a></li>
+            <li role="separator" class="fg-divider"></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" data-target=".dropdown-menu-event" href="">
+            Events <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-event">
+            <li du-scrollspy="events"><a href="#events" class="close-dropdown-event" du-smooth-scroll>Les événements</a></li>
+            <li du-scrollspy="laninfo"><a href="#laninfo" class="close-dropdown-event" du-smooth-scroll>LAN 2018</a></li>
+            <li role="separator" class="fg-divider"></li>
+          </ul>
+        </li>
+        <li du-scrollspy="join"><a href="#join" du-smooth-scroll>Nous rejoindre</a></li>
+        <li du-scrollspy="sponsors"><a href="#sponsors" du-smooth-scroll>Devenir sponsor</a></li>
+        <li du-scrollspy="contact"><a href="#contact" du-smooth-scroll>Contact</a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+<nav id="subNav">
+  <ul du-spy-context>
+    <li du-scrollspy="home" du-smooth-scroll="home"><a href="#home" du-smooth-scroll>Accueil</a></li>
+    <li du-scrollspy="about" du-smooth-scroll="about"><a href="#about" du-smooth-scroll>L'association</a></li>
+    <li du-scrollspy="team" du-smooth-scroll="team"><a href="#team" du-smooth-scroll>L'équipe</a></li>
+    <li du-scrollspy="events" du-smooth-scroll="events"><a href="#events" du-smooth-scroll>Les événements</a></li>
+    <li du-scrollspy="laninfo" du-smooth-scroll="laninfo"><a href="#laninfo" du-smooth-scroll>LAN 2018</a></li>
+    <li du-scrollspy="join" du-smooth-scroll="join"><a href="#join" du-smooth-scroll>Nous rejoindre</a></li>
+    <li du-scrollspy="sponsors" du-smooth-scroll="sponsors"><a href="#sponsors" du-smooth-scroll>Devenir sponsor</a></li>
+    <li du-scrollspy="partenaires" du-smooth-scroll="partenaires"><a href="#partenaires" du-smooth-scroll>Nos partenaires</a></li>
+    <li du-scrollspy="contact" du-smooth-scroll="contact"><a href="#contact" du-smooth-scroll>Contact</a></li>
+  </ul>
+</nav>
 <div class="container infolan_page">
-  <h1>LAN 2018 - Tout ce qu'il faut savoir</h1>
-  <!--
-  <h3>Équipes inscrites à la LAN</h3>
+
+  <div class="row">
+    <img src="images/banner_website_infolan.png" style="width:100%"/>
+  </div>
+  <div class="row">
+      <h1>FestiGeek 2018</h1>
+    <div style="display: block;padding:0 40px 0 40px">
+      <p>Durant le week-end de l'ascension 2018, la 5ème édition de la LAN paty FestiGeek battra son plein. Nous vous proposons la même recette que chaque année; De la compétition, du fun, une ambiance décontractée et du partage.</p>
+      <p>Cette année, quatre jeux sont à l'honneur : <strong>League of Legends, Overwatch, Counter-strike:Global Offensive et Hearthstone</strong></p>
+    </div>
+  </div>
+  <div class="row sample-row" style="height:100px">
+      <div class="col-xs-12 col-sm-6 col-md-3 gutter-margin-xs-sm gutter-margin-sm-md" style="vertical-align: middle;height:100px;">
+        <div class="inner"><img src="images/logo_lol.png" alt="Logo CS:GO"/ style="width:200px;"></div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3 gutter-margin-xs-sm gutter-margin-sm-md" style="vertical-align: middle;height:100px;">
+        <div class="inner"><img src="images/logo_csgo.png" alt="Logo CS:GO"/ style="width:200px;"></div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3 gutter-margin-xs-sm gutter-margin-sm-md"style="vertical-align: middle;height:100px;">
+        <div class="inner"><img src="images/logo_overwatch.png" alt="Logo CS:GO"/ style="width:200px;"></div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3 gutter-margin-xs-sm gutter-margin-sm-md"style="vertical-align: middle;height:100px;">
+        <div class="inner"><img src="images/logo_hearthstone.png" alt="Logo CS:GO"/ style="width:200px;"></div>
+      </div>
+    </div>
+    <div class="row">
+        <div style="display: block;padding:0 40px 0 40px">
+        <p>Toutes les informations pratiques se trouvent sur cette page.</p>
+        <p>Rejoins nous sur notre serveur <a style="text-decoration:underline" href="https://discord.gg/festigeek" target="_blank">Discord</a> et sur <a style="text-decoration:underline" href="https://www.facebook.com/festigeek.yverdon/" target="_blank"><i class="icon-facebook2"></i> Facebook</a> pour ne rien louper ou si tu as des questions.</p>
+        <!--<div class="sub-main fh5co-section fg-section ng-scope" style="width:70%;margin:auto;text-align:center" >
+          <h2>Les inscriptions sont ouvertes ! </h2>
+          <button class="button-two-purple" onclick="location.href='#';" value="S'inscrire à la LAN"><span>INSCRIPTION</span></button>
+        </div>-->
+      </div>
+    </div>
+
+    <div class="row">
+<h1>FAQ</h1>
+<div class="topic">
+  <div class="open">
+    <h2 class="question">Quels sont les horaires ?</h2>
+    <span class="faq-t"></span>
+  </div>
+  <p class="answer"><strong>Ouverture des portes</strong> : vendredi 11 mai à 16h00</p>
+  <!-- <ul>
+  <li>Début tournois LOL: </li>
+  <li>Début tournois Overwatch: samedi 26 mai, 10:00</li>
+  <li>Début tournois CS:GO: </li> TODO quand on aura les horaires
+  </ul> -->
+  <p class="answer"><strong>Fin de l’événement </strong>: dimanche 13 mai vers 16h00</p>
+  <p class="answer" style="font-style:italic">Les tournois débutent le samedi matin à 9h00, les horaires précis vous seront délivrés sur place</p>
+</div>
+<div class="topic">
+  <div class="open">
+  <h2 class="question">Combien coute l'entrée ?
+</h2><span class="faq-t"></span>
+  </div>
+  <p class="answer">L’entrée comprend l’accès à la LAN durant les trois jours et la participation aux tournois</p>
+  <p class="answer"><strong>Prix plein</strong> : 20 CHF</p>
+  <p class="answer"><strong>Prix étudiant HEIG-VD</strong> : 15 CHF</p>
+  <p class="answer" style="font-style:italic">Gratuit pour les visiteurs</p>
+</div>
+<div class="topic">
+  <div class="open">
+  <h2 class="question">Où est-ce que ça se passe ?
+</h2><span class="faq-t"></span>
+  </div>
+  <p class="answer">La LAN se déroule dans la cafeteria de la HEIG-VD. Route de Cheseaux 1, 1400 Yverdon-les-Bains.</p>
+  <div class="text-center answer">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2496.8377871726734!2d6.657475065708191!3d46.77921012475021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xde00089bd6bf3f47!2sCaf%C3%A9t%C3%A9ria+L&#39;Orangeraie!5e0!3m2!1sfr!2sch!4v1494170323572" width="100%" height="300px" frameborder="0" style="border:0" allowfullscreen></iframe>
+  </div></div>
+<div class="topic">
+  <div class="open">
+  <h2 class="question">Comment accéder à la LAN ?
+</h2><span class="faq-t"></span>
+  </div>
+  <p class="answer"><strong>Voiture</strong></p>
+  <p class="answer">Un parkin gratuit est à votre disposition gratuitement durant l’entier du week-end, derrière le batiment de la HEIG-VD</p>
+  <p class="answer"><strong>Transports publiques</strong></p>
+  <p class="answer">Depuis la gare d’Yverdon-les-bains - Prendre le bus N°601 direction Gymnase. Arrêt “HEIG-VD”</p>
+  <p class="answer">Depuis la gare “Yverdon-Champ-Pittet” - Une marche d’environ 500m vous permet d’accéder au bâtiment de la HEIG-VD</p>
+</div>
+<div class="topic">
+  <div class="open">
+  <h2 class="question">Que dois-je apporter ?
+</h2><span class="faq-t"></span>
+  </div>
+  <p class="answer">Sur place, vous avez droit à deux prises pour brancher vos périphériques. Il est interdit d’apporter un multiprise supplémentaire.</p>
+  <ul class="answer" style="margin-left:20px">
+    <li>Ordinateur complet (écran+tour ou PC portable, clavier+souris, manette,…)</li>
+    <li>Un câble RJ-45</li>
+    <li>Sac de couchage / Matelas de sol si vous comptez dormir sur place</li>
+  </ul>
+  <p class="answer" style="font-style:italic">En cas de besoin, pensez à vous munir des drivers et logiciels d’installation de votre PC</p>
+</div>
+<div class="topic">
+    <div class="open">
+    <h2 class="question">Y a-t-il une restauration sur place ?
+  </h2><span class="faq-t"></span>
+    </div>
+    <p class="answer">Comme d’habitude, nos menus burgers sont présent ! Cette année, nous accueillerons également un partenaire culinaire afin de varier les plaisirs. </p>
+    <p class="answer">Des snacks, fruits, boissons et autres vous sont également proposés. </p>
+    <p class="answer">Un petit déjeuner vous sera également proposé, pour la modique somme de 5 CHF</p><br/>
+    <p class="answer"><strong>Horaires des cuisines</strong>> </p>
+    <p class="answer" style="font-style:italic">vendredi - samedi</p>
+    <p class="answer">18h00 - 20h00</p>
+    <p class="answer" style="font-style:italic">samedi - dimanche</p>
+    <p class="answer">12h00 - 14h00</p>
+    <p class="answer"><strong>Horaires petit déjeuner</strong></p>
+    <p class="answer" style="font-style:italic">vendredi - samedi</p>
+    <p class="answer">18h00 - 20h00</p>
+  </div>
+  <div class="topic">
+      <div class="open">
+      <h2 class="question">Puis-je dormir sur place ?
+    </h2><span class="faq-t"></span>
+      </div>
+      <p class="answer">Une salle sera mise à disposition exclusivement pour y dormir. Pensez à prendre de quoi vous installer confortablement, nous ne fournissons qu'un toit. Les matelas de sol gonflables sont autorisés, mais veuillez éviter les lits "king size".</p>
+  </div>
+  <div class="topic">
+      <div class="open">
+      <h2 class="question">Communications
+    </h2><span class="faq-t"></span>
+      </div>
+      <p class="answer">Durant la LAN, toutes les communications passeront par notre serveur Discord. </p>
+      <p class="answer">Rejoignez le serveur déjà maintenant, afin d’être au courant de toutes les informations nécessaires <strong>avant</strong> et <strong>pendant</strong> la LAN.  </p>
+  </div>
+  <div class="topic">
+      <div class="open">
+      <h2 class="question">Sécurité
+    </h2><span class="faq-t"></span>
+      </div>
+      <p class="answer">L'accès à la LAN est limité. Les entrées et sorties du bâtiment et de la zone de repos seront contrôlées. Un agent de sécurité sera présent. Nous nous réservons le droit d’appliquer des sanctions en cas de mauvais comportement (voir Réglement de la LAN)</p>
+  </div>
+</div>
+
+<!--  <h3>Équipes inscrites à la LAN</h3>
+
   <div class="row" id="teams_list">
     <div class="col-sm-6">
       <div class="highlight">
@@ -47,7 +243,49 @@
         </ul>
       </div>
     </div>
-  </div> -->
+
+  </div>-->
+  <div class="row reglement_row justify-content-md-center">
+    <div class="col-lg-4 col-special reglement_box">
+      <h3>Règlement général</h3>
+      <a href="assets/FG2017_reglement_general.pdf" target="_blank">Voir le réglement</a>
+    </div>
+
+    <div class="col-lg-4 col-md-offset-2 col-special reglement_box">
+      <h3>Règlements Tournois<h3>
+      <ul>
+          <li><a href="assets/FG2017_reglement_csgo.pdf" target="_blank">Counter-Strike:Global Offensive</a></li>
+          <li><a href="assets/FG2017_reglement_lol.pdf" target="_blank">League of Legends</a></li>
+          <!--<li><a href="assets/FG2017_reglement_ow.pdf" target="_blank">Overwatch</a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+  <script>
+  $(".open").click( function () {
+  var container = $(this).parents(".topic");
+  var answer = container.find(".answer");
+  var trigger = container.find(".faq-t");
+  
+  answer.slideToggle(200);
+  
+  if (trigger.hasClass("faq-o")) {
+    trigger.removeClass("faq-o");
+  }
+  else {
+    trigger.addClass("faq-o");
+  }
+  
+  if (container.hasClass("expanded")) {
+    container.removeClass("expanded");
+  }
+  else {
+    container.addClass("expanded");
+  }
+});
+</script>
+
+  </div>
 
   <h3> <span class="fa fa-clock-o"></span> Horaires</h3>
   <p>Ouverture de portes: vendredi, _____ dès 16:00</p>
@@ -188,3 +426,4 @@
     <li><a href="assets/FG2017_reglement_lol.pdf" target="_blank">League of Legends</a></li>
     <li><a href="assets/FG2017_reglement_ow.pdf" target="_blank">Overwatch</a></li>
   </ul>
+

@@ -1,0 +1,149 @@
+@import "compass/css3";
+
+
+/*
+* Default Bootstrap grid gutter is 30px, so I've added some custom gutters
+* It is now possible to make the grid more flexible for each device
+*/
+
+// page colors
+$sample-primary: #EF5858;
+$sample-border: darken($sample-primary, 8%);
+
+// breakpoints
+$screen-sm: 768px;
+$screen-md: 992px;
+$screen-lg: 1340px;
+
+// gutters & margins (try changing this)
+$grid-gutter-width-xs: 6px;
+$grid-gutter-width-sm: 18px;
+$grid-gutter-width-md: 30px;
+$grid-gutter-width-lg: 42px;
+
+section.grid {
+  padding: 30px 0  0;
+  
+  h1 {
+    margin-bottom: 50px;
+  }
+  
+  p {
+    margin-bottom: 24px;
+  }
+}
+
+div.sample-row {
+  div.inner {
+    color: white;
+    padding: 15px;
+
+    &.logo {
+      padding: 50px 0;
+      min-height:123px;
+    }
+
+    img{
+      display:block;
+      margin-left:auto;
+      margin-right:auto;
+      width:120px;
+    }
+
+    // nested
+    div.inner {
+      border: 1px solid darken($sample-border, 5%);
+    }
+  }
+
+  @media (max-width: $screen-sm) {
+    display:none;
+    div.inner {
+      width:100px;
+
+    }
+  }
+
+ @media (min-width: $screen-sm) {
+    div.inner {
+      width:100px;
+      img{
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+      }
+
+    }
+  }
+
+  @media (min-width: $screen-md) {
+    div.inner {
+      
+      width:100px;
+      img{
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+      }
+      div.inner {
+
+      }
+    }
+  }
+
+  @media (min-width: $screen-lg) { 
+    div.inner {
+      width:100px;
+
+
+      div.inner {
+        
+      }
+    }
+  }
+}
+
+
+/*
+* Where the custom grid begins
+*/
+
+// Define all the possible gutters with their sizes
+$gutters: (xs, $grid-gutter-width-xs), (sm, $grid-gutter-width-sm), (md, $grid-gutter-width-md), (lg, $grid-gutter-width-lg);
+
+// Loop through the gutters and set the gutters + margins
+@each $label, $size in $gutters {
+  .gutter-xs-#{$label} { padding-left: ($size / 2); padding-right: ($size / 2); }
+  .gutter-margin-xs-#{$label} { margin-bottom: $size; }
+  .gutter-margin-xs-#{$label}-up { margin-top: $size; }
+  .row-xs-#{$label} { margin-left: -($size / 2); margin-right: -($size / 2); }
+}
+
+@media (min-width: $screen-sm) {
+  @each $label, $size in $gutters {
+    .gutter-sm-#{$label} { padding-left: ($size / 2); padding-right: ($size / 2); }
+    .gutter-margin-sm-#{$label} { margin-bottom: $size; }
+    .gutter-margin-sm-#{$label}-up { margin-top: $size; }
+    .row-sm-#{$label} { margin-left: -($size / 2); margin-right: -($size / 2); }
+  }
+}
+
+@media (min-width: $screen-md) {
+  @each $label, $size in $gutters {
+    .gutter-md-#{$label} { padding-left: ($size / 2); padding-right: ($size / 2); }
+    .gutter-margin-md-#{$label} { margin-bottom: $size; }
+    .gutter-margin-md-#{$label}-up { margin-top: $size; }
+    .row-md-#{$label} { margin-left: -($size / 2); margin-right: -($size / 2); }
+  }
+}
+
+@media (min-width: $screen-lg) { 
+  @each $label, $size in $gutters {
+    .gutter-lg-#{$label} { padding-left: ($size / 2); padding-right: ($size / 2); }
+    .gutter-margin-lg-#{$label} { margin-bottom: $size; }
+    .gutter-margin-lg-#{$label}-up { margin-top: $size; }
+    .row-lg-#{$label} { margin-left: -($size / 2); margin-right: -($size / 2); }
+  }
+}
+
+

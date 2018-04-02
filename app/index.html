@@ -58,10 +58,10 @@
               Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
             <div class="col-md-6 col-sm-6 text-left fh5co-link">
-              <a href="/" class="grow" ng-show="!isActive('/')">
+              <!--a href="/" class="grow" ng-show="!isActive('/')">
                 <fa name="home" size="2"></fa>
               </a>
-              <!-- <a href="" ng-click="openModal()">Rouvrir l'annonce</a> -->
+               <a href="" ng-click="openModal()">Rouvrir l'annonce</a> -->
             </div>
             <div class="col-md-6 col-sm-6 text-right fh5co-social">
               <a ng-if="!isAuthenticated()" href="" ng-click="openLogin()">
@@ -99,7 +99,7 @@
         </div>
       </div>
 
-      <div ui-view></div>
+      <div ui-view autoscroll="false"></div>
 
       <footer>
         <div id="footer">
