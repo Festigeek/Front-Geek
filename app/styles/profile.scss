@@ -140,11 +140,41 @@ input.form-control, select.form-control {
 }
 //custom flavia css
 
+h3.titlelan {
+  padding-top: 20px;
+  margin-bottom: 10px;
+}
 label {
   padding-top:15px;
   padding-bottom:10px;
 
 }
+
+div.invitetoteam {
+  margin-top:20px;
+  padding-top:30px;
+  padding-bottom: 30px;
+  padding-left:10px;
+  background-color:#7c83bf;
+
+  p {
+    padding-top: 10px;
+    color:white;
+    display: inline;
+    line-height: 0.5em;
+  }
+  h3 {
+    color: white;
+    display: inline-block;
+    padding-right: 2em;
+    font-weight: bold;
+    margin: 0;
+
+  }
+
+
+}
+
 
 //button
 .ticket-button {

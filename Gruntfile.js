@@ -508,7 +508,7 @@ module.exports = function (grunt) {
             },
             {
               match: 'apiURL',
-              replacement: 'http://127.0.0.1:8080/v1'
+              replacement: 'http://127.0.0.1:8000/v1'
             }
           ]
         },
