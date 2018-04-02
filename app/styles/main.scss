@@ -18,6 +18,7 @@ $icomoon-font-path: "./ressources/icomoon/fonts";
 @import "infolan.scss";
 @import "ressources/icomoon/scss/icomoon";
 @import "onepage-base";
+@import "advanced_bootstrap_grid";
 
 /* =======================================================
 *
@@ -48,7 +49,7 @@ body.fh5co-offcanvas {
 }
 
 a {
-  color: #3F2E79;
+  color: #3E2E7A;
   -webkit-transition: 0.5s, ease;
   -o-transition: 0.5s, ease;
   transition: 0.5s, ease;
@@ -56,7 +57,7 @@ a {
 
 a:hover {
   text-decoration: none !important;
-  color: #3F2E79 !important;
+  color: #3E2E7A !important;
 }
 
 p, ul, ol {
@@ -79,17 +80,17 @@ figure {
 
 ::-webkit-selection {
   color: #fcfcfc;
-  background: #3F2E79;
+  background: #3E2E7A;
 }
 
 ::-moz-selection {
   color: #fcfcfc;
-  background: #3F2E79;
+  background: #3E2E7A;
 }
 
 ::selection {
   color: #fcfcfc;
-  background: #3F2E79;
+  background: #3E2E7A;
 }
 
 #fh5co-header {
@@ -115,7 +116,7 @@ figure {
   top: 0;
   z-index: 95;
   padding: 10px 0;
-  background: #3F2E79;
+  background: #3E2E7A;
 }
 
 .header-top .fh5co-link a {
@@ -174,15 +175,15 @@ figure {
 .fh5co-cover,
 .fh5co-hero {
   position: relative;
-  height: 800px;
+  //height: 800px;
 }
 
-@media screen and (max-width: 768px) {
+/*@media screen and (max-width: 768px) {
   .fh5co-cover
   .fh5co-hero {
     height: 700px;
   }
-}
+}*/
 
 .fh5co-cover.fh5co-hero-2,
 .fh5co-hero.fh5co-hero-2 {
@@ -328,12 +329,12 @@ figure {
 
 .fg-menu a:hover,
 .fg-menu-menu a:focus {
-  color: #3F2E79 !important;
+  color: #3E2E7A !important;
 }
 
 .fg-menu li.active a:hover,
 .fg-menu li.active a:focus {
-  color: #3F2E79;
+  color: #3E2E7A;
 }
 
 .fg-menu li,
@@ -357,7 +358,7 @@ figure {
 .fg-menu ul li:hover a,
 .fg-menu ul li.sfHover a,
 .fg-menu li.active a {
-  color: #3F2E79;
+  color: #3E2E7A;
 }
 
 .fg-menu ul li:hover,
@@ -445,11 +446,11 @@ figure {
 }
 
 #fh5co-logo a {
-  color: #3F2E79;
+  color: #3E2E7A;
 }
 
 #fh5co-logo a:hover, #fh5co-logo a:focus {
-  color: #3F2E79 !important;
+  color: #3E2E7A !important;
 }
 
 #fh5co-menu-wrap {
@@ -465,7 +466,7 @@ figure {
 }
 
 #fh5co-primary-menu > li > ul li.active > a {
-  color: #3F2E79 !important;
+  color: #3E2E7A !important;
 }
 
 #fh5co-primary-menu > li > .sf-with-ul:after {
@@ -591,7 +592,7 @@ figure {
 }
 
 #fh5co-primary-menu .fh5co-sub-menu a:hover {
-  color: #3F2E79 !important;
+  color: #3E2E7A !important;
 }
 
 #fh5co-work-section,
@@ -616,7 +617,7 @@ figure {
 
 .fh5co-section-gray {
   /*  background: rgba(0, 0, 0, 0.04);*/
-  background-color: #3F2E79;
+  background-color: #3E2E7A;
 
 }
 
@@ -637,7 +638,7 @@ figure {
   width: 100px;
   margin-left: -50px;
   height: 2px;
-  background: #3F2E79;
+  background: #3E2E7A;
 }
 
 .heading-section h3 {
@@ -671,7 +672,7 @@ figure {
 
 .feature-text h3 .number {
   margin-right: 5px;
-  color: #3F2E79;
+  color: #3E2E7A;
   display: -moz-inline-stack;
   display: inline-block;
   zoom: 1;
@@ -683,7 +684,7 @@ figure {
 }
 
 .services {
-  background: #3F2E79;
+  background: #3E2E7A;
   background: #fff;
   padding: 40px 20px 20px 20px;
   margin-bottom: 30px;
@@ -707,13 +708,13 @@ figure {
 
 .services span i {
   font-size: 40px;
-  color: #3F2E79 !important;
+  color: #3E2E7A !important;
 }
 
 .services h3 {
   font-size: 20px;
   font-weight: 400;
-  color: #3F2E79;
+  color: #3E2E7A;
 }
 
 .services p {
@@ -750,7 +751,7 @@ figure {
   display: table-cell;
   vertical-align: middle;
   font-size: 40px;
-  color: #3F2E79;
+  color: #3E2E7A;
 }
 
 .feature-left .feature-copy {
@@ -1026,7 +1027,7 @@ figure {
 
 #fh5co-services .fh5co-number {
   font-size: 30px;
-  color: #3F2E79;
+  color: #3E2E7A;
   position: relative;
   padding-top: 10px;
   font-style: italic;
@@ -1043,7 +1044,7 @@ figure {
   height: 3px;
   top: 0;
   left: 0;
-  background: #3F2E79;
+  background: #3E2E7A;
 }
 
 #fh5co-services .fh5co-icon {
@@ -1065,7 +1066,7 @@ figure {
 
 #fh5co-services .fh5co-icon i {
   font-size: 200px;
-  color: #3F2E79;
+  color: #3E2E7A;
 }
 
 @media screen and (max-width: 768px) {
@@ -1177,7 +1178,7 @@ figure {
 .fh5co-testimonial > div h3, .fh5co-team > div h3 {
   margin-bottom: 0;
   font-size: 20px;
-  color: #3F2E79;
+  color: #3E2E7A;
 }
 
 .fh5co-testimonial > div .position, .fh5co-team > div .position {
@@ -1213,7 +1214,7 @@ figure {
 .fh5co-testimonial > h3 {
   margin-top:60px;
   font-size: 20px;
-  color: #3F2E79;
+  color: #3E2E7A;
 }
 
 .fh5co-blog {
@@ -1265,7 +1266,7 @@ figure {
 }
 
 .fh5co-blog .blog-text span.comment a i {
-  color: #3F2E79;
+  color: #3E2E7A;
   padding-left: 7px;
 }
 
@@ -1316,7 +1317,7 @@ figure {
 
 .fh5co-social-icons > a {
   padding: 4px 10px;
-  color: #3F2E79;
+  color: #3E2E7A;
 }
 
 .fh5co-social-icons > a i {
@@ -1329,7 +1330,7 @@ figure {
 }
 
 #footer {
-  background: #3F2E79;
+  background: #3E2E7A;
   padding: 60px 0 40px;
 }
 
@@ -1361,7 +1362,7 @@ figure {
 }
 
 .btn.btn-primary {
-  background: #3F2E79;
+  background: #3E2E7A;
   color: #fff;
   border: none !important;
   border: 2px solid transparent !important;
@@ -1376,14 +1377,14 @@ figure {
 div.lan2017{
 .btn.btn-primary.lan:hover, .btn.btn-primary.lan:active, .btn.btn-primary.lan:focus {
   box-shadow: none;
-  background: #3F2E79 !important;
+  background: #3E2E7A !important;
   color: #fff !important;
 }
 }
 
 .btn.btn-primary:hover, .btn.btn-primary:active, .btn.btn-primary:focus {
   box-shadow: none;
-  background: #3F2E79;
+  background: #3E2E7A;
   color: #fff !important;
 }
 
@@ -1403,7 +1404,7 @@ div.lan2017{
 }
 
 .btn-info:hover {
-  background: #3f2e79 !important;
+  background: #3E2E7A !important;
   color:white !important;
 }
 
@@ -1413,7 +1414,7 @@ div.lan2017{
 }
 .btn-success:hover {
 
-  background: #3f2e79 !important;
+  background: #3E2E7A !important;
   color:white !important;
 }
 
@@ -1502,7 +1503,7 @@ div.two-part-commitee{
 }
 
 #offcanvas-menu ul li a:hover {
-  color: #3F2E79;
+  color: #3E2E7A;
 }
 
 #offcanvas-menu ul li > .fh5co-sub-menu {
@@ -1511,7 +1512,7 @@ div.two-part-commitee{
 }
 
 #offcanvas-menu ul li.active > a {
-  color: #3F2E79;
+  color: #3E2E7A;
 }
 
 #offcanvas-menu ul .fh5co-sub-menu {
@@ -1767,7 +1768,7 @@ nav.navbar-fixed-top {
 }
 
 .purpleBG {
-  background-color: #3F2E79;
+  background-color: #3E2E7A;
 }
 
 .purpleBG .heading-section:after {
@@ -1879,6 +1880,11 @@ nav.navbar-fixed-top {
   position: relative;
 }
 
+.fulscreen-bg_LAN2018{
+  width:100%;
+  min-height: 420px;
+}
+
 .full-bg-overlay {
   position: absolute !important;
   width: 100%;
@@ -1911,7 +1917,7 @@ nav.navbar-fixed-top {
 }
 
 .vid-ruben span {
-  display: block;
+  display: none;
   margin-bottom: 30px;
   font-size: 1.5em;
   letter-spacing: 1px;
@@ -1922,6 +1928,8 @@ nav.navbar-fixed-top {
 .fullscreen-bg {
   min-height: 420px;
   overflow: hidden;
+  position:relative;
+  top:130px;
 }
 
 .fullscreen-bg__video {
@@ -1934,19 +1942,24 @@ nav.navbar-fixed-top {
   }
 }
 
+
 @media (max-width: 767px) {
   .fullscreen-bg {
-    background: url(../images/backgroundtest1_old.jpg) center center / cover no-repeat;
+    background: url(../images/background_fg2018.png) center center / cover no-repeat;
+    top:90px;
   }
 
-  .fullscreen-bg__video {
+  .vid-ruben span {
+    display:block;
+  }
+
+  .fullscreen-bg__video,.fulscreen-bg_LAN2018 {
     display: none;
   }
 }
 
 #laninfo {
-  height: 1200px;
-
+  margin-top:80px;
   h2, h4 {
     color: white;
   }
@@ -2040,9 +2053,10 @@ ul.dropdown-menu li:last-child a:visited:hover {
   border-bottom-right-radius: 4px;
 }
 
-ul.open {
+ul.open, ul.open:hover {
   display: block;
-  background-color: #f8f8f8;
+  background-color: #f8f8f8!important;
+  opacity:1!important;
 }
 
 /* Espace avant titre (sections personnalisées) */
@@ -2072,7 +2086,6 @@ ul.open {
     float: none;
     width: auto;
     margin-top: 0;
-    background-color: transparent;
     border: 0;
     box-shadow: none;
   }
@@ -2143,7 +2156,7 @@ nav.moveMenu {
 }
 
 .smallimg {
-  max-width:170px;
+  max-width:150px;
 }
 
 .col-sponsopartners{
@@ -2266,13 +2279,15 @@ a.lanPartyLink:hover{
   writing-mode: vertical-rl;
   text-orientation: sideways;
 }
-
+.navbar-fixed-top, .navbar-fixed-bottom{
+  position:fixed;
+}
 #subNav ul li.active {
   background-color: rgba(200, 200, 200, 0.7);
 }
 
 #subNav ul li.active a:hover {
-  color: rgba(100, 100, 100, 0.7) !important;
+  //color: rgba(100, 100, 100, 0.7) !important;
   text-decoration: underline;
 }
 
@@ -2282,12 +2297,26 @@ a.lanPartyLink:hover{
   }
 
   #subNav ul li:hover {
-    background-color: rgba(200, 200, 200, 0.7);
+    //background-color: rgba(200, 200, 200, 0.7);
   }
 
   #subNav ul li.active a {
     display: block;
   }
+}
+
+.lan2018_menu{
+  background:#3E2E7A !important;
+  border-radius:5px;
+  margin-right:15px;
+}
+
+.lan2018_menu:hover{
+  background:rgb(255, 255, 255) !important;
+}
+
+.fg-menu .lan2018_menu li a:hover{
+  color:white!important;
 }
 
 /* Contact en travaux */
@@ -2312,4 +2341,67 @@ a.lanPartyLink:hover{
   bottom: 0;
   left: 50%;
   margin-left: -150px;
+}
+
+.row{
+  margin:0px !important;
+  position:relative;
+  width:100%;
+}
+
+/**
+S'INSCRIRE
+**/
+/*Button Two*/
+.button-two {
+  border-radius: 4px;
+  background-color:white;
+  border: none;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+}
+
+.button-two-purple {
+  border-radius: 4px;
+  background-color:#3E2E7A;
+  border: none;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+}
+
+
+.button-two span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  color:#3E2E7A;
+}
+
+.button-two-purple span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  color:white;
+}
+
+.button-two span:after, .button-two-purple span:after {
+  content: '>>';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button-two:hover span, .button-two-purple:hover span {
+  padding-right: 25px;
+}
+
+.button-two:hover span:after, .button-two-purple:hover span:after {
+  opacity: 1;
+  right: 0;
 }
