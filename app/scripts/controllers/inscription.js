@@ -44,8 +44,8 @@ angular.module('frontGeekApp')
       }
     });
 
-    $scope.existingTeams = Team.query({event_id: 1});
-    $scope.gameProducts = Product.query({type_id: 1}, function(){
+    $scope.existingTeams = Team.query({event_id: 2});
+    $scope.gameProducts = Product.getProductsByEvent({type_id: 1, event_id: 2}, function(){
       $scope.gameProducts.map(function(gameProduct){
         gameProduct.available = gameProduct.quantity_max - gameProduct.sold;
       });
@@ -77,6 +77,22 @@ angular.module('frontGeekApp')
       return $scope.formData.products.tournament.name === 'Counter-Strike: GO';
     };
 
+    //fonction vérifiant le code d'équipe avant l'envoi du formulaire
+    $scope.testTeamCode = function(){
+      //TODO problem with callback, not going into the exception
+      $scope.teamCodeResult = Team.testCode({event_id: 2, team_code: $scope.formData.team_code}, function(name){
+        //callback
+        console.log(team)
+        $scope.teamCodeResult.name = name;
+          console.log('outside if', $scope.teamCodeResult);
+        if($scope.teamCodeResult.data.error !== undefined){
+          $scope.teamCodeResult.name = 'Aucune équipe n\'a été trouvée avec ce code';
+          console.log('dans le if erreur', $scope.teamCodeResult);
+        }
+      });//resource, modèle
+      console.log($scope.teamCodeResult);
+    };
+
     // Fonction s'assurant que le formulaire d'inscription est complet
     var inscriptionComplete = function() {
       return $scope.formData.consent.cable &&
@@ -101,9 +117,10 @@ angular.module('frontGeekApp')
         }
 
         $scope.payload = {
-          event_id: 1,
+          event_id: 2,
           checked_legal: $scope.formData.consent.rules,
           team: (typeof $scope.formData.team.originalObject === 'object') ? $scope.formData.team.originalObject.name : $scope.formData.team.originalObject,
+
           products: productsList,
           data: JSON.stringify($scope.formData)
         };
@@ -114,7 +131,7 @@ angular.module('frontGeekApp')
     // Fonction permettant de soumettre la commande (inscription)
     $scope.postOrder = function(type) {
       ngDialog.openConfirm({
-        template: '<h3>L\'inscription est sur le point d\'être envoyée.</h3><p>Es-tu sûr que tout est bon ?</p><div class="ngdialog-buttons text-center"><button type="button" class="btn btn-success" ng-click="confirm(1)">Oui, c\'est partit !</button><button type="button" class="btn btn-danger" ng-click="closeThisDialog(0)">Non, attends !</button></div>',
+        template: '<h3>L\'inscription est sur le point d\'être envoyée.</h3><p>Es-tu sûr que tout est bon ?</p><div class="ngdialog-buttons text-center"><button type="button" class="btn btn-success" ng-click="confirm(1)">Oui, c\'est parti !</button><button type="button" class="btn btn-danger" ng-click="closeThisDialog(0)">Non, attends !</button></div>',
         plain: true
       }).then(function(){
         $scope.payload.payment_type_id = type;
