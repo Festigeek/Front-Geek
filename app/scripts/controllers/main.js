@@ -16,6 +16,7 @@ angular.module('frontGeekApp')
       $(window).stellar();
     };
 
+    /*
     // Scrolling Animations
     $scope.contentWayPoint = function() {
 
@@ -37,14 +38,15 @@ angular.module('frontGeekApp')
         }
       };
 
-      /*for (var i = 0; i < elements.length; i++) {
+      for (var i = 0; i < elements.length; i++) {
         new $window.Waypoint({
           element: elements[i],
           handler: waypointAction,
           offset: '85%'
         });
-      }*/
+      }
     };
+    */
 
     /*
     // FORM VALIDATOR
@@ -86,7 +88,7 @@ angular.module('frontGeekApp')
 
     $scope.initOnePage = function() {
       $scope.parallax();
-      $scope.contentWayPoint();
+      // $scope.contentWayPoint();
 
       // Added by Mysteriosis
       // $scope.formValidator(); // FORM VALIDATOR
