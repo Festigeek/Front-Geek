@@ -30,8 +30,8 @@ module.exports = function (grunt) {
 
     // Project settings
     general: {
-      // api: 'https://sandbox.festigeek.ch/v1'
-      api: 'https://api.festigeek.ch/v1'
+      api: 'https://sandbox.festigeek.ch/v1'
+      // api: 'https://api.festigeek.ch/v1'
     },
     yeoman: appConfig,
 
