@@ -101,7 +101,7 @@ angular
       var deferred = $q.defer();
 
       // TODO Fix 'undefined' in stateService.ts
-      $http.get(urls.BASE_API + '/users/me/orders')
+      $http.get(urls.BASE_API + '/users/me/orders?event_id=2')
       .then(function(res){
         if(res.data.length > 0) {
           deferred.reject();
