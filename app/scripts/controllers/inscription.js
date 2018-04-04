@@ -80,17 +80,14 @@ angular.module('frontGeekApp')
     //fonction vérifiant le code d'équipe avant l'envoi du formulaire
     $scope.testTeamCode = function(){
       //TODO problem with callback, not going into the exception
-      $scope.teamCodeResult = Team.testCode({event_id: 2, team_code: $scope.formData.team_code}, function(name){
-        //callback
-        console.log(Team);
-        $scope.teamCodeResult.name = name;
-          console.log('outside if', $scope.teamCodeResult);
-        if($scope.teamCodeResult.data.error !== undefined){
-          $scope.teamCodeResult.name = 'Aucune équipe n\'a été trouvée avec ce code';
-          console.log('dans le if erreur', $scope.teamCodeResult);
-        }
-      });//resource, modèle
-      console.log($scope.teamCodeResult);
+      $scope.teamCodeResult = Team.testCode({event_id: 2, team_code: $scope.formData.team_code}, function(res){
+        //callback TODO not working
+        //$scope.teamCodeResult = {"test":"lol"};
+        // if($scope.teamCodeResult.data.error !== undefined){
+        //   $scope.teamCodeResult.name = 'Aucune équipe n\'a été trouvée avec ce code';
+        // }
+      });
+
     };
 
     // Fonction s'assurant que le formulaire d'inscription est complet
