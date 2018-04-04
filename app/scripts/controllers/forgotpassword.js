@@ -10,15 +10,6 @@ angular.module('frontGeekApp')
         toastr.success('Un mail t\'a été envoyé pour réinitialiser ton mot de passe. Vérifie ton dossier de spams!', 'Réinitialisation réussie !');
         ngDialog.closeAll();
       });
-    //   , function(err) {
-    //     if(err.status === 409){
-    //       toastr.error('Il existe déjà un compte avec ces identifiants.');
-    //     }
-    //     else {
-    //       toastr.error('Échec de la création de compte.');
-    //     }
-    // });
-
 
     };
   });
