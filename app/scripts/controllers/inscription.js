@@ -82,7 +82,7 @@ angular.module('frontGeekApp')
       //TODO problem with callback, not going into the exception
       $scope.teamCodeResult = Team.testCode({event_id: 2, team_code: $scope.formData.team_code}, function(name){
         //callback
-        console.log(team)
+        console.log(Team);
         $scope.teamCodeResult.name = name;
           console.log('outside if', $scope.teamCodeResult);
         if($scope.teamCodeResult.data.error !== undefined){
