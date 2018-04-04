@@ -29,6 +29,10 @@ module.exports = function (grunt) {
   grunt.initConfig({
 
     // Project settings
+    general: {
+      // api: 'https://sandbox.festigeek.ch/v1'
+      api: 'https://api.festigeek.ch/v1'
+    },
     yeoman: appConfig,
 
     // Watches files for changes and runs tasks based on the changed files
@@ -488,7 +492,7 @@ module.exports = function (grunt) {
             },
             {
               match: 'apiURL',
-              replacement: 'https://api.festigeek.ch/v1'
+              replacement: '<%= general.api %>'
             }
           ]
         },
