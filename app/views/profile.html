@@ -141,7 +141,7 @@
         <!-- TODO if no order created for this event -> link to "inscription lan 2018" -->
         <div ng-if="!orders[0]">
           Tu ne t'es pas encore inscrit à cette LAN !
-          <button type="button" class="btn btn-primary"><a href="#!/inscriptions">Je veux m'inscrire !</a></button>
+          <button type="button" class="btn btn-primary inscriptions"><a href="#!/inscriptions">Je veux m'inscrire !</a></button>
         </div>
         <div ng-if="orders[0]">
           <p>
@@ -204,9 +204,10 @@
         </div>
         <div class="alert alert-info" role="alert" ng-if="!team">
           Oh Zut ! Tu ne fais partie d'aucune équipe!
+          <!-- TODO en rejoindre une avec code -->
         </div>
 
-        <table style="width:100%">
+        <table style="width:100%" ng-if="team">
           <tr ng-if="orders[0]">
             <th ng-if="isCaptain">
               Nom et prénom

@@ -20,6 +20,7 @@ $icomoon-font-path: "./ressources/icomoon/fonts";
 @import "onepage-base";
 @import "advanced_bootstrap_grid";
 
+
 /* =======================================================
 *
 * 	Template Style
@@ -72,6 +73,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Roboto", "Open Sans", Arial, sans-serif;
   font-weight: 400;
   margin: 0 0 30px 0;
+  padding-top: 40px;
 }
 
 figure {

@@ -7,12 +7,23 @@ Licensed under MIT
 /* Profile container */
 .profile {
   margin: 45px 0;
+
+  button.inscriptions{
+    position: absolute;
+    right: 10px;
+
+    a {
+      color: white;
+    }
+  }
 }
 
 /* Profile sidebar */
 .profile-sidebar {
   background: #fafafa;
 }
+
+
 
 #username_field, #email_field, #birthdate_field {
     padding-top: 0px;
@@ -141,7 +152,7 @@ input.form-control, select.form-control {
 //custom flavia css
 
 h3.titlelan {
-  padding-top: 20px;
+  
   margin-bottom: 10px;
 }
 label {
