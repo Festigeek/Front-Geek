@@ -176,6 +176,15 @@ angular
           skipIfLoggedIn: skipIfLoggedIn
         }
       })
+      .state('forgotpassword', {
+        url: '/forgotpassword',
+        templateUrl: 'views/forgotpassword.html',
+        controller: 'ForgotPasswordCtrl',
+        resolve: {
+          serverRequired: serverRequired,
+          skipIfLoggedIn: skipIfLoggedIn
+        }
+      })
       .state('logout', {
         url: '/logout',
         template: null,
@@ -272,11 +281,27 @@ angular
           // if($rootScope.dialog !== undefined) {
           //   $rootScope.dialog.close();
           // }
+
           ngDialog.closeAll();
 
           $rootScope.dialog = ngDialog.open({
             template: 'views/partials/signup.html',
             controller: 'SignupCtrl'
+          });
+        })
+        .catch(function(){
+          toastr.error('Serveur indisponible.');
+        });
+    };
+
+    $rootScope.openForgotPassword = function() {
+        checkServer()
+        .then(function(){
+
+          ngDialog.closeAll();
+          $rootScope.dialog = ngDialog.open({
+            template: 'views/partials/forgotpassword.html',
+            controller: 'ForgotPasswordCtrl'
           });
         })
         .catch(function(){
