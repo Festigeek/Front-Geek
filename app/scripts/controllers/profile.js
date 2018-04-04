@@ -8,7 +8,7 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('ProfileCtrl', function ( urls, $scope, $auth, $location, $localStorage, toastr, User, Country, Order, Team) {
+  .controller('ProfileCtrl', function ($log, urls, $scope, $auth, $location, $localStorage, toastr, User, Country, Order, Team) {
     $scope.subPage = 1;
 
     $scope.$storage = $localStorage;
@@ -16,19 +16,21 @@ angular.module('frontGeekApp')
     $scope.countries = $scope.$storage.countries;
     $scope.user = {};
     $scope.updateTeam = {};
-    // $scope.team = {};
     $scope.isCaptain = false;
 
     User.get({ id: 'me' }, function(user) {
       $scope.user = user;
       Order.getFromUser({ user_id: user.id }, function(orders) {
-        $scope.orders = orders.filter(function(order) {return order.event_id === 2;}); //fonctionne! tout ok
+        $scope.orders = orders.filter(function(order) {return order.event_id === 2;});
         Team.getUserTeam({ order_id: $scope.orders[0].id }, function(team) {
           $scope.team = team;
-          $scope.isCaptain = false;
-          if(team[0].users[0].email !== undefined){
+          $scope.testingFilter = $scope.team.users.filter(function(user){return user.email === $scope.user.email;});
+
+          if($scope.testingFilter[0].captain === true){
             $scope.isCaptain = true;
           }
+        }, function(team){
+          $log.log(team); //TODO if null
         });
       });
 
@@ -58,5 +60,16 @@ angular.module('frontGeekApp')
           $scope.$storage.checkedUser = true;
           toastr.success('Profil mis à jour avec succès !');
         });
+    };
+
+    $scope.changeCaptain = function() {
+      
+      //TODO how the fuck do i do this payload...
+      Team.modifyTeam({ order_id: $scope.orders[0].id, team_id: $scope.team.id }, function(team){
+        $scope.motherfucker = team;
+      }, function(err){
+        $log.log(err);
+      });
+
     };
   });
