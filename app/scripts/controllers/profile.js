@@ -63,10 +63,12 @@ angular.module('frontGeekApp')
     };
 
     $scope.changeCaptain = function(username) {
-
-      Team.save({'captain': username}); //TODO payload send not working
-      Team.modifyTeam({ event_id:2, team_id: $scope.team.id }, function(response){
-        $scope.reponseChangeCaptain = reponse;
+      var team = new Team({'captain':username});
+      team.$modifyTeam({ event_id:2, team_id: $scope.team.id }, function(response){
+//response.sucess === "Team updated"
+        if(true){
+            toastr.success('Capitaine mis à jour!');
+        }
       }, function(err){
         $log.log(err);
       });
