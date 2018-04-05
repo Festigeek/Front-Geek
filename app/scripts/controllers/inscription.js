@@ -119,8 +119,9 @@ angular.module('frontGeekApp')
     // Contient le nom de l'équipe si OK, false si KO.
     $scope.testTeamCode = function(){
       Team.testCode({event_id: 2, team_code: $scope.formData.team_code}, function(res) {
-        $scope.teamFromCode = res.data.name;
-      }, function() {
+        $scope.teamFromCode = res.name;
+      }, function(error) {
+
         $scope.teamFromCode = false;
       });
     };
