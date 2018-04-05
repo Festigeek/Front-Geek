@@ -78,14 +78,14 @@ angular.module('frontGeekApp')
     };
 
     // Fonction générant l'alias (identifiant unique) d'une équipe
-    $scope.computeAlias = function(name) {
+    var computeAlias = function(name) {
       var equiv = {
         'À': 'a', 'Á': 'a', 'Â': 'a', 'Ä': 'a', 'à': 'a', 'á': 'a', 'â': 'a', 'ä': 'a', '@': 'a',
         'È': 'e', 'É': 'e', 'Ê': 'e', 'Ë': 'e', 'è': 'e', 'é': 'e', 'ê': 'e', 'ë': 'e', '€': 'e',
         'Ì': 'i', 'Í': 'i', 'Î': 'i', 'Ï': 'i', 'ì': 'i', 'í': 'i', 'î': 'i', 'ï': 'i',
         'Ò': 'o', 'Ó': 'o', 'Ô': 'o', 'Ö': 'o', 'Ø': 'o', 'ò': 'o', 'ó': 'o', 'ô': 'o', 'ö': 'o', 'ø': 'o',
         'Ù': 'u', 'Ú': 'u', 'Û': 'u', 'Ü': 'u', 'ù': 'u', 'ú': 'u', 'û': 'u', 'ü': 'u', 'µ': 'u',
-        'Œ': 'oe', 'œ': 'oe', '$': 's'
+        'Œ': 'oe', 'œ': 'oe', '\\$': 's'
       };
     
       var strtr = function(s, p, r) {
@@ -106,8 +106,11 @@ angular.module('frontGeekApp')
       };
     
       var chaine = strtr(name, equiv);
-      chaine = chaine.replace(/[^A-Za-z0-9]+/g, '');
-      return chaine.toLowerCase().slice(0, -1);
+      if(chaine) {
+        chaine = chaine.replace(/[^A-Za-z0-9]+/g, '');
+        return chaine.toLowerCase();
+      }
+      return '';
     };
 
     // Fonction vérifiant le code d'équipe avant l'envoi du formulaire
@@ -117,6 +120,12 @@ angular.module('frontGeekApp')
         $scope.teamFromCode = res.data.name;
       }, function() {
         $scope.teamFromCode = false;
+      });
+    };
+
+    $scope.testTeamName = function() {
+      var test = $scope.existingTeams.some(function(team) {
+        return team.alias === computeAlias($scope.formData.team);
       });
     };
 
