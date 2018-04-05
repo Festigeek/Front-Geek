@@ -80,7 +80,7 @@ angular.module('frontGeekApp')
     //fonction vérifiant le code d'équipe avant l'envoi du formulaire
     $scope.testTeamCode = function(){
       //TODO problem with callback, not going into the exception
-      $scope.teamCodeResult = Team.testCode({event_id: 2, team_code: $scope.formData.team_code}, function(res){
+      $scope.teamCodeResult = Team.testCode({event_id: 2, team_code: $scope.formData.team_code}, function(){
         //callback TODO not working
         //$scope.teamCodeResult = {"test":"lol"};
         // if($scope.teamCodeResult.data.error !== undefined){
