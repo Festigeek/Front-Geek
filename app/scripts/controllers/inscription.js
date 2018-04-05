@@ -8,7 +8,7 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('InscriptionCtrl', function ($window, $q, $rootScope, $scope, $localStorage, $state, $transitions, toastr, ngDialog, User, Country, Product, Team, Order, moment) {
+  .controller('InscriptionCtrl', function ($window, $q, $rootScope, $scope, $log, $localStorage, $state, $transitions, toastr, ngDialog, User, Country, Product, Team, Order, moment) {
     $scope.$storage = $localStorage;
     $scope.$storage.countries = ($scope.$storage.countries !== undefined) ? $scope.$storage.countries : Country.query();
 
@@ -77,17 +77,47 @@ angular.module('frontGeekApp')
       return $scope.formData.products.tournament.name === 'Counter-Strike: GO';
     };
 
-    //fonction vérifiant le code d'équipe avant l'envoi du formulaire
-    $scope.testTeamCode = function(){
-      //TODO problem with callback, not going into the exception
-      $scope.teamCodeResult = Team.testCode({event_id: 2, team_code: $scope.formData.team_code}, function(){
-        //callback TODO not working
-        //$scope.teamCodeResult = {"test":"lol"};
-        // if($scope.teamCodeResult.data.error !== undefined){
-        //   $scope.teamCodeResult.name = 'Aucune équipe n\'a été trouvée avec ce code';
-        // }
-      });
+    // Fonction générant l'alias (identifiant unique) d'une équipe
+    $scope.computeAlias = function(name) {
+      var equiv = {
+        'À': 'a', 'Á': 'a', 'Â': 'a', 'Ä': 'a', 'à': 'a', 'á': 'a', 'â': 'a', 'ä': 'a', '@': 'a',
+        'È': 'e', 'É': 'e', 'Ê': 'e', 'Ë': 'e', 'è': 'e', 'é': 'e', 'ê': 'e', 'ë': 'e', '€': 'e',
+        'Ì': 'i', 'Í': 'i', 'Î': 'i', 'Ï': 'i', 'ì': 'i', 'í': 'i', 'î': 'i', 'ï': 'i',
+        'Ò': 'o', 'Ó': 'o', 'Ô': 'o', 'Ö': 'o', 'Ø': 'o', 'ò': 'o', 'ó': 'o', 'ô': 'o', 'ö': 'o', 'ø': 'o',
+        'Ù': 'u', 'Ú': 'u', 'Û': 'u', 'Ü': 'u', 'ù': 'u', 'ú': 'u', 'û': 'u', 'ü': 'u', 'µ': 'u',
+        'Œ': 'oe', 'œ': 'oe', '$': 's'
+      };
+    
+      var strtr = function(s, p, r) {
+        return !!s && {
+          2: function () {
+            for (var i in p) {
+                s = strtr(s, i, p[i]);
+            }
+            return s;
+          },
+          3: function () {
+            return s.replace(new RegExp(p, 'g'), r);
+          },
+          0: function () {
+            return;
+          }
+        }[arguments.length]();
+      };
+    
+      var chaine = strtr(name, equiv);
+      chaine = chaine.replace(/[^A-Za-z0-9]+/g, '');
+      return chaine.toLowerCase().slice(0, -1);
+    };
 
+    // Fonction vérifiant le code d'équipe avant l'envoi du formulaire
+    // Contient le nom de l'équipe si OK, false si KO.
+    $scope.testTeamCode = function(){
+      Team.testCode({event_id: 2, team_code: $scope.formData.team_code}, function(res) {
+        $scope.teamFromCode = res.data.name;
+      }, function() {
+        $scope.teamFromCode = false;
+      });
     };
 
     // Fonction s'assurant que le formulaire d'inscription est complet
