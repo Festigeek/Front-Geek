@@ -62,11 +62,11 @@ angular.module('frontGeekApp')
         });
     };
 
-    $scope.changeCaptain = function() {
-      
+    $scope.changeCaptain = function(username) {
+      $scope.motherfucker = username;
       //TODO how the fuck do i do this payload...
-      Team.modifyTeam({ order_id: $scope.orders[0].id, team_id: $scope.team.id }, function(team){
-        $scope.motherfucker = team;
+      Team.modifyTeam({ order_id: $scope.orders[0].id, team_id: $scope.team.id }, function(response){
+        $scope.motherfucker = reponse;
       }, function(err){
         $log.log(err);
       });

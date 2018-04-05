@@ -240,8 +240,8 @@
               <i class="fa fa-flag" aria-hidden="true" style="color:green;" ng-if="user.captain"></i>
               <i class="fa fa-flag" aria-hidden="true" style="color:grey;" ng-if="!user.captain"></i>
             </td>
-            <td ng-if="!user.captain && isCaptain">
-              <!-- TODO css button -->
+            <td>
+              <!-- TODO css button ng-if="!user.captain && isCaptain" -->
               <button type="button" class="btn btn-primary makecaptain" ng-click="changeCaptain(user.username)">Rendre capitaine</button>
             </td>
 
