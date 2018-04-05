@@ -137,7 +137,7 @@ angular.module('frontGeekApp')
       return $scope.formData.consent.cable &&
         $scope.formData.consent.rules &&
         $scope.formData.products.tournament.id &&
-        ($scope.formData.products.tournament.need_team === 0 || $scope.formData.team) &&
+        ($scope.formData.products.tournament.need_team === 0 || $scope.formData.team || $scope.formData.team_code) &&
         (!$scope.underage || $scope.formData.consent.check_underage) &&
         (!$scope.viewBattleTag() || $scope.infosUser.battleTag) &&
         (!$scope.viewLoL() || $scope.infosUser.lol_account) &&
@@ -149,17 +149,17 @@ angular.module('frontGeekApp')
       return $q(function(resolve) {
         var productsList = [{ product_id: $scope.formData.products.tournament.id, amount: 1 }];
         if($scope.formData.products.burger.amount > 0) {
-          productsList.push({product_id: 5, amount: $scope.formData.products.burger.amount});
+          productsList.push({product_id: 13, amount: $scope.formData.products.burger.amount});
         }
         if($scope.formData.products.bfast.amount > 0) {
-          productsList.push({ product_id: 6, amount: $scope.formData.products.bfast.amount });
+          productsList.push({ product_id: 14, amount: $scope.formData.products.bfast.amount });
         }
 
         $scope.payload = {
           event_id: 2,
           checked_legal: $scope.formData.consent.rules,
           team: (typeof $scope.formData.team.originalObject === 'object') ? $scope.formData.team.originalObject.name : $scope.formData.team.originalObject,
-
+          team_code: $scope.formData.team_code,
           products: productsList,
           data: JSON.stringify($scope.formData)
         };
