@@ -2,6 +2,9 @@
   <h3>Infos Tournoi</h3>
 
   <div class="form-group">
+    <div class="alert alert-info" role="alert" ng-if="formData.products.tournament.name==='Animations'">
+      <strong>Information: </strong>En fonction de l'affluence et de l'organisation des équipes des autres tournois, on ne peut pas garantir votre place en animation. S'il s'avère qu'il y a un manque de place, votre billet vous sera remboursé.
+    </div>
     <h4 class="control-label minititle">Tournoi</h4>
     <ui-select id="info_tournoi" ng-model="formData.products.tournament" theme="bootstrap" title="Choix du tournoi" required>
       <ui-select-match placeholder="Sélectionnez ou cherchez un tournoi dans la liste...">{{ $select.selected.name }}</ui-select-match>
@@ -58,7 +61,7 @@
     <div class="col-sm-6">
       <label for="info_equipe"><i class="fa fa-plus-circle colored-icon" aria-hidden="true"></i> Créer une équipe</label>
       <p>
-        Si tu crées une équipe, tu en seras le captitaine. Mais ne t'inquiète pas, tu pourras modifier ça après ton inscription. Par contre, tu devras communiquer le code d'invitation au reste de ton équipe pour qu'ils en fassent partie!
+        <strong>Attention </strong>tu ne peux pas créer une équipe si elle existe deja. Si tu crées une équipe, tu en seras le capitaine. Par contre, tu devras communiquer le code d'invitation au reste de ton équipe pour qu'ils en fassent partie!
       </p>
     </div>
     <div class="col-sm-6">
