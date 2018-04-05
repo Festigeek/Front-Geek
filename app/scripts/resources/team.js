@@ -24,7 +24,7 @@ angular.module('frontGeekApp')
       'modifyTeam': {
         url: urls.BASE_API + '/events/:event_id/teams/:team_id',
         method: 'PUT',
-        params:  { order_id: '@order_id', team_id: '@team_id' }
+        params: { event_id: '@event_id', team_id: '@team_id' }
       },
       'testCode' : {
         url: urls.BASE_API + '/events/:event_id/teams/:team_code',

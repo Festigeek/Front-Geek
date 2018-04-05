@@ -18,12 +18,12 @@ angular.module('frontGeekApp')
       products: {
         tournament: {},
         burger: {
-          id:5,
+          id:13,
           price:13,
-          amount:0
+          amount:1
         },
         bfast:{
-          id:6,
+          id:14,
           price:5,
           amount:0
         }
@@ -45,7 +45,9 @@ angular.module('frontGeekApp')
     });
 
     $scope.existingTeams = Team.query({event_id: 2});
-    $scope.gameProducts = Product.getProductsByEvent({type_id: 1, event_id: 2}, function(){
+    $scope.gameProducts = Product.getProductsByEvent({type_id: 1, event_id: 2, product_type_id: 1}, function(){
+
+      $scope.gameProducts = $scope.gameProducts.filter(function(product){return product.product_type_id === 1;});
       $scope.gameProducts.map(function(gameProduct){
         gameProduct.available = gameProduct.quantity_max - gameProduct.sold;
       });
@@ -87,7 +89,7 @@ angular.module('frontGeekApp')
         'Ù': 'u', 'Ú': 'u', 'Û': 'u', 'Ü': 'u', 'ù': 'u', 'ú': 'u', 'û': 'u', 'ü': 'u', 'µ': 'u',
         'Œ': 'oe', 'œ': 'oe', '\\$': 's'
       };
-    
+
       var strtr = function(s, p, r) {
         return !!s && {
           2: function () {
@@ -104,7 +106,7 @@ angular.module('frontGeekApp')
           }
         }[arguments.length]();
       };
-    
+
       var chaine = strtr(name, equiv);
       if(chaine) {
         chaine = chaine.replace(/[^A-Za-z0-9]+/g, '');

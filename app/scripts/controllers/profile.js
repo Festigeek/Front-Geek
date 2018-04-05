@@ -63,10 +63,10 @@ angular.module('frontGeekApp')
     };
 
     $scope.changeCaptain = function(username) {
-      $scope.motherfucker = username;
-      //TODO how the fuck do i do this payload...
-      Team.modifyTeam({ order_id: $scope.orders[0].id, team_id: $scope.team.id }, function(response){
-        $scope.motherfucker = reponse;
+
+      Team.save({'captain': username}); //TODO payload send not working
+      Team.modifyTeam({ event_id:2, team_id: $scope.team.id }, function(response){
+        $scope.reponseChangeCaptain = reponse;
       }, function(err){
         $log.log(err);
       });
