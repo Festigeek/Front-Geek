@@ -212,13 +212,13 @@
 
         <table style="width:100%" ng-if="team">
           <tr>
-            <th ng-if="isCaptain">
+            <th>
               Nom et prénom
             </th>
             <th>
               Pseudo
             </th>
-            <th ng-if="isCaptain">
+            <th>
               Adresse Mail
             </th>
             <th>
@@ -227,22 +227,22 @@
           </tr>
 
           <tr ng-repeat="user in team.users">
-            <td ng-if="isCaptain">
+            <td>
               {{user.lastname}} {{user.firstname}}
             </td>
             <td>
               {{user.username}}
             </td>
-            <td ng-if="isCaptain">
+            <td>
               {{user.email}}
             </td>
             <td>
               <i class="fa fa-flag" aria-hidden="true" style="color:green;" ng-if="user.captain"></i>
               <i class="fa fa-flag" aria-hidden="true" style="color:grey;" ng-if="!user.captain"></i>
             </td>
-            <td>
+            <td ng-if="isCaptain">
               <!-- TODO css button ng-if="!user.captain && isCaptain" -->
-              <button type="button" class="btn btn-primary makecaptain" ng-click="changeCaptain(user.username)">Rendre capitaine</button>
+              <button type="button" class="btn btn-primary makecaptain" ng-click="changeCaptain(user.username)" ng-if="!user.captain">Rendre capitaine</button>
             </td>
 
           </tr>
