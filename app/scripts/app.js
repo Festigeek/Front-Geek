@@ -186,7 +186,7 @@ angular
         }
       })
       .state('resetPassword', {
-        url: '/resetPassword/:token',
+        url: '/resetPassword/:token/:email',
         controller: 'MainCtrl',
         templateUrl: 'views/main.html'
       })
@@ -383,7 +383,6 @@ angular
     });
 
     $('ul.dropdown-menu li a').click(function() {
-      console.log('TOTO');
       var submenu = $('.dropdown-menu');
       if(submenu.hasClass('open')) {
         submenu.removeClass('open');

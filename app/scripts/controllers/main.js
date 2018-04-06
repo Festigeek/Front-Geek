@@ -92,6 +92,9 @@ angular.module('frontGeekApp')
         resolve: {
           resetToken: function() {
             return $stateParams.token;
+          },
+          resetMail: function() {
+            return $stateParams.email;
           }
         }
       });
