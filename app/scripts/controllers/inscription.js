@@ -156,7 +156,7 @@ angular.module('frontGeekApp')
         $scope.payload = {
           event_id: 2,
           checked_legal: $scope.formData.consent.rules,
-          team: (typeof $scope.formData.team.originalObject === 'object') ? $scope.formData.team.originalObject.name : $scope.formData.team.originalObject,
+          team: $scope.formData.team,
           team_code: $scope.formData.team_code,
           products: productsList,
           data: JSON.stringify($scope.formData)
