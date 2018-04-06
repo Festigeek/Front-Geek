@@ -18,12 +18,12 @@ angular.module('frontGeekApp')
       products: {
         tournament: {},
         burger: {
-          id:13,
+          id:14,
           price:13,
           amount:1
         },
         bfast:{
-          id:14,
+          id:15,
           price:5,
           amount:0
         }
@@ -147,10 +147,10 @@ angular.module('frontGeekApp')
       return $q(function(resolve) {
         var productsList = [{ product_id: $scope.formData.products.tournament.id, amount: 1 }];
         if($scope.formData.products.burger.amount > 0) {
-          productsList.push({product_id: 13, amount: $scope.formData.products.burger.amount});
+          productsList.push({product_id: 14, amount: $scope.formData.products.burger.amount});
         }
         if($scope.formData.products.bfast.amount > 0) {
-          productsList.push({ product_id: 14, amount: $scope.formData.products.bfast.amount });
+          productsList.push({ product_id: 15, amount: $scope.formData.products.bfast.amount });
         }
 
         $scope.payload = {
