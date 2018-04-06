@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 DIST_FOLDER = __dir__ + "/dist"
 
 # Found content script
