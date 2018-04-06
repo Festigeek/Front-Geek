@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('frontGeekApp')
-  .controller('ResetPasswordCtrl', function ($scope, $log, $stateParams, User, toastr, ngDialog, resetToken) {
+  .controller('ResetPasswordCtrl', function ($scope, $log, $stateParams, User, toastr, ngDialog, resetToken, resetMail) {
     $scope.user = {
-      'reset_token': resetToken
+      'token': resetToken,
+      'email': resetMail
     };
     $scope.resetPassword = function() {
       var newPass = new User($scope.user);
