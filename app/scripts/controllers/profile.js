@@ -64,10 +64,9 @@ angular.module('frontGeekApp')
 
     $scope.changeCaptain = function(username) {
       var team = new Team({'captain':username});
-      team.$modifyTeam({ event_id:2, team_id: $scope.team.id }, function(response){
-//response.sucess === "Team updated"
+      team.$modifyTeam({ event_id:2, team_id: $scope.team.id }, function() {
         if(true){
-            toastr.success('Capitaine mis à jour!');
+          toastr.success('Capitaine mis à jour!');
         }
       }, function(err){
         $log.log(err);

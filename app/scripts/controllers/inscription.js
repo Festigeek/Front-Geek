@@ -46,7 +46,6 @@ angular.module('frontGeekApp')
 
     $scope.existingTeams = Team.query({event_id: 2});
     $scope.gameProducts = Product.getProductsByEvent({type_id: 1, event_id: 2, product_type_id: 1}, function(){
-
       $scope.gameProducts = $scope.gameProducts.filter(function(product){return product.product_type_id === 1;});
       $scope.gameProducts.map(function(gameProduct){
         gameProduct.available = gameProduct.quantity_max - gameProduct.sold;
@@ -120,8 +119,7 @@ angular.module('frontGeekApp')
     $scope.testTeamCode = function(){
       Team.testCode({event_id: 2, team_code: $scope.formData.team_code}, function(res) {
         $scope.teamFromCode = res.name;
-      }, function(error) {
-
+      }, function() {
         $scope.teamFromCode = false;
       });
     };
