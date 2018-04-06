@@ -9,7 +9,7 @@ angular.module('frontGeekApp')
     $scope.resetPassword = function() {
       var newPass = new User($scope.user);
       newPass.$resetPassword($scope.resetInfos, function() {
-        toastr.success('Ton mot de passe a été réinitialisé. Tu peu désormais te reconnecter.', 'Réinitialisation réussie !');
+        toastr.success('Ton mot de passe a été réinitialisé. Tu peux désormais te reconnecter.', 'Réinitialisation réussie !');
         ngDialog.closeAll();
         $state.go('/');
       }, function() {
