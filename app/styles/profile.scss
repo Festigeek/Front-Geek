@@ -3,24 +3,39 @@ User Profile Sidebar by @keenthemes
 A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
 Licensed under MIT
 ***/
-
 /* Profile container */
 .profile {
   margin: 45px 0;
-}
 
+  button.inscriptions {
+    position: absolute;
+    right: 10px;
+
+    a {
+      color: white;
+    }
+
+    a:hover {
+      color: white !important;
+    }
+  }
+}
 /* Profile sidebar */
 .profile-sidebar {
   background: #fafafa;
 }
 
-#username_field, #email_field, #birthdate_field {
-    padding-top: 0px;
-    padding-bottom: 0px;
+#birthdate_field,
+#email_field,
+#username_field {
+  padding-top: 0;
+  padding-bottom: 0;
 }
-input.form-control, select.form-control {
-  padding-top: 0px;
-  padding-bottom: 0px;
+
+input.form-control,
+select.form-control {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .profile-content {
@@ -66,7 +81,7 @@ input.form-control, select.form-control {
 }
 
 .profile-userbuttons .btn:last-child {
-  margin-right: 0px;
+  margin-right: 0;
 }
 
 .profile-usermenu {
@@ -114,20 +129,19 @@ input.form-control, select.form-control {
   border-left: 2px solid #5b9bd1;
   margin-left: -2px;
 }
+
 .profile-usermenu ul li.active a:visited {
   color: #5b9bd1;
   background-color: #f6f9fb;
   border-left: 2px solid #5b9bd1;
   margin-left: -2px;
 }
-
 /* Profile Content */
 .profile-content {
   padding: 20px;
   background: #fff;
   min-height: 460px;
 }
-
 /* CUSTOM */
 .tooltip.customClass .tooltip-inner {
   color: black;
@@ -141,41 +155,55 @@ input.form-control, select.form-control {
 //custom flavia css
 
 h3.titlelan {
-  padding-top: 20px;
   margin-bottom: 10px;
 }
-label {
-  padding-top:15px;
-  padding-bottom:10px;
 
+label {
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+table {
+  margin-bottom: 20px;
+}
+
+td button.btn.btn-primary.makecaptain {
+  padding: 2px;
+  font-size: 0.9em;
+  text-transform: none;
+  letter-spacing: 0;
+  background-color: grey;
+
+
+}
+td button.btn.btn-primary.makecaptain:hover {
+  background-color: #3B3877;
 }
 
 div.invitetoteam {
-  margin-top:20px;
-  padding-top:30px;
+  padding-top: 30px;
   padding-bottom: 30px;
-  padding-left:10px;
-  background-color:#7c83bf;
+  padding-left: 10px;
+  background-color: #7c83bf;
+  margin-top: 20px;
+  border-radius: 4px;
 
   p {
     padding-top: 10px;
-    color:white;
+    color: white;
     display: inline;
     line-height: 0.5em;
   }
+
   h3 {
     color: white;
     display: inline-block;
     padding-right: 2em;
     font-weight: bold;
     margin: 0;
-
+    padding-top: 0;
   }
-
-
 }
-
-
 //button
 .ticket-button {
   margin-right: 16px;

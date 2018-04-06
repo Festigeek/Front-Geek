@@ -3,19 +3,19 @@
     <h2>Bienvenue !</h2>
     <div class="alert alert-info" role="alert">Vous vous connectez pour la première fois sur le nouveau site de FestiGeek. Pour des raisons de sécurité, merci de confirmer votre mot de passe (vous pouvez également en profiter pour le modifier).</div>
     <form name="newPassForm" ng-submit="login()" role="form">
-        <div class="form-group" ng-class="{ 'has-error': newPassForm.password.$dirty && (newPassForm.password.$invalid || newPassForm.password.$error.required) }">
-            <label for="champ_password">Mot de passe</label>
-            <input type="password" name="newPassword" id="champ_password" class="form-control" ng-model="user.newPassword" ng-minlength="8" required />
-            <span ng-show="newPassForm.newPassword.$dirty && (newPassForm.newPassword.$invalid || newPassForm.newPassword.$error.required)" class="help-block">Mot de passe requis (min. 8 caractères).</span>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error': newPassForm.confirm_password.$dirty && newPassForm.confirm_password.$error.noMatch }">
-            <label for="champ_confirm_password">Confirmation mot de passe</label>
-            <input type="password" name="confirm_password" id="champ_confirm_password" class="form-control" ng-model="user.confirm_newPassword" confirm-password required />
-            <span ng-show="newPassForm.confirm_password.$dirty && newPassForm.confirm_password.$error.noMatch" class="help-block">Les mots de passe ne correspondent pas.</span>
-        </div>
-        <div class="form-actions center-block">
-          <button type="submit" ng-disabled="newPassForm.$invalid" class="btn btn-primary">Valider</button>
-        </div>
+      <div class="form-group" ng-class="{ 'has-error': newPassForm.password.$dirty && (newPassForm.password.$invalid || newPassForm.password.$error.required) }">
+        <label for="champ_password">Mot de passe</label>
+        <input type="password" name="newPassword" id="champ_password" class="form-control" ng-model="user.newPassword" ng-minlength="8" required />
+        <span ng-show="newPassForm.newPassword.$dirty && (newPassForm.newPassword.$invalid || newPassForm.newPassword.$error.required)" class="help-block">Mot de passe requis (min. 8 caractères).</span>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': newPassForm.confirm_password.$dirty && newPassForm.confirm_password.$error.noMatch }">
+        <label for="champ_confirm_password">Confirmation mot de passe</label>
+        <input type="password" name="confirm_password" id="champ_confirm_password" class="form-control" ng-model="user.confirm_newPassword" confirm-password required />
+        <span ng-show="newPassForm.confirm_password.$dirty && newPassForm.confirm_password.$error.noMatch" class="help-block">Les mots de passe ne correspondent pas.</span>
+      </div>
+      <div class="form-actions center-block">
+        <button type="submit" ng-disabled="newPassForm.$invalid" class="btn btn-primary">Valider</button>
+      </div>
     </form>
   </div>
 </script>
@@ -47,6 +47,9 @@
       <br/>
       <p class="text-center text-muted">
         <small>Pas de compte ? <a href="" ng-click="openSignup()">Inscrivez-vous</a></small>
+      </p>
+      <p class="text-center text-muted">
+        <small><a href="" ng-click="openForgotPassword()">Mot de passe oublié? </a></small>
       </p>
     </form>
   </div>

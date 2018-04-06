@@ -101,7 +101,7 @@ angular
       var deferred = $q.defer();
 
       // TODO Fix 'undefined' in stateService.ts
-      $http.get(urls.BASE_API + '/users/me/orders')
+      $http.get(urls.BASE_API + '/users/me/orders?event_id=2')
       .then(function(res){
         if(res.data.length > 0) {
           deferred.reject();
@@ -175,6 +175,20 @@ angular
           serverRequired: serverRequired,
           skipIfLoggedIn: skipIfLoggedIn
         }
+      })
+      .state('forgotpassword', {
+        url: '/forgotpassword',
+        templateUrl: 'views/forgotpassword.html',
+        controller: 'ForgotPasswordCtrl',
+        resolve: {
+          serverRequired: serverRequired,
+          skipIfLoggedIn: skipIfLoggedIn
+        }
+      })
+      .state('resetPassword', {
+        url: '/resetPassword/:token/:email',
+        controller: 'MainCtrl',
+        templateUrl: 'views/main.html'
       })
       .state('logout', {
         url: '/logout',
@@ -272,11 +286,27 @@ angular
           // if($rootScope.dialog !== undefined) {
           //   $rootScope.dialog.close();
           // }
+
           ngDialog.closeAll();
 
           $rootScope.dialog = ngDialog.open({
             template: 'views/partials/signup.html',
             controller: 'SignupCtrl'
+          });
+        })
+        .catch(function(){
+          toastr.error('Serveur indisponible.');
+        });
+    };
+
+    $rootScope.openForgotPassword = function() {
+        checkServer()
+        .then(function(){
+
+          ngDialog.closeAll();
+          $rootScope.dialog = ngDialog.open({
+            template: 'views/partials/forgotpassword.html',
+            controller: 'ForgotPasswordCtrl'
           });
         })
         .catch(function(){
@@ -294,6 +324,7 @@ angular
           .then(function () {
             toastr.info('Vous vous être déconnecté avec succès');
             delete $localStorage.checkedUser;
+            delete $rootScope.username;
           });
       }
     };
@@ -352,7 +383,6 @@ angular
     });
 
     $('ul.dropdown-menu li a').click(function() {
-      console.log('TOTO');
       var submenu = $('.dropdown-menu');
       if(submenu.hasClass('open')) {
         submenu.removeClass('open');

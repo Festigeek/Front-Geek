@@ -8,7 +8,7 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('InscriptionCtrl', function ($window, $q, $rootScope, $scope, $localStorage, $state, $transitions, toastr, ngDialog, User, Country, Product, Team, Order, moment) {
+  .controller('InscriptionCtrl', function ($window, $q, $rootScope, $scope, $log, $localStorage, $state, $transitions, toastr, ngDialog, User, Country, Product, Team, Order, moment) {
     $scope.$storage = $localStorage;
     $scope.$storage.countries = ($scope.$storage.countries !== undefined) ? $scope.$storage.countries : Country.query();
 
@@ -18,12 +18,12 @@ angular.module('frontGeekApp')
       products: {
         tournament: {},
         burger: {
-          id:5,
+          id:14,
           price:13,
-          amount:0
+          amount:1
         },
         bfast:{
-          id:6,
+          id:15,
           price:5,
           amount:0
         }
@@ -45,7 +45,8 @@ angular.module('frontGeekApp')
     });
 
     $scope.existingTeams = Team.query({event_id: 2});
-    $scope.gameProducts = Product.getProductsByEvent({type_id: 1, event_id: 2}, function(){
+    $scope.gameProducts = Product.getProductsByEvent({type_id: 1, event_id: 2, product_type_id: 1}, function(){
+      $scope.gameProducts = $scope.gameProducts.filter(function(product){return product.product_type_id === 1;});
       $scope.gameProducts.map(function(gameProduct){
         gameProduct.available = gameProduct.quantity_max - gameProduct.sold;
       });
@@ -77,20 +78,56 @@ angular.module('frontGeekApp')
       return $scope.formData.products.tournament.name === 'Counter-Strike: GO';
     };
 
-    //fonction vérifiant le code d'équipe avant l'envoi du formulaire
+    // Fonction générant l'alias (identifiant unique) d'une équipe
+    var computeAlias = function(name) {
+      var equiv = {
+        'À': 'a', 'Á': 'a', 'Â': 'a', 'Ä': 'a', 'à': 'a', 'á': 'a', 'â': 'a', 'ä': 'a', '@': 'a',
+        'È': 'e', 'É': 'e', 'Ê': 'e', 'Ë': 'e', 'è': 'e', 'é': 'e', 'ê': 'e', 'ë': 'e', '€': 'e',
+        'Ì': 'i', 'Í': 'i', 'Î': 'i', 'Ï': 'i', 'ì': 'i', 'í': 'i', 'î': 'i', 'ï': 'i',
+        'Ò': 'o', 'Ó': 'o', 'Ô': 'o', 'Ö': 'o', 'Ø': 'o', 'ò': 'o', 'ó': 'o', 'ô': 'o', 'ö': 'o', 'ø': 'o',
+        'Ù': 'u', 'Ú': 'u', 'Û': 'u', 'Ü': 'u', 'ù': 'u', 'ú': 'u', 'û': 'u', 'ü': 'u', 'µ': 'u',
+        'Œ': 'oe', 'œ': 'oe', '\\$': 's'
+      };
+
+      var strtr = function(s, p, r) {
+        return !!s && {
+          2: function () {
+            for (var i in p) {
+                s = strtr(s, i, p[i]);
+            }
+            return s;
+          },
+          3: function () {
+            return s.replace(new RegExp(p, 'g'), r);
+          },
+          0: function () {
+            return;
+          }
+        }[arguments.length]();
+      };
+
+      var chaine = strtr(name, equiv);
+      if(chaine) {
+        chaine = chaine.replace(/[^A-Za-z0-9]+/g, '');
+        return chaine.toLowerCase();
+      }
+      return '';
+    };
+
+    // Fonction vérifiant le code d'équipe avant l'envoi du formulaire
+    // Contient le nom de l'équipe si OK, false si KO.
     $scope.testTeamCode = function(){
-      //TODO problem with callback, not going into the exception
-      $scope.teamCodeResult = Team.testCode({event_id: 2, team_code: $scope.formData.team_code}, function(name){
-        //callback
-        console.log(Team);
-        $scope.teamCodeResult.name = name;
-          console.log('outside if', $scope.teamCodeResult);
-        if($scope.teamCodeResult.data.error !== undefined){
-          $scope.teamCodeResult.name = 'Aucune équipe n\'a été trouvée avec ce code';
-          console.log('dans le if erreur', $scope.teamCodeResult);
-        }
-      });//resource, modèle
-      console.log($scope.teamCodeResult);
+      Team.testCode({event_id: 2, team_code: $scope.formData.team_code}, function(res) {
+        $scope.teamFromCode = res.name;
+      }, function() {
+        $scope.teamFromCode = false;
+      });
+    };
+
+    $scope.testTeamName = function() {
+      return $scope.existingTeams.some(function(team) {
+        return team.alias === computeAlias($scope.formData.team);
+      });
     };
 
     // Fonction s'assurant que le formulaire d'inscription est complet
@@ -98,7 +135,7 @@ angular.module('frontGeekApp')
       return $scope.formData.consent.cable &&
         $scope.formData.consent.rules &&
         $scope.formData.products.tournament.id &&
-        ($scope.formData.products.tournament.need_team === 0 || $scope.formData.team) &&
+        ($scope.formData.products.tournament.need_team === 0 || $scope.formData.team || $scope.formData.team_code) &&
         (!$scope.underage || $scope.formData.consent.check_underage) &&
         (!$scope.viewBattleTag() || $scope.infosUser.battleTag) &&
         (!$scope.viewLoL() || $scope.infosUser.lol_account) &&
@@ -110,17 +147,17 @@ angular.module('frontGeekApp')
       return $q(function(resolve) {
         var productsList = [{ product_id: $scope.formData.products.tournament.id, amount: 1 }];
         if($scope.formData.products.burger.amount > 0) {
-          productsList.push({product_id: 5, amount: $scope.formData.products.burger.amount});
+          productsList.push({product_id: 14, amount: $scope.formData.products.burger.amount});
         }
         if($scope.formData.products.bfast.amount > 0) {
-          productsList.push({ product_id: 6, amount: $scope.formData.products.bfast.amount });
+          productsList.push({ product_id: 15, amount: $scope.formData.products.bfast.amount });
         }
 
         $scope.payload = {
           event_id: 2,
           checked_legal: $scope.formData.consent.rules,
-          team: (typeof $scope.formData.team.originalObject === 'object') ? $scope.formData.team.originalObject.name : $scope.formData.team.originalObject,
-
+          team: $scope.formData.team,
+          team_code: $scope.formData.team_code,
           products: productsList,
           data: JSON.stringify($scope.formData)
         };

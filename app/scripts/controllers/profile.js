@@ -8,7 +8,7 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('ProfileCtrl', function (urls, $scope, $auth, $location, $localStorage, toastr, User, Country, Order, Team) {
+  .controller('ProfileCtrl', function ($log, urls, $scope, $auth, $location, $localStorage, toastr, User, Country, Order, Team) {
     $scope.subPage = 1;
 
     $scope.$storage = $localStorage;
@@ -24,11 +24,13 @@ angular.module('frontGeekApp')
         $scope.orders = orders.filter(function(order) {return order.event_id === 2;});
         Team.getUserTeam({ order_id: $scope.orders[0].id }, function(team) {
           $scope.team = team;
-          $scope.isCaptain = false;
-          if(team[0].users[0].email !== undefined){
-            console.log('in if email proterty');
+          $scope.testingFilter = $scope.team.users.filter(function(user){return user.email === $scope.user.email;});
+
+          if($scope.testingFilter[0].captain === true){
             $scope.isCaptain = true;
           }
+        }, function(team){
+          $log.log(team); //TODO if null
         });
       });
 
@@ -58,5 +60,17 @@ angular.module('frontGeekApp')
           $scope.$storage.checkedUser = true;
           toastr.success('Profil mis à jour avec succès !');
         });
+    };
+
+    $scope.changeCaptain = function(username) {
+      var team = new Team({'captain':username});
+      team.$modifyTeam({ event_id:2, team_id: $scope.team.id }, function() {
+        if(true){
+          toastr.success('Capitaine mis à jour!');
+        }
+      }, function(err){
+        $log.log(err);
+      });
+
     };
   });

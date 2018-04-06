@@ -2,6 +2,9 @@
   <h3>Infos Tournoi</h3>
 
   <div class="form-group">
+    <div class="alert alert-info" role="alert" ng-if="formData.products.tournament.name==='Animations'">
+      <strong>Information: </strong>En fonction de l'affluence et de l'organisation des équipes des autres tournois, on ne peut pas garantir votre place en animation. S'il s'avère qu'il y a un manque de place, votre billet vous sera remboursé.
+    </div>
     <h4 class="control-label minititle">Tournoi</h4>
     <ui-select id="info_tournoi" ng-model="formData.products.tournament" theme="bootstrap" title="Choix du tournoi" required>
       <ui-select-match placeholder="Sélectionnez ou cherchez un tournoi dans la liste...">{{ $select.selected.name }}</ui-select-match>
@@ -13,10 +16,10 @@
   </div>
 
   <div class="form-group">
-    <h4 class="minititle">Repas (le plus important !)</h4>
+    <h4 class="minititle">Précommande tes repas (le plus important !)</h4>
     <div class="row">
       <div class="col-sm-4">
-        Burger(s) <span class="price">13 CHF</span>
+        Burger(s) <span class="price">13 CHF <strong>(14 CHF sur place)</strong></span>
       </div>
       <div class="col-sm-2">
         <select id="info_burger" ng-model="formData.products.burger.amount">
@@ -43,37 +46,49 @@
   <div class="clearfix"><br /></div>
   <hr class="separator">
   <h3>Infos Joueur</h3>
-  <div class="alert alert-warning" role="alert">
-    Vous avez la possibilité de créer ou rejoindre une équipe. Afin d'en rejoindre une, veuillez vous munir du code d'inscription.
+  <div class="alert alert-warning" role="alert" ng-if="formData.products.tournament.need_team===0">
+    <strong>Information: </strong>Tu as choisi un type de tournoi qui ne nécessite pas d'équipe. Si tu en choisi une, on ne peut pas garantir ton placement à côté des autres membres de ton équipe dans la LAN.
   </div>
+  <div class="alert alert-warning" role="alert" ng-if="formData.products.tournament.need_team===1">
+    <strong>Information: </strong>Tu as choisi un type de tournoi qui nécessite une équipe
+  </div>
+  <div class="alert alert-info" role="alert">
+    Vous avez la possibilité de créer <strong>OU</strong> rejoindre une équipe. Cette dernière sera créée à la fin de ton inscription. Si tu ne vois pas d'erreur, c'est qu'elle a été créée. Afin d'en rejoindre une, veuillez vous munir du code d'inscription.
+  </div>
+
   <div class="form-group row">
-    <div class="col-sm-6">
+    <div class="col-sm-6 teambox">
       <label for="info_equipe"><i class="fa fa-plus-circle colored-icon" aria-hidden="true"></i> Créer une équipe</label>
       <p>
-        Si tu crées une équipe, tu en seras le captitaine. Mais ne t'inquiète pas, tu pourras modifier ça après ton inscription. Par contre, tu devras communiquer le code d'invitation au reste de ton équipe pour qu'ils en fassent partie!
+        <strong>Attention </strong>tu ne peux pas créer une équipe si elle existe deja. Si tu crées une équipe, tu en seras le capitaine. Par contre, tu devras communiquer le code d'invitation au reste de ton équipe pour qu'ils en fassent partie!
       </p>
-      <div angucomplete-alt id="info_equipe" placeholder="Équipe" pause="100" local-data="existingTeams" search-fields="name" title-field="name" selected-object="formData.team" override-suggestions="true" minlength="1" input-class="form-control form-control-small">
-        <!--remote-url remote-url-data-field-->
-      </div>
+      <input type="text" class="form-control" placeholder="Équipe" ng-model="formData.team" ng-keyup="testTeam()" name="team" id="team" />
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-6 teambox">
       <label for="info_equipe"><i class="fa fa-sign-in colored-icon" aria-hidden="true"></i> Rejoindre une équipe</label>
       <p>
         Si quelqu'un de ton équipe en a deja créé une, tu peux entrer le code d'inscription qui t'a été transmis et rejoindre tes amis!
       </p>
       <div class="row">
-        <div class="col-sm-8">
-          <input type="text" class="form-control" placeholder="Code d'activation" ng-model="formData.team_code" name="team_code" id="team_code" required/>
+        <div class="col-md-8">
+          <input type="text" class="form-control" placeholder="Code d'activation" ng-model="formData.team_code" name="team_code" id="team_code" />
+
         </div>
-        <div class="col-sm-4">
+        <div class="col-md-4">
           <button type="button" class="btn btn-primary" ng-click="testTeamCode()">Vérifier le code</button>
         </div>
       </div>
 
-      <!-- TODO test id before sending payload and only allow one (create or join)--->
+      <p style="color:#a94442;" ng-if="teamFromCode===false">
+        cette équipe n'existe pas :(
+      </p>
+      <p style="color:#3c763d;" ng-if="teamFromCode">
+        Equipe <strong>{{teamFromCode}}</strong> trouvée!
+      </p>
     </div>
-
   </div>
+
+  <!--</div>-->
 
   <div class="form-group">
     <div class="row">
@@ -100,24 +115,29 @@
   <div class="form-group">
     <label>Règlements</label>
     <div class="row">
-      <div class="col-sm-3 text-center">
-        <a href="assets/FG2017_reglement_general.pdf" target="_blank">
+      <div class="col-sm-4 text-center">
+        <a href="assets/FG2018_rules_general.pdf" target="_blank">
           <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Règlement Général de la LAN
         </a>
       </div>
-      <div class="col-sm-3 text-center">
-        <a href="assets/FG2017_reglement_csgo.pdf" target="_blank">
+      <div class="col-sm-2 text-center">
+        <a href="assets/FG2018_rules_CSGO.pdf" target="_blank">
           <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Règlement CS: GO
         </a>
       </div>
-      <div class="col-sm-3 text-center">
-        <a href="assets/FG2017_reglement_lol.pdf" target="_blank">
+      <div class="col-sm-2 text-center">
+        <a href="assets/FG2018_rules_LOL.pdf" target="_blank">
           <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Règlement League of Legends
         </a>
       </div>
-      <div class="col-sm-3 text-center">
-        <a href="assets/FG2017_reglement_ow.pdf" target="_blank">
+      <div class="col-sm-2 text-center">
+        <a href="assets/FG2018_rules_OW.pdf" target="_blank">
           <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Règlement Overwatch
+        </a>
+      </div>
+      <div class="col-sm-2 text-center">
+        <a href="assets/FG2018_rules_HS.pdf" target="_blank">
+          <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Règlement Hearthstone
         </a>
       </div>
     </div>

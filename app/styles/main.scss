@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 $icon-font-path:    "./ressources/bootstrap/fonts";
 $fa-font-path:      "./ressources/font-awesome/fonts";
 $icomoon-font-path: "./ressources/icomoon/fonts";
@@ -20,6 +22,7 @@ $icomoon-font-path: "./ressources/icomoon/fonts";
 @import "onepage-base";
 @import "advanced_bootstrap_grid";
 
+
 /* =======================================================
 *
 * 	Template Style
@@ -32,7 +35,9 @@ $icomoon-font-path: "./ressources/icomoon/fonts";
   color: #000;
   padding: 0.2em 0;
 }
-
+span.dropdown ul.dropdown-menu li a:hover {
+  color:#848484 !important;
+}
 body {
   font-family: "Roboto", "Open Sans", Arial, sans-serif;
   line-height: 1.6;
@@ -72,6 +77,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Roboto", "Open Sans", Arial, sans-serif;
   font-weight: 400;
   margin: 0 0 30px 0;
+  padding-top: 40px;
 }
 
 figure {
@@ -1409,8 +1415,8 @@ div.lan2017{
 }
 
 .btn-info {
-  background: #D8D8D8 !important;
-  border-color: #D8D8D8 !important;
+  background: #3B3877 !important;
+  border-color: #3B3877 !important;
 }
 .btn-success:hover {
 
@@ -2235,6 +2241,11 @@ a.lanPartyLink{
 }
 a.lanPartyLink:hover{
   color:grey !important;
+}
+
+#toast-container.toast-top-center .toast,
+#toast-container.toast-bottom-center .toast {
+  width: 500px;
 }
 
 .toast-top-center {

@@ -141,7 +141,7 @@
         <!-- TODO if no order created for this event -> link to "inscription lan 2018" -->
         <div ng-if="!orders[0]">
           Tu ne t'es pas encore inscrit à cette LAN !
-          <button type="button" class="btn btn-primary"><a href="#!/inscriptions">Je veux m'inscrire !</a></button>
+          <a href="#!/inscriptions"><button type="button" class="btn btn-primary inscriptions">Je veux m'inscrire !</button></a>
         </div>
         <div ng-if="orders[0]">
           <p>
@@ -150,7 +150,7 @@
             <strong ng-if="orders[0].payment_type_id == 0">paypal</strong>
           </p>
           <div class="alert alert-warning" role="alert" ng-if="orders[0].state == 0">
-            Le paiement de ta commande n'est pas encore validé. Si tu as dejà payé, attends que notre équipe valide ton paiement. Merci pour ta patience !
+            Le paiement de ta commande n'est pas encore validé. Tu as jusqu'au 7 Mai pour le faire. Si tu as dejà payé, attends que notre équipe valide ton paiement. Merci pour ta patience !
           </div>
           <div class="alert alert-success" role="alert" ng-if="orders[0].state == 1">
             Ton paiement a été validé! Merci beaucoup!
@@ -195,26 +195,30 @@
 
         <div ng-if="team">
           <div class="alert alert-info" role="alert" ng-if="isCaptain">
-            Tu es le capitaine de votre équipe <strong>{{team[0].name}}</strong>. Tu peux modifier le nom, les membres ainsi que le capitaine de ton équipe ici.
+            Tu es le capitaine de votre équipe <strong>{{team.name}}</strong>. Tu peux donner ce rôle à quelqu'un d'autre de ton équipe. N'oublie pas de transmettre le code <strong>{{team.code}}</strong> aux autres membres.
           </div>
           <div class="alert alert-info" role="alert" ng-if="!isCaptain">
-            Voici la composition de ton équipe <strong>{{team[0].name}}</strong>. Tu peux contacter le capitaine si tu souhaites y faire des changements.
+            Voici la composition de ton équipe <strong>{{team.name}}</strong>. Tu peux contacter le capitaine si tu souhaites y faire des changements.
           </div>
 
         </div>
         <div class="alert alert-info" role="alert" ng-if="!team">
           Oh Zut ! Tu ne fais partie d'aucune équipe!
+          <!-- TODO en rejoindre une avec code -->
+          <!-- <div ng-if=!orders[0]"">
+
+          </div> -->
         </div>
 
-        <table style="width:100%">
-          <tr ng-if="orders[0]">
-            <th ng-if="isCaptain">
+        <table style="width:100%" ng-if="team">
+          <tr>
+            <th>
               Nom et prénom
             </th>
             <th>
               Pseudo
             </th>
-            <th ng-if="isCaptain">
+            <th>
               Adresse Mail
             </th>
             <th>
@@ -222,33 +226,34 @@
             </th>
           </tr>
 
-          <tr ng-repeat="user in team[0].users">
-            <td ng-if="isCaptain">
+          <tr ng-repeat="user in team.users">
+            <td>
               {{user.lastname}} {{user.firstname}}
             </td>
             <td>
               {{user.username}}
             </td>
-            <td ng-if="isCaptain">
+            <td>
               {{user.email}}
             </td>
-            <td ng-if="user.captain">
-              <i class="fa fa-flag" aria-hidden="true" style="color:green;"></i>
+            <td>
+              <i class="fa fa-flag" aria-hidden="true" style="color:green;" ng-if="user.captain"></i>
+              <i class="fa fa-flag" aria-hidden="true" style="color:grey;" ng-if="!user.captain"></i>
             </td>
-            <td ng-if="!user.captain">
-              <!-- TODO css button -->
-              <button type="button" class="btn btn-primary" ng-click="">Rendre capitaine</button>
+            <td ng-if="isCaptain">
+              <!-- TODO css button ng-if="!user.captain && isCaptain" -->
+              <button type="button" class="btn btn-primary makecaptain" ng-click="changeCaptain(user.username)" ng-if="!user.captain">Rendre capitaine</button>
             </td>
 
           </tr>
         </table>
-        <div ng-if="isCaptain" class="invitetoteam row">
-          <div class="col-sm-6">
+        <div class="invitetoteam row" ng-if="team">
+          <div class="col-sm-10">
             <p> Pour inviter des participants, transmet leur ce code: </p>
           </div>
 
-          <div class="col-sm-6 text-right">
-            <h3 id="teamcode">{{team[0].code}}</h3>
+          <div class="col-sm-2 text-right">
+            <h3 id="teamcode">{{team.code}}</h3>
             <!-- <button ng-click="copyCode()" type="button" class="btn btn-primary">Copier le code</button> -->
           </div>
 

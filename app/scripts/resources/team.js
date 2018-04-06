@@ -19,20 +19,17 @@ angular.module('frontGeekApp')
       'getUserTeam':{
         url: urls.BASE_API + '/orders/:order_id/team',
         method: 'GET',
-        params:  { order_id: '@order_id' },
-        isArray: true
+        params:  { order_id: '@order_id' }
       },
       'modifyTeam': {
         url: urls.BASE_API + '/events/:event_id/teams/:team_id',
         method: 'PUT',
-        params:  { order_id: '@order_id', team_id: '@team_id' },
-        isArray: true
+        params: { event_id: '@event_id', team_id: '@team_id' }
       },
       'testCode' : {
         url: urls.BASE_API + '/events/:event_id/teams/:team_code',
         method: 'GET',
-        params:  { event_id: '@event_id', team_code: '@team_code' },
-        isArray: true
+        params:  { event_id: '@event_id', team_code: '@team_code' }
       },
     });
     // Team service used to communicate with the team ressource (by event) of the API

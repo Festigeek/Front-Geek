@@ -19,6 +19,10 @@ colored-icon {
 #status-buttons a.active:focus {
   text-decoration: none !important;
 }
+span.form-control:hover{
+  color:#3B3877;
+  border-color: #3B3877;
+}
 label.minititle, h4.minititle{
   color: #3f2e79;
   font-size: 1.2em;
@@ -30,7 +34,11 @@ label.minititle, h4.minititle{
 #form-container {
   margin-top: 45px;
 }
-
+div.teambox {
+  background-color: #EDEDEE;
+  height: 210px;
+  border: black 1px solid;
+}
 #form-container .page-header {
   background:#eee;
   margin:0;

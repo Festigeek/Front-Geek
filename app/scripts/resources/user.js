@@ -12,7 +12,15 @@ angular.module('frontGeekApp')
     // User service used to communicate with the user ressource of the API
     var User = $resource(urls.BASE_API + '/users/:id', { id: '@id' }, {
       'login': { method: 'POST' },
-      'update': { method: 'PUT' }
+      'update': { method: 'PUT' },
+      'forgotPassword': {
+        url: urls.BASE_API + '/users/getResetToken',
+        method: 'POST'
+      },
+      'resetPassword': {
+        url: urls.BASE_API + '/users/resetPassword',
+        method: 'POST'
+      },
     });
 
     // Vérifie si l'utilisateur a renseigné toutes les informations nécessaires

@@ -4,11 +4,10 @@
     <h3>Inscription réussie !</h3>
     <p>On t'as envoyé un p'tit mail de confirmation avec les informations de paiement <em>(si c'est pas le cas, pense à jeter un oeil dans tes spams...)</em></p>
     <p>Jête aussi un oeil à notre <a href="/#!/infolan">page d'informations </a>de la LAN</p>
-      <div ng-show="resultState === 'win'" id="checkout_win">
+    <div ng-show="resultState === 'win'" id="checkout_win">
       <h4>Félicitation !</h4>
       <p>
-        <strong>Et en plus, on a un vainqueur !</strong><br/>
-        Profites bien de ton Burger offert ;)
+        <strong>Et en plus, on a un vainqueur !</strong><br/> Profites bien de ton Burger offert ;)
       </p>
     </div>
     <p>À très bientôt pour une LAN de folie ! :)</p>
@@ -17,19 +16,19 @@
     </p>
   </div>
   <div uib-alert ng-if="resultState === 'cancelled'" class="alert-warning">
-    <h3>Inscription annulée !</h3>
-    C'est dommage, on a fait quelque chose de mal ? :(
+    <h3>Inscription annulée !</h3> C'est dommage, on a fait quelque chose de mal ? :(
   </div>
   <div uib-alert ng-if="resultState === 'error'" class="alert-danger">
-    <h3>Erreur lors de l'inscription !</h3>
-    Zut, flûte, saperlipopette !<br />
-    Y a un truc qui a pas marché...
+    <h3>Erreur lors de l'inscription !</h3> Zut, flûte, saperlipopette !<br /> Y a un truc qui a pas marché...
   </div>
 </div>
 
 <div class="container">
   <div ng-if="resultState === 'success' || resultState === 'cancelled'" class="col-md-12 text-center">
     <a href="/" role="button" class="btn btn-success">Retour à la page d'accueil</a>
+  </div>
+  <div ng-if="resultState === 'success'" class="col-md-12 text-center">
+    <a href="/#!/profile" role="button" class="btn btn-success">Vers mon profil</a>
   </div>
   <div ng-if="resultState === 'error'" class="col-md-12 text-center">
     <a href="/#!/inscriptions/games" role="button" class="btn btn-success">On réessaye ?</a>
