@@ -125,7 +125,7 @@ angular.module('frontGeekApp')
     };
 
     $scope.testTeamName = function() {
-      return $scope.existingTeams.some(function(team) {
+      $scope.testFromExistingTeams = $scope.existingTeams.some(function(team) {
         return team.alias === computeAlias($scope.formData.team);
       });
     };
