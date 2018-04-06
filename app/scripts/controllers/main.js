@@ -87,7 +87,7 @@ angular.module('frontGeekApp')
 
     if($state.current.name === 'resetPassword'){
       ngDialog.open({
-        template: 'views/partials/resetPassword.html',
+        templateUrl: 'views/partials/resetpassword.html',
         controller: 'ResetPasswordCtrl',
         resolve: {
           resetToken: function() {
