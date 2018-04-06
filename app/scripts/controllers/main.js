@@ -9,8 +9,7 @@
  * Controller of the frontGeekApp
  */
 angular.module('frontGeekApp')
-  .controller('MainCtrl', function ($window, $scope) {
-
+  .controller('MainCtrl', function ($window, $state, $stateParams, $scope, ngDialog) {
     // Imported from 2016 One-Page site
     $scope.parallax = function() {
       $(window).stellar();
@@ -85,6 +84,18 @@ angular.module('frontGeekApp')
       });
     };
     */
+
+    if($state.current.name === 'resetPassword'){
+      ngDialog.open({
+        template: 'views/partials/resetPassword.html',
+        controller: 'ResetPasswordCtrl',
+        resolve: {
+          resetToken: function() {
+            return $stateParams.token;
+          }
+        }
+      });
+    }
 
     $scope.initOnePage = function() {
       $scope.parallax();

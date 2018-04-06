@@ -185,6 +185,11 @@ angular
           skipIfLoggedIn: skipIfLoggedIn
         }
       })
+      .state('resetPassword', {
+        url: '/resetPassword/:token',
+        controller: 'MainCtrl',
+        templateUrl: 'views/main.html'
+      })
       .state('logout', {
         url: '/logout',
         template: null,
@@ -319,6 +324,7 @@ angular
           .then(function () {
             toastr.info('Vous vous être déconnecté avec succès');
             delete $localStorage.checkedUser;
+            delete $rootScope.username;
           });
       }
     };
