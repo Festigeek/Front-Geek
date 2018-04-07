@@ -62,8 +62,8 @@ angular.module('frontGeekApp')
         });
     };
 
-    $scope.changeCaptain = function(username) {
-      var team = new Team({'captain':username});
+    $scope.changeCaptain = function(email) {
+      var team = new Team({'captain':email});
       team.$modifyTeam({ event_id:2, team_id: $scope.team.id }, function() {
         if(true){
           toastr.success('Capitaine mis à jour!');
