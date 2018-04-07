@@ -1,45 +1,45 @@
 <div class="row">
   <table class="table table-striped">
     <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th>Contenu</th>
-      <th>Nombre</th>
-      <th>Prix</th>
-    </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>Contenu</th>
+        <th>Nombre</th>
+        <th>Prix</th>
+      </tr>
     </thead>
     <tfoot>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <th>Total:</th>
-      <th>{{ ((formData.products.tournament.price) ? formData.products.tournament.price : 0) + formData.products.burger.price * formData.products.burger.amount + formData.products.bfast.price * formData.products.bfast.amount | number:2 }} CHF</th>
-    </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <th>Total:</th>
+        <th>{{ ((formData.products.tournament.price) ? formData.products.tournament.price : 0) + formData.products.burger.price * formData.products.burger.amount + formData.products.bfast.price * formData.products.bfast.amount | number:2 }} CHF</th>
+      </tr>
     </tfoot>
     <tbody>
-    <tr ng-if="formData.products.tournament.id">
-      <td></td>
-      <td></td>
-      <td>Inscription LAN 2017 - Tournoi <b>{{ formData.products.tournament.name }}</b></td>
-      <td>1</td>
-      <td>{{ formData.products.tournament.price | number:2 }}</td>
-    </tr>
-    <tr ng-if="formData.products.burger.amount">
-      <td></td>
-      <td></td>
-      <td>Bon pour burger Festigeek</td>
-      <td>{{ formData.products.burger.amount }}</td>
-      <td>{{ formData.products.burger.price * formData.products.burger.amount | number:2 }}</td>
-    </tr>
-    <tr ng-if="formData.products.bfast.amount">
-      <td></td>
-      <td></td>
-      <td>Bon pour petit-déj.</td>
-      <td>{{ formData.products.bfast.amount }}</td>
-      <td>{{ formData.products.bfast.price * formData.products.bfast.amount | number:2 }}</td>
-    </tr>
+      <tr ng-if="formData.products.tournament.id">
+        <td></td>
+        <td></td>
+        <td>Inscription LAN 2017 - Tournoi <b>{{ formData.products.tournament.name }}</b></td>
+        <td>1</td>
+        <td>{{ formData.products.tournament.price | number:2 }}</td>
+      </tr>
+      <tr ng-if="formData.products.burger.amount">
+        <td></td>
+        <td></td>
+        <td>Bon pour burger Festigeek</td>
+        <td>{{ formData.products.burger.amount }}</td>
+        <td>{{ formData.products.burger.price * formData.products.burger.amount | number:2 }}</td>
+      </tr>
+      <tr ng-if="formData.products.bfast.amount">
+        <td></td>
+        <td></td>
+        <td>Bon pour petit-déj.</td>
+        <td>{{ formData.products.bfast.amount }}</td>
+        <td>{{ formData.products.bfast.price * formData.products.bfast.amount | number:2 }}</td>
+      </tr>
     </tbody>
   </table>
 </div>
@@ -51,8 +51,7 @@
   <div class="col-sm-6 text-center">
     <div>
       <a href="" ng-click="postOrder(2)">
-        <img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" alt="PayPal - The safer, easier way to pay online!" /><br />
-        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+        <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" alt="Check out with PayPal" />
       </a>
     </div>
   </div>
