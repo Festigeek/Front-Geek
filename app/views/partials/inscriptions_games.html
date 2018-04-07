@@ -63,6 +63,12 @@
         <strong>Attention </strong>tu ne peux pas créer une équipe si elle existe deja. Si tu crées une équipe, tu en seras le capitaine. Par contre, tu devras communiquer le code d'invitation au reste de ton équipe pour qu'ils en fassent partie!
       </p>
       <input type="text" class="form-control" placeholder="Équipe" ng-model="formData.team" ng-keyup="testTeamName()" name="team" id="team" />
+      <p style="color:#a94442;" ng-show="testTeamName()">
+        Cette équipe existe déjà
+      </p>
+      <p style="color:#3c763d;" ng-hide="testTeamName()">
+        Nom d'équipe libre :)
+      </p>
     </div>
     <div class="col-sm-6 teambox">
       <label for="info_equipe"><i class="fa fa-sign-in colored-icon" aria-hidden="true"></i> Rejoindre une équipe</label>
@@ -80,7 +86,7 @@
       </div>
 
       <p style="color:#a94442;" ng-if="teamFromCode===false">
-        cette équipe n'existe pas :(
+        Cette équipe n'existe pas :(
       </p>
       <p style="color:#3c763d;" ng-if="teamFromCode">
         Equipe <strong>{{teamFromCode}}</strong> trouvée!
