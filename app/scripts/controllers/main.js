@@ -110,7 +110,7 @@ angular.module('frontGeekApp')
 
     $scope.openInscriptions = function(){
       $state.go('inscriptions');
-    }
+    };
 
     // Onload functions execution
   //  $rootScope.openModal();

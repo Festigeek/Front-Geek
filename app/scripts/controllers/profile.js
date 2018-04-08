@@ -42,15 +42,15 @@ angular.module('frontGeekApp')
     };
 
     // $scope.copyCode = function() {
-    //   var $temp = $("h3");
-    //   $("body").append($temp);
+    //   var $temp = $('h3');
+    //   $('body').append($temp);
     //   $temp.val($(element).text()).select();
-    //   document.execCommand("copy");
+    //   document.execCommand('copy');
     //   $temp.remove();
     //
     //   toastr.success('Code copié dans le presse papier');
     //
-    //   console.log("click!")
+    //   console.log('click!')
     // }
 
 
@@ -73,4 +73,16 @@ angular.module('frontGeekApp')
       });
 
     };
+
+    $scope.generateStats = function() {
+      $scope.orderStats = Order.getByEvent(2, function(orders){
+        $scope.testingmotherfuckingShit = orders;
+      }, function(log){
+        $log.log(log);
+      });
+    };
+
+
+
+
   });

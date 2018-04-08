@@ -22,6 +22,11 @@ angular.module('frontGeekApp')
         method: 'GET',
         params: { order_id: '@order_id' },
         isArray: false
+      },
+      'getByEvent': {
+        url: urls.BASE_API + '/orders/?eventId=:event_id',
+        method: 'GET',
+        params: { event_id: '@event_id' }
       }
     });
 
