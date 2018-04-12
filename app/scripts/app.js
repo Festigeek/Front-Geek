@@ -30,7 +30,8 @@ angular
     'vcRecaptcha',
     'duScroll',
     'angucomplete-alt',
-    'angularMoment'
+    'angularMoment',
+    'chart.js'
   ])
 
   // CONSTANTS
