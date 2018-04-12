@@ -108,9 +108,9 @@ angular.module('frontGeekApp')
       // $scope.formValidator(); // FORM VALIDATOR
     };
 
-    $scope.openInscriptions = function(){
+    $scope.openInscriptions = function() {
       $state.go('inscriptions');
-    }
+    };
 
     // Onload functions execution
   //  $rootScope.openModal();

@@ -249,12 +249,13 @@ angular
   })
 
   // RUNNING CODE //was removed: newsModal
-  .run(function($rootScope, $location, $state, urls, checkServer, $auth, $trace, $localStorage, ngDialog, toastr, amMoment){
+  .run(function($rootScope, $location, $state, urls, checkServer, $auth, $trace, $localStorage, ngDialog, toastr, amMoment) {
     amMoment.changeLocale('fr-ch');
 
     /*
     // Variables
     */
+    $rootScope.year = (new Date()).getFullYear();
     $rootScope.username = ($localStorage.loggedUser !== undefined) ? $localStorage.loggedUser.username : undefined;
     $rootScope.dialog = undefined;
     $rootScope.dataDebug = {};
