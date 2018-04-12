@@ -9,8 +9,5 @@
  */
 angular.module('frontGeekApp')
   .controller('InfolanCtrl', function ($scope, Team) {
-    $scope.teams = {
-      lol: Team.query({event_id: 1, game: 1}),
-      cs: Team.query({event_id: 1, game: 3})
-    };
+    $scope.teams = Team.query({event_id: 2});
   });
