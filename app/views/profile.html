@@ -1,3 +1,50 @@
+<nav id="mainNav" ng-class="['navbar', 'navbar-default', 'navbar-fixed-top', {'moveMenu': isAuthenticated()}]" data-spy="affix" data-offset-top="100">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navigationbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" id="logofg" href="/">
+        <img src="images/logo.png" alt="Logo Festigeek"/>
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navigationbar">
+      <ul du-spy-context class="nav navbar-nav fg-menu" id="fh5co-primary-menu">
+        <li class="lan2018_menu"><a href="/#!/infolan" style="color:white">LAN 2018</a></li>
+        <li class="active" du-scrollspy="home"><a href="#home" du-smooth-scroll>Accueil</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" data-target=".dropdown-menu-about" href="">
+            A propos <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-about">
+            <li du-scrollspy="events"><a href="#about" class="close-dropdown-about" du-smooth-scroll>L'association</a></li>
+            <li du-scrollspy="events"><a href="#team" class="close-dropdown-about" du-smooth-scroll>L'équipe</a></li>
+            <li role="separator" class="fg-divider"></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" data-target=".dropdown-menu-event" href="">
+            Events <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-event">
+            <li du-scrollspy="events"><a href="#events" class="close-dropdown-event" du-smooth-scroll>Les événements</a></li>
+            <li du-scrollspy="laninfo"><a href="#laninfo" class="close-dropdown-event" du-smooth-scroll>LAN 2018</a></li>
+            <li role="separator" class="fg-divider"></li>
+          </ul>
+        </li>
+        <li du-scrollspy="join"><a href="#join" du-smooth-scroll>Nous rejoindre</a></li>
+        <li du-scrollspy="sponsors"><a href="#sponsors" du-smooth-scroll>Devenir sponsor</a></li>
+        <li du-scrollspy="contact"><a href="#contact" du-smooth-scroll>Contact</a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
 <div class="container">
   <div class="row profile">
 
