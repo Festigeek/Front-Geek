@@ -98,6 +98,130 @@
         </div>-->
     </div>
   </div>
+  <h3>Cash prices</h3>
+  <div class="row">
+    <div class="col-sm-3">
+      <h4>League of Legends</h4>
+      <ul>
+        <li>
+          <strong>1er: </strong> 500 CHF (100 CHF / p)
+        </li>
+        <li>
+          <strong>2e: </strong> 350 CHF (70 CHF / p)
+        </li>
+        <li>
+          <strong>3e: </strong> 200 CHF (40 CHF / p)
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-3">
+      <h4>Counter-Strike: GO</h4>
+      <ul>
+        <li>
+          <strong>1er: </strong> 350 CHF (70 CHF / p)
+        </li>
+        <li>
+          <strong>2e: </strong> 250 CHF (50 CHF / p)
+        </li>
+        <li>
+          <strong>3e: </strong> 150 CHF (30 CHF / p)
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-3">
+      <h4>Overwatch</h4>
+      <ul>
+        <li>
+          <strong>1er: </strong> 360 CHF (60 CHF / p)
+        </li>
+        <li>
+          <strong>2e: </strong> 240 CHF (40 CHF / p)
+        </li>
+        <li>
+          <strong>3e: </strong> 150 CHF (25 CHF / p)
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-sm-3">
+      <h4>Hearthstone</h4>
+      <ul>
+        <li>
+          <strong>1er: </strong> 160 CHF
+        </li>
+        <li>
+          <strong>2e: </strong> 120 CHF
+        </li>
+        <li>
+          <strong>3e: </strong> 80 CHF
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Équipes inscrites à la LAN</h3>
+
+  <div class="row" id="teams_list">
+    <div class="col-sm-6">
+      <div class="highlight">
+        <h4 class="text-center">League of Legends</h4>
+        <ul class="teams">
+          <li ng-repeat="t in teams | filter: {game: 9} | orderBy:'-users.length'" class="team" ng-class="t.users.length>4 ? 'complete' : ''">
+            <strong>{{ t.name }} ({{ t.users.length }}/5)</strong>
+            <ul class="users">
+              <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ !u.roaster ? '(' : '' }}{{ u.username }}{{ !u.roaster ? ')' : '' }}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="highlight">
+        <h4 class="text-center">Overwatch</h4>
+        <ul class="teams">
+          <li ng-repeat="t in teams | filter: {game: 10} | orderBy:'-users.length'" class="team" ng-class="t.users.length>5 ? 'complete' : ''">
+            <strong>{{ t.name }} ({{ t.users.length }}/6)</strong>
+            <ul class="users">
+              <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ u.username }}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <div class="row" id="teams_list">
+
+    <div class="col-sm-6">
+      <div class="highlight">
+        <h4 class="text-center">Counter-Strike: GO</h4>
+        <ul class="teams">
+          <li ng-repeat="t in teams | filter: {game: 11} | orderBy:'-users.length'" class="team" ng-class="t.users.length>4 ? 'complete' : ''">
+            <strong>{{ t.name }} ({{ t.users.length }}/5)</strong>
+            <ul class="users">
+              <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ u.username }}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="highlight">
+        <h4 class="text-center">Joueurs libres</h4>
+        <ul class="teams">
+          <li ng-repeat="t in teams | filter:{game: 12} | orderBy:'-users.length'" class="team" ng-class="t.users.length>4 ? 'complete' : ''">
+            <strong>{{ t.name }} ({{ t.users.length }}/5)</strong>
+            <ul class="users">
+              <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ u.username }}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
 
   <div class="row">
     <h1>FAQ</h1>
@@ -202,69 +326,6 @@
     </div>
   </div>
 
-  <h3>Équipes inscrites à la LAN</h3>
-
-  <div class="row" id="teams_list">
-    <div class="col-sm-6">
-      <div class="highlight">
-        <h4 class="text-center">League of Legends</h4>
-        <ul class="teams">
-          <li ng-repeat="t in teams | filter: {game: 9} | orderBy:'-users.length'" class="team" ng-class="t.users.length>4 ? 'complete' : ''">
-            <strong>{{ t.name }} ({{ t.users.length }}/5)</strong>
-            <ul class="users">
-              <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ !u.roaster ? '(' : '' }}{{ u.username }}{{ !u.roaster ? ')' : '' }}</li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="col-sm-6">
-      <div class="highlight">
-        <h4 class="text-center">Overwatch</h4>
-        <ul class="teams">
-          <li ng-repeat="t in teams | filter: {game: 10} | orderBy:'-users.length'" class="team" ng-class="t.users.length>5 ? 'complete' : ''">
-            <strong>{{ t.name }} ({{ t.users.length }}/6)</strong>
-            <ul class="users">
-              <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ u.username }}</li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    </div>
-    <div class="row" id="teams_list">
-
-      <div class="col-sm-6">
-        <div class="highlight">
-          <h4 class="text-center">Counter-Strike: GO</h4>
-          <ul class="teams">
-            <li ng-repeat="t in teams | filter: {game: 11} | orderBy:'-users.length'" class="team" ng-class="t.users.length>4 ? 'complete' : ''">
-              <strong>{{ t.name }} ({{ t.users.length }}/5)</strong>
-              <ul class="users">
-                <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ u.username }}</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="col-sm-6">
-        <div class="highlight">
-          <h4 class="text-center">Joueurs libres</h4>
-          <ul class="teams">
-            <li ng-repeat="t in teams | filter:{game: 12} | orderBy:'-users.length'" class="team" ng-class="t.users.length>4 ? 'complete' : ''">
-              <strong>{{ t.name }} ({{ t.users.length }}/5)</strong>
-              <ul class="users">
-                <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ u.username }}</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-  </div>
 
   <div class="row reglement_row justify-content-md-center">
 
