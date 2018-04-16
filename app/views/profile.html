@@ -112,8 +112,7 @@
           <br />
           <br />
           <p>
-            Les informations ci-dessous ne sont actuellement pas modifiables.<br /> 
-            Contactez <a href="mailto:info@festigeek.ch">info@festigeek.ch</a> en cas d'erreur.
+            Les informations ci-dessous ne sont actuellement pas modifiables.<br /> Contactez <a href="mailto:info@festigeek.ch">info@festigeek.ch</a> en cas d'erreur.
           </p>
         </div>
 
@@ -209,12 +208,10 @@
           <div class="alert alert-warning" role="alert" ng-show="orders[0].state == 0">
             <div class="row">
               <div class="col-sm-12" ng-show="orders[0].payment_type_id == 1">
-                Le paiement de ta commande n'est pas encore validée.<br />
-                Tu as jusqu'au 7 Mai pour le faire. Si tu as dejà payé, attends que notre équipe valide ton paiement. Merci pour ta patience !
+                Le paiement de ta commande n'est pas encore validé.<br /> Tu as jusqu'au 7 Mai pour le faire. Si tu as dejà payé, attends que notre équipe valide ton paiement. Merci pour ta patience !
               </div>
               <div class="col-sm-7" ng-show="orders[0].payment_type_id == 2">
-                Il semble y avoir eu une erreur avec Paypal.<br />
-                Tu peux réessayer en cliquant ici:
+                Il semble y avoir eu une erreur avec Paypal.<br /> Tu peux réessayer en cliquant ici:
               </div>
               <div class="col-sm-5" ng-show="orders[0].payment_type_id == 2">
                 <a href="" ng-click="getPaypalInvoice()">
@@ -240,7 +237,7 @@
               </p>
               <div ng-show="orders[0].state == 0">
                 <button ng-show="orders[0].payment_type_id == 1" ng-click="getBankTransfertMail()" type="button" class="btn btn-primary">Mail non-reçu ?</button>
-                
+
               </div>
             </div>
             <div class="col-sm-5">
@@ -258,7 +255,7 @@
         <br />
 
         <div class="row">
-          <table style="width:100%">
+          <table style="width:100%" ng-show="!orders[0]">
             <tr>
               <th>
                 Produit
