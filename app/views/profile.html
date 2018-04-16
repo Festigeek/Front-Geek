@@ -91,7 +91,7 @@
                 LAN 2018
               </a>
             </li>
-            <li>
+            <li ng-show="user.roles.length > 0">
               <a href="" data-toggle="pill" ng-click="subPage = 5">
                 <fa name="wrench"></fa>
                 Admin
@@ -101,20 +101,19 @@
         </div>
         <!-- END MENU -->
       </div>
+      <br/>
     </div>
 
     <div class="profile-content col-md-9">
       <div class="form-group" ng-show="subPage == 1">
 
         <div class="alert alert-info">
-          <!-- <div class="pull-right ticket-button">
-            <a type="button" class="btn btn-success" ng-click="getTicket()">Ticket LAN 2017</a>
-          </div> -->
-          <h2>News</h2>
-          <h4>Inscrit depuis le {{ user.created_at | amDateFormat: 'DD MMM YYYY' }}.</h4>
-          <!-- .split(' ')[0] | date: 'dd MMM yyyy'  -->
+          <b>Inscrit depuis le {{ user.created_at | amDateFormat: 'DD MMM YYYY' }}.</b>
+          <br />
+          <br />
           <p>
-            Les informations ci-dessous ne sont actuellement pas modifiables.<br /> Contactez <a href="mailto:info@festigeek.ch">info@festigeek.ch</a> en cas d'erreur.
+            Les informations ci-dessous ne sont actuellement pas modifiables.<br /> 
+            Contactez <a href="mailto:info@festigeek.ch">info@festigeek.ch</a> en cas d'erreur.
           </p>
         </div>
 
@@ -192,24 +191,74 @@
       <div class="form-group" ng-show="subPage == 4">
         <h3 class="titlelan">Récapitulatif de ta commande</h3>
         <!-- TODO if no order created for this event -> link to "inscription lan 2018" -->
-        <div ng-if="!orders[0]">
-          Tu ne t'es pas encore inscrit à cette LAN !
-          <a href="#!/inscriptions"><button type="button" class="btn btn-primary inscriptions">Je veux m'inscrire !</button></a>
-        </div>
-        <div ng-if="orders[0]">
-          <p>
-            Tu as choisi de payer par
-            <strong ng-if="orders[0].payment_type_id == 1">virement bancaire</strong>
-            <strong ng-if="orders[0].payment_type_id == 0">paypal</strong>
-          </p>
-          <div class="alert alert-warning" role="alert" ng-if="orders[0].state == 0">
-            Le paiement de ta commande n'est pas encore validé. Tu as jusqu'au 7 Mai pour le faire. Si tu as dejà payé, attends que notre équipe valide ton paiement. Merci pour ta patience !
-          </div>
-          <div class="alert alert-success" role="alert" ng-if="orders[0].state == 1">
-            Ton paiement a été validé! Merci beaucoup!
-          </div>
-          <table style="width:100%">
 
+        <div ng-show="!orders[0]">
+          <div class="row">
+            <div class="col-sm-7">Tu ne t'es pas encore inscrit à cette LAN !</div>
+            <div class="col-sm-5">
+              <a href="#!/inscriptions">
+                <button type="button" class="btn btn-primary inscriptions">Je veux m'inscrire !</button>
+              </a>
+            </div>
+          </div>
+          <br />
+        </div>
+
+        <div ng-show="orders[0]">
+
+          <div class="alert alert-warning" role="alert" ng-show="orders[0].state == 0">
+            <div class="row">
+              <div class="col-sm-12" ng-show="orders[0].payment_type_id == 1">
+                Le paiement de ta commande n'est pas encore validée.<br />
+                Tu as jusqu'au 7 Mai pour le faire. Si tu as dejà payé, attends que notre équipe valide ton paiement. Merci pour ta patience !
+              </div>
+              <div class="col-sm-7" ng-show="orders[0].payment_type_id == 2">
+                Il semble y avoir eu une erreur avec Paypal.<br />
+                Tu peux réessayer en cliquant ici:
+              </div>
+              <div class="col-sm-5" ng-show="orders[0].payment_type_id == 2">
+                <a href="" ng-click="getPaypalInvoice()">
+                  <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" alt="Check out with PayPal" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="alert alert-success" role="alert" ng-show="orders[0].state == 1">
+            Ton paiement a été validé! Merci beaucoup!
+            <!--<div class="pull-right">
+              <button type="button" class="btn btn-success" ng-click="getTicket()">Télécharger Billet WIP 2018</button>
+            </div>
+            <br />-->
+            <br />
+          </div>
+
+          <div class="row">
+            <div class="col-sm-7">
+              <p>Tu as choisi de payer par
+                <strong ng-show="orders[0].payment_type_id == 1">virement bancaire</strong>
+                <strong ng-show="orders[0].payment_type_id == 2">paypal</strong>.
+              </p>
+              <div ng-show="orders[0].state == 0">
+                <button ng-show="orders[0].payment_type_id == 1" ng-click="getBankTransfertMail()" type="button" class="btn btn-primary">Mail non-reçu ?</button>
+                
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <div ng-show="orders[0].state == 0">
+                <p>Changer de méthode de paiement:</p>
+                <button ng-show="orders[0].payment_type_id == 2" ng-click="getBankTransfertMail()" type="button" class="btn btn-primary">Utiliser le transfert bancaire</button>
+                <a ng-show="orders[0].payment_type_id == 1" href="" ng-click="getPaypalInvoice()">
+                  <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" alt="Check out with PayPal" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+          <table style="width:100%">
             <tr>
               <th>
                 Produit
@@ -246,24 +295,24 @@
 
         <h3 class="titlelan">Gestion d'équipe</h3>
 
-        <div ng-if="team">
-          <div class="alert alert-info" role="alert" ng-if="isCaptain">
+        <div ng-show="team">
+          <div class="alert alert-info" role="alert" ng-show="isCaptain">
             Tu es le capitaine de votre équipe <strong>{{team.name}}</strong>. Tu peux donner ce rôle à quelqu'un d'autre de ton équipe. N'oublie pas de transmettre le code <strong>{{team.code}}</strong> aux autres membres.
           </div>
-          <div class="alert alert-info" role="alert" ng-if="!isCaptain">
+          <div class="alert alert-info" role="alert" ng-show="!isCaptain">
             Voici la composition de ton équipe <strong>{{team.name}}</strong>. Tu peux contacter le capitaine si tu souhaites y faire des changements.
           </div>
 
         </div>
-        <div class="alert alert-info" role="alert" ng-if="!team">
+        <div class="alert alert-info" role="alert" ng-show="!team">
           Oh Zut ! Tu ne fais partie d'aucune équipe!
           <!-- TODO en rejoindre une avec code -->
-          <!-- <div ng-if=!orders[0]"">
+          <!-- <div ng-show=!orders[0]"">
 
           </div> -->
         </div>
 
-        <table style="width:100%" ng-if="team">
+        <table style="width:100%" ng-show="team">
           <tr>
             <th>
               Nom et prénom
@@ -290,17 +339,17 @@
               {{user.email}}
             </td>
             <td>
-              <i class="fa fa-flag" aria-hidden="true" style="color:green;" ng-if="user.captain"></i>
-              <i class="fa fa-flag" aria-hidden="true" style="color:grey;" ng-if="!user.captain"></i>
+              <i class="fa fa-flag" aria-hidden="true" style="color:green;" ng-show="user.captain"></i>
+              <i class="fa fa-flag" aria-hidden="true" style="color:grey;" ng-show="!user.captain"></i>
             </td>
-            <td ng-if="isCaptain">
+            <td ng-show="isCaptain">
               <!-- TODO css button ng-if="!user.captain && isCaptain" -->
-              <button type="button" class="btn btn-primary makecaptain" ng-click="changeCaptain(user.email)" ng-if="!user.captain">Rendre capitaine</button>
+              <button type="button" class="btn btn-primary makecaptain" ng-click="changeCaptain(user.email)" ng-show="!user.captain">Rendre capitaine</button>
             </td>
 
           </tr>
         </table>
-        <div class="invitetoteam row" ng-if="team">
+        <div class="invitetoteam row" ng-show="team">
           <div class="col-sm-10">
             <p> Pour inviter des participants, transmet leur ce code: </p>
           </div>
@@ -312,12 +361,16 @@
 
         </div>
       </div>
+
       <div class="form-group" ng-show="subPage == 5">
         <h1>Espace admin</h1>
+        <h2>Fichier des commandes</h2>
+        <button ng-click="getAllOrders('csv')" type="button" class="btn btn-primary">Download CSV</button>
+        <button ng-click="getAllOrders('json')" type="button" class="btn btn-primary">Download JSON</button>
         <h2>Statistiques LAN 2018</h2>
         <!-- <canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels">
         </canvas> -->
-        <table style="width:100%">
+        <!-- <table style="width:100%">
           <tr>
             <th>
               Produit
@@ -341,7 +394,7 @@
             </td>
           </tr>
 
-        </table>
+        </table> -->
       </div>
     </div>
   </div>
