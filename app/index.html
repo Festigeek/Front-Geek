@@ -64,11 +64,11 @@
                <a href="" ng-click="openModal()">Rouvrir l'annonce</a> -->
             </div>
             <div class="col-md-6 col-sm-6 text-right fh5co-social">
-              <a ng-if="!isAuthenticated()" href="" ng-click="openLogin()">
+              <a ng-show="!isAuthenticated()" href="" ng-click="openLogin()">
                 <fa name="user-circle-o"></fa>
                 <strong>Connexion</strong>
               </a>
-              <span ng-if="isAuthenticated()" class="dropdown">
+              <span ng-show="isAuthenticated()" class="dropdown">
                     <a href="" class="dropdown-toggle" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                       {{ username }}
                       <span class="caret"></span>
@@ -79,8 +79,8 @@
                 <li role="separator" class="divider"></li>
                 <li>
                   <a href="#" ng-click="logout()">
-                          <strong>Se déconnecter</strong>
-                        </a>
+                    <strong>Se déconnecter</strong>
+                  </a>
                 </li>
               </ul>
               </span>

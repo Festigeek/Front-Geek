@@ -2,7 +2,7 @@
   <h3>Infos Tournoi</h3>
 
   <div class="form-group">
-    <div class="alert alert-info" role="alert" ng-if="formData.products.tournament.name==='Animations'">
+    <div class="alert alert-info" role="alert" ng-show="formData.products.tournament.name === 'Animations'">
       <strong>Information: </strong>En fonction de l'affluence et de l'organisation des équipes des autres tournois, on ne peut pas garantir votre place en animation. S'il s'avère qu'il y a un manque de place, votre billet vous sera remboursé.
     </div>
     <h4 class="control-label minititle">Tournoi</h4>
@@ -46,10 +46,10 @@
   <div class="clearfix"><br /></div>
   <hr class="separator">
   <h3>Infos Joueur</h3>
-  <div class="alert alert-warning" role="alert" ng-if="formData.products.tournament.need_team===0">
+  <div class="alert alert-warning" role="alert" ng-show="formData.products.tournament.need_team === 0">
     <strong>Information: </strong>Tu as choisi un type de tournoi qui ne nécessite pas d'équipe. Si tu en choisi une, on ne peut pas garantir ton placement à côté des autres membres de ton équipe dans la LAN.
   </div>
-  <div class="alert alert-warning" role="alert" ng-if="formData.products.tournament.need_team===1">
+  <div class="alert alert-warning" role="alert" ng-show="formData.products.tournament.need_team === 1">
     <strong>Information: </strong>Tu as choisi un type de tournoi qui nécessite une équipe
   </div>
   <div class="alert alert-info" role="alert">
@@ -85,10 +85,10 @@
         </div>
       </div>
 
-      <p style="color:#a94442;" ng-if="teamFromCode===false">
+      <p style="color:#a94442;" ng-show="teamFromCode===false">
         Cette équipe n'existe pas :(
       </p>
-      <p style="color:#3c763d;" ng-if="teamFromCode">
+      <p style="color:#3c763d;" ng-show="teamFromCode">
         Equipe <strong>{{teamFromCode}}</strong> trouvée!
       </p>
     </div>

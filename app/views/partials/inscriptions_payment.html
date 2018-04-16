@@ -19,21 +19,21 @@
       </tr>
     </tfoot>
     <tbody>
-      <tr ng-if="formData.products.tournament.id">
+      <tr ng-show="formData.products.tournament.id">
         <td></td>
         <td></td>
         <td>Inscription LAN 2018 - Tournoi <b>{{ formData.products.tournament.name }}</b></td>
         <td>1</td>
         <td>{{ formData.products.tournament.price | number:2 }}</td>
       </tr>
-      <tr ng-if="formData.products.burger.amount">
+      <tr ng-show="formData.products.burger.amount">
         <td></td>
         <td></td>
         <td>Bon pour burger Festigeek</td>
         <td>{{ formData.products.burger.amount }}</td>
         <td>{{ formData.products.burger.price * formData.products.burger.amount | number:2 }}</td>
       </tr>
-      <tr ng-if="formData.products.bfast.amount">
+      <tr ng-show="formData.products.bfast.amount">
         <td></td>
         <td></td>
         <td>Bon pour petit-déj.</td>
