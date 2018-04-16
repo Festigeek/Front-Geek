@@ -184,7 +184,7 @@ angular.module('frontGeekApp')
           }
         }, function() {
           $state.go('checkout', {state: 'error'});
-          toastr.error('Erreur lors de l\'envoi de l\'inscription.');
+          toastr.error("Erreur lors de l'envoi de l'inscription.");
         });
       });
     };

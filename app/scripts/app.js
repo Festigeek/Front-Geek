@@ -97,16 +97,14 @@ angular
       return deferred.promise;
     }];
 
-    var previousOrder = ['$q', '$log', 'urls', '$location', '$auth', '$http', 'toastr', function ($q, urls, $location, $auth, $http, toastr) {
+    var previousOrder = ['$q', '$log', 'urls', '$location', '$auth', '$http', 'toastr', function ($q, $log, urls, $location, $auth, $http, toastr) {
       var deferred = $q.defer();
-      return deferred.reject();
-      $log.log("TOTO");
-
+      
       // TODO Fix 'undefined' in stateService.ts
       $http.get(urls.BASE_API + '/users/me/orders?event_id=2')
       .then(function(res){
         $log.error(res);
-        if(res.data.length > 0) {
+        if(Object.keys(res.data).length > 0) {
           deferred.reject();
           $location.path('/');
           toastr.error('Vous avez déjà effectué votre inscription.');
