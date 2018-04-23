@@ -181,7 +181,7 @@
           <li ng-repeat="t in teams | filter: {game: 10} | orderBy:'-users.length'" class="team" ng-class="t.users.length>5 ? 'complete' : ''">
             <strong>{{ t.name }} ({{ t.users.length }}/6)</strong>
             <ul class="users">
-              <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ u.username }} <fa name="star" ng-show="u.captain"></fa></li>
+              <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ !u.roaster ? '(' : '' }}{{ u.username }}{{ !u.roaster ? ')' : '' }} <fa name="star" ng-show="u.captain"></fa></li>
             </ul>
           </li>
         </ul>
@@ -195,7 +195,7 @@
           <li ng-repeat="t in teams | filter:{game: 12} | orderBy:'-users.length'" class="team complete">
             <strong>{{ t.name }} ({{ t.users.length }})</strong>
             <ul class="users">
-              <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ u.username }} <fa name="star" ng-show="u.captain"></fa></li>
+              <li ng-repeat="u in t.users" ng-class="u.gender == 'F' ? 'female' : 'male'">{{ !u.roaster ? '(' : '' }}{{ u.username }}{{ !u.roaster ? ')' : '' }} <fa name="star" ng-show="u.captain"></fa></li>
             </ul>
           </li>
         </ul>
