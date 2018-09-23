@@ -2,7 +2,7 @@
   "name": "frontgeek",
   "version": "1.2",
   "dependencies": {
-    "angular": "^1.6.1",
+    "angular": "1.6.1",
     "bootstrap-sass-official": "^3.0",
     "angular-animate": "^1.6.0",
     "angular-aria": "^1.6.0",
@@ -47,6 +47,6 @@
     }
   },
   "resolutions": {
-    "angular": "~1.6"
+    "angular": "1.6.1"
   }
 }

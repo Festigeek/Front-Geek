@@ -7,9 +7,11 @@ RUN apt-get update \
 WORKDIR /fgApp
 RUN gem install compass \
     && git clone https://github.com/Festigeek/Front-Geek.git . \
-    && npm install grunt -g \
-    && npm install -g \
-    && grunt
+    && npm install -g grunt-cli \
+    && npm install -g bower \
+    && npm install \
+    && bower install --allow-root \
+    && grunt build
 
 FROM nginx
 COPY --from=0 /fgApp/dist /usr/share/nginx/html
