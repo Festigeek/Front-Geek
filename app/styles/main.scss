@@ -1886,11 +1886,6 @@ nav.navbar-fixed-top {
   position: relative;
 }
 
-.fulscreen-bg_LAN2018{
-  width:100%;
-  min-height: 420px;
-}
-
 .full-bg-overlay {
   position: absolute !important;
   width: 100%;
@@ -1932,10 +1927,13 @@ nav.navbar-fixed-top {
 }
 
 .fullscreen-bg {
-  min-height: 420px;
+  min-height: 380px;
+  top:130px;
   overflow: hidden;
   position:relative;
-  top:130px;
+  background:url('../images/main_bg.png') center center no-repeat;
+  background-size:auto;
+  margin-bottom: 20px;
 }
 
 .fullscreen-bg__video {
@@ -1951,8 +1949,9 @@ nav.navbar-fixed-top {
 
 @media (max-width: 767px) {
   .fullscreen-bg {
-    background: url(../images/background_fg2018.png) center center / cover no-repeat;
     top:90px;
+    min-height:250px;
+    background-size:auto 100%;
   }
 
   .vid-ruben span {
